@@ -1,0 +1,28 @@
+{
+  "name": "gasdesigns",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/build-images.mjs && node scripts/build-image-map.mjs",
+    "brand": "node scripts/build-brand.mjs",
+    "pages": "node scripts/build-pages.mjs",
+    "prebuild": "npm run images && npm run brand && npm run pages",
+    "build": "vite build",
+    "preview": "vite preview",
+    "qa:static": "node scripts/qa-static.mjs",
+    "qa:browser": "node scripts/qa-browser.mjs",
+    "qa:lighthouse": "node scripts/qa-lighthouse.mjs",
+    "qa:report": "node scripts/qa-report.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "fontkit": "^2.0.4",
+    "sharp": "^0.33.5",
+    "vite": "^6.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "lighthouse": "^12.2.1"
+  }
+}
