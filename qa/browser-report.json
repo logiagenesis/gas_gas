@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T09:17:27.779Z",
+  "checkedAt": "2026-09-22T09:34:33.957Z",
   "pages": [
     {
       "name": "home",
@@ -509,6 +509,17 @@
     },
     {
       "foreground": "#16181b",
+      "background": "#25d366",
+      "fontSizePx": 17,
+      "fontWeight": 700,
+      "large": false,
+      "ratio": 8.97,
+      "required": 4.5,
+      "sample": "WhatsApp",
+      "page": "home"
+    },
+    {
+      "foreground": "#16181b",
       "background": "#f5b400",
       "fontSizePx": 17,
       "fontWeight": 700,
@@ -748,12 +759,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-CS-QvgyX.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-ERCSLz6w.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-CqAr7N3j.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-D5Ee3BgZ.css",
       "from": "home",
       "status": 200
     },

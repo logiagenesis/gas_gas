@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T09:17:27.779Z.
+Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T09:34:33.957Z.
 
 ## Horizontal overflow
 
@@ -28,6 +28,7 @@ Every distinct text colour and background pair found in the rendered pages, with
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `#4a525a` | `#f4f5f6` | 16px | 400 | 7.27:1 | 4.5:1 | PASS | We install gas hobs, ovens, water  |
 | `#4a525a` | `#ffffff` | 18px | 400 | 7.94:1 | 4.5:1 | PASS | Each service below covers the work |
+| `#16181b` | `#25d366` | 17px | 700 | 8.97:1 | 4.5:1 | PASS | WhatsApp |
 | `#16181b` | `#f5b400` | 17px | 700 | 9.67:1 | 4.5:1 | PASS | Skip to content |
 | `#c9cdd2` | `#16181b` | 19px | 400 | 11.14:1 | 4.5:1 | PASS | Gas Designs installs, services and |
 | `#1e2227` | `#f4f5f6` | 17px | 400 | 14.65:1 | 4.5:1 | PASS | Residential Gas Installations We i |
@@ -67,9 +68,9 @@ A request for a path that does not exist returned HTTP 404.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| home | 95 | 96 | 100 | 100 |
-| services-bulk-lpg-installations | 96 | 95 | 100 | 100 |
-| privacy | 100 | 95 | 100 | 100 |
+| home | 96 | 100 | 100 | 100 |
+| services-bulk-lpg-installations | 96 | 100 | 100 | 100 |
+| privacy | 100 | 100 | 100 | 100 |
 
-Run against `http://localhost:4173/gas_gas/` on 2026-09-22T09:19:08.877Z.
+Run against `http://localhost:4173/gas_gas/` on 2026-09-22T09:36:41.005Z.
 
