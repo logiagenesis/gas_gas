@@ -16,6 +16,9 @@
 }
 
 :root {
+  /* The sticky header measures 76px at every breakpoint from 360px to 1920px;
+     anchor targets clear it by this much plus a little breathing room. */
+  --header-height: 76px;
   --whatsapp: #25d366;
   --whatsapp-hover: #1fb857;
   --charcoal: #16181b;
@@ -39,6 +42,13 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Anchor targets must not land underneath the sticky header. */
+section[id],
+form[id],
+#quote {
+  scroll-margin-top: calc(var(--header-height, 76px) + 16px);
 }
 
 html {

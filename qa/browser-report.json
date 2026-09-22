@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T09:34:33.957Z",
+  "checkedAt": "2026-09-22T12:49:47.043Z",
   "pages": [
     {
       "name": "home",
@@ -759,12 +759,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-ERCSLz6w.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-DdRvPcZe.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-D5Ee3BgZ.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BywDyN-4.css",
       "from": "home",
       "status": 200
     },

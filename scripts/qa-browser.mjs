@@ -6,6 +6,7 @@ import { chromium } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 // This environment ships Chromium separately from the pinned Playwright build,
 // so point at it directly when the bundled revision is not present.
@@ -233,4 +234,49 @@ async function main() {
   if (failures) process.exit(1);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
+
+// --- Anchor landing check (fix list item 1) -------------------------------
+// Every in-page anchor must come to rest below the sticky header.
+export async function checkAnchors(baseUrl, launchOptions) {
+  const { chromium: browserType } = await import('@playwright/test');
+  const browser = await browserType.launch(launchOptions);
+  const failures = [];
+
+  for (const width of [1440, 390]) {
+    const context = await browser.newContext({ viewport: { width, height: 800 } });
+    const page = await context.newPage();
+    await page.goto(baseUrl, { waitUntil: 'networkidle' });
+
+    const anchors = await page.evaluate(
+      `(() => [...document.querySelectorAll('.site-nav a[href*="#"], .header-cta[href*="#"]')]
+        .map((a) => a.getAttribute('href').split('#')[1]).filter(Boolean))()`,
+    );
+
+    for (const id of [...new Set(anchors)]) {
+      const result = await page.evaluate(
+        `(() => {
+          const target = document.getElementById(${JSON.stringify(id)});
+          if (!target) return { id: ${JSON.stringify(id)}, missing: true };
+          target.scrollIntoView();
+          return new Promise((resolve) => setTimeout(() => {
+            const header = document.querySelector('.site-header').getBoundingClientRect();
+            const rect = target.getBoundingClientRect();
+            resolve({ id: ${JSON.stringify(id)}, top: Math.round(rect.top), headerBottom: Math.round(header.bottom) });
+          }, 120));
+        })()`,
+      );
+      if (result.missing) {
+        failures.push(`${width}px: #${result.id} does not exist`);
+      } else if (result.top < result.headerBottom) {
+        failures.push(`${width}px: #${result.id} rests at ${result.top}, under the header bottom ${result.headerBottom}`);
+      }
+    }
+    await context.close();
+  }
+
+  await browser.close();
+  return failures;
+}
