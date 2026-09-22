@@ -3,6 +3,10 @@
 Static site for Gas Designs, built with Vite and deployed to GitHub Pages by
 GitHub Actions on every push to `main`.
 
+Node 22 or newer is required: the build and the QA checks use `globSync` from
+`node:fs`, which Node 20 does not provide. The pinned version is in
+`.node-version` and the workflow reads that file.
+
 ## Running it locally
 
 ```
