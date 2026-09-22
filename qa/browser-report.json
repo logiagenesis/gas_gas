@@ -1,0 +1,947 @@
+{
+  "base": "http://localhost:4173/gas_gas/",
+  "checkedAt": "2026-09-22T07:51:12.683Z",
+  "pages": [
+    {
+      "name": "home",
+      "url": "http://localhost:4173/gas_gas/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Gas installation, maintenance and certification in South Africa",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-residential-gas-installations",
+      "url": "http://localhost:4173/gas_gas/services/residential-gas-installations/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Residential Gas Installations",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-commercial-kitchen-gas-systems",
+      "url": "http://localhost:4173/gas_gas/services/commercial-kitchen-gas-systems/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Commercial Kitchen Gas Systems",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-industrial-gas-installations-maintenance",
+      "url": "http://localhost:4173/gas_gas/services/industrial-gas-installations-maintenance/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Industrial Gas Installations & Maintenance",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-bulk-lpg-installations",
+      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Bulk LPG Installations",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-custom-projects-developments",
+      "url": "http://localhost:4173/gas_gas/services/custom-projects-developments/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Custom Projects & Developments",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-certificate-of-conformity",
+      "url": "http://localhost:4173/gas_gas/services/certificate-of-conformity/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Certificate of Conformity",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-gas-system-maintenance",
+      "url": "http://localhost:4173/gas_gas/services/gas-system-maintenance/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Gas System Maintenance",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-gas-leak-detection-emergency-repairs",
+      "url": "http://localhost:4173/gas_gas/services/gas-leak-detection-emergency-repairs/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Gas Leak Detection & Emergency Repairs",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "services-basic-electrical-gas-system-support",
+      "url": "http://localhost:4173/gas_gas/services/basic-electrical-gas-system-support/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Basic Electrical & Gas System Support",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "thank-you",
+      "url": "http://localhost:4173/gas_gas/thank-you/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Your quote request has been sent",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "privacy",
+      "url": "http://localhost:4173/gas_gas/privacy/",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "Privacy policy",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    },
+    {
+      "name": "404",
+      "url": "http://localhost:4173/gas_gas/404.html",
+      "status": 200,
+      "overflow": {
+        "360": {
+          "scrollWidth": 360,
+          "clientWidth": 360,
+          "overflow": false,
+          "offenders": []
+        },
+        "768": {
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "overflow": false,
+          "offenders": []
+        },
+        "1024": {
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "overflow": false,
+          "offenders": []
+        },
+        "1440": {
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": false,
+          "offenders": []
+        }
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "h1": "That page does not exist",
+      "headerCtaHiddenAt360": true,
+      "navToggleVisibleAt360": true,
+      "brokenImages": []
+    }
+  ],
+  "contrast": [
+    {
+      "foreground": "#4a525a",
+      "background": "#f4f5f6",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 7.27,
+      "required": 4.5,
+      "sample": "We install gas hobs, ovens, water heaters and fi",
+      "page": "home"
+    },
+    {
+      "foreground": "#4a525a",
+      "background": "#ffffff",
+      "fontSizePx": 18,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 7.94,
+      "required": 4.5,
+      "sample": "Each service below covers the work, the testing ",
+      "page": "home"
+    },
+    {
+      "foreground": "#16181b",
+      "background": "#f5b400",
+      "fontSizePx": 17,
+      "fontWeight": 700,
+      "large": false,
+      "ratio": 9.67,
+      "required": 4.5,
+      "sample": "Skip to content",
+      "page": "home"
+    },
+    {
+      "foreground": "#c9cdd2",
+      "background": "#16181b",
+      "fontSizePx": 19,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 11.14,
+      "required": 4.5,
+      "sample": "Gas Designs installs, services and certifies gas",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#f4f5f6",
+      "fontSizePx": 17,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 14.65,
+      "required": 4.5,
+      "sample": "Residential Gas Installations\nWe install gas hob",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#f4f5f6",
+      "fontSizePx": 20,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 14.65,
+      "required": 3,
+      "sample": "Residential Gas Installations",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#ffffff",
+      "fontSizePx": 32,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 15.99,
+      "required": 3,
+      "sample": "Gas services we install, maintain and certify",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#ffffff",
+      "fontSizePx": 17,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 15.99,
+      "required": 4.5,
+      "sample": "Please choose\nResidential\nCommercial\nIndustrial\n",
+      "page": "home"
+    },
+    {
+      "foreground": "#ffffff",
+      "background": "#16181b",
+      "fontSizePx": 17,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 17.79,
+      "required": 4.5,
+      "sample": "Services",
+      "page": "home"
+    },
+    {
+      "foreground": "#ffffff",
+      "background": "#16181b",
+      "fontSizePx": 44,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 17.79,
+      "required": 3,
+      "sample": "Gas installation, maintenance and certification ",
+      "page": "home"
+    }
+  ],
+  "links": [
+    {
+      "url": "http://localhost:4173/gas_gas/#main",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#services",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#how-it-works",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#about",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#contact",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/residential-gas-installations/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=residential-gas-installations#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/commercial-kitchen-gas-systems/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=commercial-kitchen-gas-systems#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/industrial-gas-installations-maintenance/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=industrial-gas-installations-maintenance#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=bulk-lpg-installations#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/custom-projects-developments/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=custom-projects-developments#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/certificate-of-conformity/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=certificate-of-conformity#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/gas-system-maintenance/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=gas-system-maintenance#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/gas-leak-detection-emergency-repairs/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=gas-leak-detection-emergency-repairs#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/basic-electrical-gas-system-support/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/?service=basic-electrical-gas-system-support#quote",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "mailto:pierre@gasdesigns.co.za",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/privacy/",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "https://logi-ink.co.za/",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BrUg6K1Z.js",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/build/site-Dn63jlv7.css",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/brand/gas-designs-white.svg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/hero-1920.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/hero-1920.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-01-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-01-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-04-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-04-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-06-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-06-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-05-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-05-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-09-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-09-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-08-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-08-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-02-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-02-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-07-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-07-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/service-03-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/service-03-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/compliance-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/compliance-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/about-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/about-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "/gas_gas/assets/img/contact-1200.webp",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/img/contact-1200.jpg",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/residential-gas-installations/#main",
+      "from": "services-residential-gas-installations",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/commercial-kitchen-gas-systems/#main",
+      "from": "services-commercial-kitchen-gas-systems",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/industrial-gas-installations-maintenance/#main",
+      "from": "services-industrial-gas-installations-maintenance",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/#main",
+      "from": "services-bulk-lpg-installations",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/custom-projects-developments/#main",
+      "from": "services-custom-projects-developments",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/certificate-of-conformity/#main",
+      "from": "services-certificate-of-conformity",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/gas-system-maintenance/#main",
+      "from": "services-gas-system-maintenance",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/gas-leak-detection-emergency-repairs/#main",
+      "from": "services-gas-leak-detection-emergency-repairs",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/services/basic-electrical-gas-system-support/#main",
+      "from": "services-basic-electrical-gas-system-support",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/thank-you/#main",
+      "from": "thank-you",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/privacy/#main",
+      "from": "privacy",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/404.html#main",
+      "from": "404",
+      "status": 200
+    }
+  ],
+  "badPathStatus": 404
+}
