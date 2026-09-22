@@ -98,11 +98,12 @@ record('Nine service cards in the home grid', cardCount === 9, `${cardCount} fou
 
 // 5. Quote form markup.
 const formChecks = [
-  ['action', /action="https:\/\/formsubmit\.co\/pierre@gasdesigns\.co\.za"/],
+  ['action', /action="https:\/\/formspree\.io\/f\/mbglopba"/],
   ['_subject', /name="_subject" value="Quote request/],
-  ['_next absolute', /name="_next" value="https:\/\/[^"]+\/thank-you\/"/],
-  ['_captcha false', /name="_captcha" value="false"/],
-  ['_honey honeypot', /name="_honey"/],
+  ['data-thank-you absolute', /data-thank-you="https:\/\/[^"]+\/thank-you\/"/],
+  ['_gotcha honeypot', /name="_gotcha" tabindex="-1" autocomplete="off"/],
+  ['email field named email', /id="email" name="email"/],
+  ['status region', /<p class="form-status" role="status" aria-live="polite">/],
   ['name field', /id="name" name="name"/],
   ['phone field', /id="phone" name="phone"/],
   ['email field', /id="email" name="email"/],
@@ -152,6 +153,12 @@ for (const file of textFiles) {
 }
 record('No Google Tag Manager code in dist', gtmHits.length === 0, gtmHits.join(', '));
 
+// 7c. The form must carry no leftovers from the previous provider.
+const leftovers = ['formsubmit', '_next', '_captcha', '_honey"', '_template'].filter((token) =>
+  homeHtml.includes(token),
+);
+record('No FormSubmit leftovers in the quote form', leftovers.length === 0, leftovers.join(', '));
+
 // 8. No forbidden hosting artefacts.
 const forbidden = files.filter((f) => /(^|\/)(\.htaccess|_headers|_redirects)$/i.test(f));
 record('No .htaccess, _headers or _redirects in dist', forbidden.length === 0, forbidden.join(', '));
@@ -171,7 +178,7 @@ for (const file of htmlFiles) {
 }
 const allowed = new Set([
   'www.googletagmanager.com',
-  'formsubmit.co',
+  'formspree.io',
   'gasdesigns.co.za',
   'schema.org',
   'logi-ink.co.za',

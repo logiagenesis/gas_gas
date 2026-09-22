@@ -91,10 +91,10 @@ export const home = {
 
 export const thankYou = {
   title: 'Thank you | Gas Designs',
-  metaDescription: 'Your quote request has reached Gas Designs. We will reply by email.',
+  metaDescription: 'Your quote request has reached Gas Designs. We will phone, WhatsApp or email you.',
   h1: 'Your quote request has been sent',
   body: [
-    'Thank you. Your request has reached us and we will reply by email.',
+    'Thank you. Your request has reached us and we will phone, WhatsApp or email you.',
     `If your enquiry is urgent, call or send a WhatsApp message to ${site.phone.international}, or write to ${site.email}.`,
   ],
   safetyNote: safetyAdvice.short,
@@ -116,7 +116,7 @@ export const privacy = {
       heading: 'Information you send through the quote form',
       body: [
         'The quote form asks for your name, phone number, email address, suburb, property type, the service you need and your message. You choose what to enter.',
-        'The form is delivered to Gas Designs by email through FormSubmit, a third-party form service. We use what you send to answer your enquiry and to prepare a quote.',
+        'The form is delivered to Gas Designs by email through Formspree, a third-party form service. We use what you send to answer your enquiry and to prepare a quote.',
         `Write to ${site.email} if you want your enquiry and its details deleted.`,
       ],
     },

@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T09:34:33.957Z.
+Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T13:00:24.222Z.
 
 ## Horizontal overflow
 
@@ -44,23 +44,23 @@ The hero heading sits on a photograph behind a charcoal overlay that runs from 8
 
 | Page | Status | Console errors | Broken images | Quote button hidden at 360 | Menu button at 360 |
 | --- | --- | --- | --- | --- | --- |
-| home | 200 | 0 | 0 | yes | yes |
-| services-residential-gas-installations | 200 | 0 | 0 | yes | yes |
-| services-commercial-kitchen-gas-systems | 200 | 0 | 0 | yes | yes |
-| services-industrial-gas-installations-maintenance | 200 | 0 | 0 | yes | yes |
-| services-bulk-lpg-installations | 200 | 0 | 0 | yes | yes |
-| services-custom-projects-developments | 200 | 0 | 0 | yes | yes |
-| services-certificate-of-conformity | 200 | 0 | 0 | yes | yes |
-| services-gas-system-maintenance | 200 | 0 | 0 | yes | yes |
-| services-gas-leak-detection-emergency-repairs | 200 | 0 | 0 | yes | yes |
-| services-basic-electrical-gas-system-support | 200 | 0 | 0 | yes | yes |
-| thank-you | 200 | 0 | 0 | yes | yes |
-| privacy | 200 | 0 | 0 | yes | yes |
-| 404 | 200 | 0 | 0 | yes | yes |
+| home | 200 | 1 | 0 | yes | yes |
+| services-residential-gas-installations | 200 | 1 | 0 | yes | yes |
+| services-commercial-kitchen-gas-systems | 200 | 1 | 0 | yes | yes |
+| services-industrial-gas-installations-maintenance | 200 | 1 | 0 | yes | yes |
+| services-bulk-lpg-installations | 200 | 1 | 0 | yes | yes |
+| services-custom-projects-developments | 200 | 1 | 0 | yes | yes |
+| services-certificate-of-conformity | 200 | 1 | 0 | yes | yes |
+| services-gas-system-maintenance | 200 | 1 | 0 | yes | yes |
+| services-gas-leak-detection-emergency-repairs | 200 | 1 | 0 | yes | yes |
+| services-basic-electrical-gas-system-support | 200 | 1 | 0 | yes | yes |
+| thank-you | 200 | 1 | 0 | yes | yes |
+| privacy | 200 | 1 | 0 | yes | yes |
+| 404 | 200 | 1 | 0 | yes | yes |
 
 ## Links and assets
 
-72 unique URLs found in the built pages. 0 returned 400 or above.
+73 unique URLs found in the built pages. 0 returned 400 or above.
 
 A request for a path that does not exist returned HTTP 404.
 

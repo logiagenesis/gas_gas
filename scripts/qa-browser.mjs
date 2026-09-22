@@ -329,3 +329,119 @@ export async function checkGa4(baseUrl, launchOptions, measurementId = 'G-JDXDHX
   if (!hasConfig) failures.push(`dataLayer has no config entry for ${measurementId}`);
   return failures;
 }
+
+// --- Quote form check (fix list item 3) ----------------------------------
+// Mocks Formspree so nothing real is sent: a 200 must land the visitor on the
+// thank-you page and fire generate_lead; a 422 must surface the error and give
+// the button back. The thank-you URL is absolute and points at the deployed
+// host, so it is stubbed too and never fetched.
+export async function checkFormspree(baseUrl, launchOptions) {
+  const { chromium: browserType } = await import('@playwright/test');
+  const browser = await browserType.launch(launchOptions);
+  const failures = [];
+  const notes = [];
+
+  const fill = async (page) => {
+    await page.fill('#name', 'Logi-Ink test');
+    await page.fill('#phone', '061 039 7034');
+    await page.fill('#email', 'info@logi-ink.co.za');
+    await page.fill('#suburb', 'Testville');
+    await page.selectOption('#property-type', 'Residential');
+    await page.selectOption('#service', 'Not sure');
+    await page.fill('#message', 'Test submission — delete');
+    await page.check('#consent');
+  };
+
+  const run = async (formspreeStatus) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const events = [];
+    await page.exposeFunction('__qaEvent', (row) => {
+      try {
+        events.push(JSON.parse(row));
+      } catch {
+        /* ignore */
+      }
+    });
+    await page.addInitScript(`
+      window.dataLayer = window.dataLayer || [];
+      var original = window.dataLayer.push.bind(window.dataLayer);
+      window.dataLayer.push = function () {
+        try {
+          if (window.__qaEvent) window.__qaEvent(JSON.stringify(Array.from(arguments[0] || [])));
+        } catch (error) { /* ignore */ }
+        return original.apply(null, arguments);
+      };
+    `);
+
+    let posted = null;
+    await page.route('**://formspree.io/**', async (route) => {
+      posted = route.request().url();
+      await route.fulfill({
+        status: formspreeStatus,
+        contentType: 'application/json',
+        body: formspreeStatus === 200 ? '{"ok":true}' : '{"errors":[{"message":"bad"}]}',
+      });
+    });
+    // The thank-you target is on the deployed host; serve a stub for it.
+    await page.route('**://logiagenesis.github.io/**', (route) =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<title>stub</title>thank you' }),
+    );
+
+    await page.goto(baseUrl, { waitUntil: 'load' });
+    await fill(page);
+    await page.click('.quote-form button[type="submit"]');
+    await page.waitForTimeout(1200);
+
+    const result = {
+      posted,
+      url: page.url(),
+      status: await page
+        .locator('.form-status')
+        .textContent()
+        .catch(() => ''),
+      disabled: await page
+        .locator('.quote-form button[type="submit"]')
+        .isDisabled()
+        .catch(() => null),
+      label: await page
+        .locator('.quote-form button[type="submit"]')
+        .textContent()
+        .catch(() => ''),
+      typedStillThere: await page
+        .locator('#name')
+        .inputValue()
+        .catch(() => ''),
+      events,
+    };
+    await context.close();
+    return result;
+  };
+
+  // 200: navigate to thank-you and fire generate_lead.
+  const ok = await run(200);
+  if (!ok.posted || !ok.posted.includes('/f/mbglopba')) {
+    failures.push(`200 case: form did not POST to the Formspree endpoint (saw ${ok.posted})`);
+  }
+  if (!ok.url.includes('/thank-you/')) {
+    failures.push(`200 case: did not navigate to the thank-you page (at ${ok.url})`);
+  }
+  const lead = ok.events.find((row) => row[0] === 'event' && row[1] === 'generate_lead');
+  if (!lead) failures.push('200 case: no generate_lead event reached dataLayer');
+  else notes.push(`generate_lead params: ${JSON.stringify(lead[2])}`);
+
+  // 422: show the error, give the button back, keep what was typed.
+  const bad = await run(422);
+  if (bad.url.includes('/thank-you/')) failures.push('422 case: navigated away on a failed submission');
+  if (!/could not be sent/i.test(bad.status || '')) {
+    failures.push(`422 case: no error message (saw "${(bad.status || '').trim()}")`);
+  }
+  if (bad.disabled !== false) failures.push('422 case: submit button left disabled');
+  if (!/send quote request/i.test(bad.label || '')) {
+    failures.push(`422 case: button label not restored (saw "${(bad.label || '').trim()}")`);
+  }
+  if (bad.typedStillThere !== 'Logi-Ink test') failures.push('422 case: the visitor lost what they typed');
+
+  await browser.close();
+  return { failures, notes };
+}

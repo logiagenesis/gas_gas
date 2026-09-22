@@ -6,6 +6,7 @@ import path from 'node:path';
 import { site, services, safetyAdvice, propertyTypes } from '../src/data/site.js';
 import { home, thankYou, privacy, notFound } from '../src/data/pages.js';
 import { resolveDeployment } from './lib/paths.mjs';
+import { fact } from './lib/facts.mjs';
 
 const ROOT = path.resolve('build/site');
 const STATIC = path.resolve('build/static');
@@ -13,6 +14,12 @@ const deploy = resolveDeployment();
 const BASE = deploy.base;
 const CANON = site.canonicalOrigin;
 const THANK_YOU_ABSOLUTE = `${deploy.origin}${BASE}thank-you/`;
+
+const FORMSPREE_ID = fact('Formspree form ID');
+if (!FORMSPREE_ID) {
+  console.error('CLIENT-FACTS.md is missing "Formspree form ID". The quote form cannot be built.');
+  process.exit(1);
+}
 
 const manifest = JSON.parse(await readFile(path.resolve('build/image-manifest.json'), 'utf8'));
 const brand = JSON.parse(await readFile(path.resolve('build/brand-manifest.json'), 'utf8'));
@@ -235,12 +242,9 @@ function quoteForm() {
   const options = services
     .map((service) => `<option value="${esc(service.name)}" data-slug="${service.slug}">${esc(service.name)}</option>`)
     .join('\n');
-  return `<form class="quote-form" id="quote" action="https://formsubmit.co/${site.email}" method="POST">
+  return `<form class="quote-form" id="quote" action="https://formspree.io/f/${FORMSPREE_ID}" method="POST" data-thank-you="${THANK_YOU_ABSOLUTE}">
 <input type="hidden" name="_subject" value="Quote request — Gas Designs website">
-<input type="hidden" name="_next" value="${THANK_YOU_ABSOLUTE}">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
-<div class="honey" aria-hidden="true"><label for="_honey">Leave this field empty</label><input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+<div class="honey" aria-hidden="true"><label for="_gotcha">Leave this field empty</label><input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 <div class="form-fields">
 <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
 <div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" name="phone" autocomplete="tel" required></div>
@@ -256,7 +260,10 @@ ${options}
 </select></div>
 <div class="field field--full"><label for="message">What do you need done?</label><textarea id="message" name="message" rows="6" required></textarea></div>
 <div class="field field--consent"><input type="checkbox" id="consent" name="consent" value="yes" required><label for="consent">I agree that Gas Designs may use these details to answer my enquiry and prepare a quote.</label></div>
-<div class="form-actions"><button class="btn btn--primary btn--block" type="submit">Send quote request</button></div>
+<div class="form-actions">
+<p class="form-status" role="status" aria-live="polite"></p>
+<button class="btn btn--primary btn--block" type="submit">Send quote request</button>
+</div>
 </div>
 </form>`;
 }

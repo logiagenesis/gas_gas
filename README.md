@@ -49,6 +49,26 @@ and the Open Graph card is the same horizontal lockup on charcoal.
 
 Replacing the logo means dropping a new file into that folder and rebuilding.
 
+## The enquiry form
+
+The quote form posts to Formspree at `https://formspree.io/f/mbglopba`.
+
+| | |
+| --- | --- |
+| Form ID | `mbglopba`, read from `CLIENT-FACTS.md` at build time |
+| Account owner | pierre@gasdesigns.co.za |
+| Plan limit | 50 submissions a month across the whole account |
+| Usage | formspree.io/account |
+| Stored copies | submissions stay in the Formspree dashboard for 30 days |
+
+The form is posted with `fetch` so the visitor lands on this site's own
+thank-you page. The free plan ignores a redirect field on a native POST, so
+without JavaScript the browser posts normally and lands on Formspree's own
+thank-you page instead. That is accepted rather than worked around.
+
+A build fails if `CLIENT-FACTS.md` is missing the form ID, rather than shipping
+a form that posts nowhere.
+
 ## Before launch
 
 Replace `GTM-XXXXXXX` in `src/data/site.js` with the real Google Tag Manager

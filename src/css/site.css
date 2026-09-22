@@ -718,6 +718,18 @@ a:hover {
   grid-column: 1 / -1;
   margin-top: 4px;
 }
+.form-status:empty {
+  display: none;
+}
+.form-status {
+  background: var(--white);
+  border-left: 4px solid var(--accent);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 16px;
+  padding: 14px 16px;
+}
 .honey {
   position: absolute;
   left: -9999px;

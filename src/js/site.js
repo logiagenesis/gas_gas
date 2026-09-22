@@ -99,12 +99,55 @@
     }
   });
 
+  // --- Quote form ---------------------------------------------------------
+  // Posted to Formspree over fetch so the visitor lands on our own thank-you
+  // page. Without JavaScript the native POST still works and lands on
+  // Formspree's page instead, which is acceptable.
   var quoteForm = document.querySelector('.quote-form');
   if (quoteForm) {
-    quoteForm.addEventListener('submit', function () {
-      if (!quoteForm.checkValidity()) return;
+    var status = quoteForm.querySelector('.form-status');
+    var submitButton = quoteForm.querySelector('button[type="submit"]');
+
+    quoteForm.addEventListener('submit', function (event) {
+      if (!quoteForm.checkValidity()) return; // the browser shows its own messages
+      event.preventDefault();
+
+      var label = submitButton ? submitButton.textContent : '';
       var chosen = quoteForm.querySelector('#service');
-      track('generate_lead', { method: 'quote_form', service: chosen ? chosen.value : '' });
+      var service = chosen ? chosen.value : '';
+
+      var restore = function () {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = label;
+        }
+        if (status) {
+          status.textContent =
+            'Your request could not be sent. Please call or WhatsApp 061 039 7034.';
+        }
+      };
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+      }
+      if (status) status.textContent = '';
+
+      window
+        .fetch(quoteForm.action, {
+          method: 'POST',
+          body: new FormData(quoteForm),
+          headers: { Accept: 'application/json' },
+        })
+        .then(function (response) {
+          if (!response.ok) {
+            restore();
+            return;
+          }
+          track('generate_lead', { method: 'quote_form', service: service });
+          window.location.assign(quoteForm.dataset.thankYou);
+        })
+        .catch(restore);
     });
   }
 
