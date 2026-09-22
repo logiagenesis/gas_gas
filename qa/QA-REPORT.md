@@ -68,9 +68,9 @@ A request for a path that does not exist returned HTTP 404.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| home | 96 | 100 | 100 | 100 |
-| services-bulk-lpg-installations | 96 | 100 | 100 | 100 |
-| privacy | 100 | 100 | 100 | 100 |
+| home | 96 | 100 | 96 | 100 |
+| services-bulk-lpg-installations | 98 | 100 | 96 | 100 |
+| privacy | 100 | 100 | 96 | 100 |
 
-Run against `http://localhost:4173/gas_gas/` on 2026-09-22T09:36:41.005Z.
+Run against `http://localhost:4173/gas_gas/` on 2026-09-22T13:02:46.788Z.
 

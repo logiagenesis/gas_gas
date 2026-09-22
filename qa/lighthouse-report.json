@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T09:36:41.005Z",
+  "checkedAt": "2026-09-22T13:02:46.788Z",
   "rows": [
     {
       "name": "home",
@@ -8,33 +8,33 @@
       "scores": {
         "performance": 96,
         "accessibility": 100,
-        "best-practices": 100,
+        "best-practices": 96,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
+        "Browser errors were logged to the console",
         "Largest Contentful Paint element",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree"
+        "Improve image delivery"
       ]
     },
     {
       "name": "services-bulk-lpg-installations",
       "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
       "scores": {
-        "performance": 96,
+        "performance": 98,
         "accessibility": 100,
-        "best-practices": 100,
+        "best-practices": 96,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
+        "Browser errors were logged to the console",
         "Minimize main-thread work",
         "Reduce JavaScript execution time",
-        "Largest Contentful Paint element",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images"
@@ -46,17 +46,17 @@
       "scores": {
         "performance": 100,
         "accessibility": 100,
-        "best-practices": 100,
+        "best-practices": 96,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
+        "Browser errors were logged to the console",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images",
         "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
+        "Network dependency tree"
       ]
     }
   ]
