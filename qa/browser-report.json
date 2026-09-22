@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T07:51:12.683Z",
+  "checkedAt": "2026-09-22T08:19:52.821Z",
   "pages": [
     {
       "name": "home",
@@ -738,17 +738,22 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-BrUg6K1Z.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BFvrlaVA.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-Dn63jlv7.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BCFtnsYG.css",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/brand/gas-designs-white.svg",
+      "url": "http://localhost:4173/gas_gas/assets/brand/gas-designs-mark.png",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/brand/gas-designs-wordmark.png",
       "from": "home",
       "status": 200
     },

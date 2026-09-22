@@ -99,11 +99,9 @@ const OVERFLOW_SCRIPT = `() => {
   if (doc.scrollWidth > doc.clientWidth + 1) {
     document.querySelectorAll('body *').forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.right > doc.clientWidth + 1 || rect.left < -1) {
-        const style = getComputedStyle(el);
-        if (style.position === 'fixed' || style.position === 'absolute') {
-          if (parseFloat(style.left) < -1000) return; // off-screen helpers
-        }
+      // Only rightward overflow widens the page in a left-to-right layout;
+      // content parked off-screen to the left, such as the honeypot, does not.
+      if (rect.right > doc.clientWidth + 1) {
         offenders.push(el.tagName.toLowerCase() + (el.className ? '.' + String(el.className).split(' ')[0] : ''));
       }
     });

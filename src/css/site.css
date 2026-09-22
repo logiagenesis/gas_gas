@@ -234,9 +234,30 @@ a:hover {
   text-decoration: none;
   flex-shrink: 0;
 }
+.brand {
+  gap: 10px;
+}
 .brand img {
-  height: 34px;
   width: auto;
+  display: block;
+}
+.brand__mark {
+  height: 38px;
+}
+/* Header and footer are charcoal, so the wordmark is rendered white here.
+   The artwork file itself is untouched. */
+.brand__word {
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+.brand--footer {
+  margin-bottom: 16px;
+}
+.brand--footer .brand__mark {
+  height: 40px;
+}
+.brand--footer .brand__word {
+  height: 19px;
 }
 .site-nav {
   display: flex;
@@ -674,10 +695,9 @@ a:hover {
   padding-bottom: 40px;
   border-bottom: 1px solid var(--rule-dark);
 }
-.site-footer img {
-  height: 32px;
-  width: auto;
-  margin-bottom: 16px;
+.site-footer .brand--footer {
+  display: inline-flex;
+  align-items: center;
 }
 .site-footer h3 {
   color: var(--on-dark);
@@ -783,6 +803,19 @@ a:hover {
   :root {
     --pad-y: 64px;
     --pad-x: 16px;
+  }
+  /* The logo lockup has to leave room for the menu button at 360px. */
+  .site-header__inner {
+    gap: 12px;
+  }
+  .brand {
+    gap: 8px;
+  }
+  .brand__mark {
+    height: 32px;
+  }
+  .brand__word {
+    height: 15px;
   }
   body {
     font-size: 16px;

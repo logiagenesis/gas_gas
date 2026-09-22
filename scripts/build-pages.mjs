@@ -93,6 +93,29 @@ ${gtmBody()}
 <a class="skip-link" href="#main">Skip to content</a>`;
 }
 
+// The client logo is a stacked lockup, which is unreadable at header height.
+// It is laid out horizontally from the mark and the wordmark the brand step
+// separated out. Header and footer are charcoal, so the wordmark is rendered
+// white by a CSS filter; the mark keeps its own colour.
+function brandLockup(markPx, wordPx) {
+  if (!brand.usingClientLogo) {
+    return `<img src="/assets/brand/${brand.standInSvg}" alt="${esc(site.name)}" width="180" height="40">`;
+  }
+  const mark = brand.mark;
+  const markWidth = Math.round((markPx * mark.width) / mark.height);
+  const parts = [
+    `<img class="brand__mark" src="/assets/brand/${mark.file}" alt="" width="${markWidth}" height="${markPx}" aria-hidden="true">`,
+  ];
+  if (brand.wordmark) {
+    const word = brand.wordmark;
+    const wordWidth = Math.round((wordPx * word.width) / word.height);
+    parts.push(
+      `<img class="brand__word" src="/assets/brand/${word.file}" alt="${esc(site.name)}" width="${wordWidth}" height="${wordPx}">`,
+    );
+  }
+  return parts.join('');
+}
+
 const NAV = [
   { label: 'Services', href: `${BASE}#services` },
   { label: 'How it works', href: `${BASE}#how-it-works` },
@@ -101,10 +124,9 @@ const NAV = [
 ];
 
 function header() {
-  const logo = brand.usingClientLogo ? brand.lightLogo : 'gas-designs-white.svg';
   return `<header class="site-header">
 <div class="wrap site-header__inner">
-<a class="brand" href="${BASE}"><img src="/assets/brand/${logo}" alt="${esc(site.name)}" width="180" height="40"></a>
+<a class="brand" href="${BASE}">${brandLockup(38, 18)}</a>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">${MENU_ICON}Menu</button>
 <nav class="site-nav" id="site-nav" aria-label="Main">
 ${NAV.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join('\n')}
@@ -115,13 +137,12 @@ ${NAV.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join('\n')}
 }
 
 function footer(depth) {
-  const logo = brand.usingClientLogo ? brand.lightLogo : 'gas-designs-white.svg';
   const year = new Date().getFullYear();
   return `<footer class="site-footer">
 <div class="wrap">
 <div class="site-footer__top">
 <div>
-<img src="/assets/brand/${logo}" alt="${esc(site.name)}" width="180" height="40">
+<span class="brand brand--footer">${brandLockup(40, 19)}</span>
 <p>${esc(site.footerLine)}</p>
 <p><a class="email-link" href="mailto:${site.email}">${site.email}</a></p>
 </div>

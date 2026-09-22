@@ -8,6 +8,7 @@ import * as fontkit from 'fontkit';
 import sharp from 'sharp';
 import { site } from '../src/data/site.js';
 import { home } from '../src/data/pages.js';
+import { analyseLogo, toWhite } from './lib/logo.mjs';
 
 const BRAND_SRC = path.resolve('public/assets/brand');
 const OUT = path.resolve('build/static/assets/brand');
@@ -150,46 +151,123 @@ async function buildOgImage(wordmarkSvg) {
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
+// Open Graph card: the mark in full colour beside the wordmark rendered white,
+// on the site's charcoal, with the home H1 as the subtitle. No photograph.
+async function buildOgFromLockup(parts) {
+  const regular = loadFont(400);
+  const subtitleSize = 38;
+  const lines = wrapText(regular, home.h1, subtitleSize, 900);
+
+  const markHeight = 132;
+  const wordHeight = 56;
+  const gap = 30;
+
+  const mark = await sharp(parts.mark).resize({ height: markHeight }).png().toBuffer();
+  const markMeta = await sharp(mark).metadata();
+
+  let word = null;
+  let wordMeta = { width: 0, height: 0 };
+  if (parts.wordmark) {
+    word = await sharp(await toWhite(parts.wordmark)).resize({ height: wordHeight }).png().toBuffer();
+    wordMeta = await sharp(word).metadata();
+  }
+
+  const lockupWidth = markMeta.width + (word ? gap + wordMeta.width : 0);
+  const blockHeight = markHeight + 52 + lines.length * (subtitleSize * 1.35);
+  const blockTop = Math.round((630 - blockHeight) / 2);
+
+  let y = blockTop + markHeight + 52 + subtitleSize;
+  const subtitle = lines
+    .map((line) => {
+      const { parts: glyphs, width } = textToPath(regular, line, subtitleSize);
+      const group = `<g transform="translate(${((1200 - width) / 2).toFixed(2)} ${y})">${glyphs}</g>`;
+      y += subtitleSize * 1.35;
+      return group;
+    })
+    .join('');
+
+  const canvas = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#16181b"/><g fill="#c9cdd2">${subtitle}</g></svg>`;
+
+  const lockupLeft = Math.round((1200 - lockupWidth) / 2);
+  const composites = [{ input: mark, left: lockupLeft, top: blockTop }];
+  if (word) {
+    composites.push({
+      input: word,
+      left: lockupLeft + markMeta.width + gap,
+      top: blockTop + Math.round((markHeight - wordMeta.height) / 2),
+    });
+  }
+
+  await sharp(Buffer.from(canvas))
+    .composite(composites)
+    .jpeg({ quality: 88, mozjpeg: true })
+    .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
+}
+
 async function main() {
   await mkdir(OUT, { recursive: true });
   await mkdir(ICONS, { recursive: true });
   await mkdir(BRAND_SRC, { recursive: true });
 
-  const supplied = (await readdir(BRAND_SRC)).filter((f) => /\.(svg|png)$/i.test(f));
-  let lightLogo;
-  let darkLogo;
-  let usingClientLogo = false;
+  const supplied = (await readdir(BRAND_SRC)).filter((f) => /\.(svg|png|jpe?g)$/i.test(f));
+  const manifest = { usingClientLogo: supplied.length > 0 };
 
   if (supplied.length) {
-    usingClientLogo = true;
-    const file = supplied.find((f) => /\.svg$/i.test(f)) || supplied[0];
-    const ext = path.extname(file);
-    await copyFile(path.join(BRAND_SRC, file), path.join(OUT, `gas-designs${ext}`));
-    lightLogo = `gas-designs${ext}`;
-    darkLogo = `gas-designs${ext}`;
-    console.log(`brand: using client logo ${file} unchanged`);
+    const file = supplied.find((f) => /\.png$/i.test(f)) || supplied[0];
+    const parts = await analyseLogo(path.join(BRAND_SRC, file));
+
+    const write = async (name, buffer) => {
+      await writeFile(path.join(OUT, name), buffer);
+      const meta = await sharp(buffer).metadata();
+      return { file: name, width: meta.width, height: meta.height };
+    };
+
+    manifest.source = file;
+    manifest.stacked = await write('gas-designs.png', parts.stacked);
+    manifest.mark = await write('gas-designs-mark.png', parts.mark);
+    manifest.wordmark = parts.wordmark ? await write('gas-designs-wordmark.png', parts.wordmark) : null;
+
+    // Icons use the mark on the site's charcoal, so the brand colour survives
+    // at 16px where a full lockup would be unreadable.
+    for (const size of [16, 32, 180, 512]) {
+      const inner = Math.round(size * 0.66);
+      const mark = await sharp(parts.mark)
+        .resize({ height: inner, fit: 'inside', withoutEnlargement: false })
+        .png()
+        .toBuffer();
+      const meta = await sharp(mark).metadata();
+      const icon = await sharp({
+        create: { width: size, height: size, channels: 4, background: '#16181b' },
+      })
+        .composite([
+          {
+            input: mark,
+            left: Math.round((size - meta.width) / 2),
+            top: Math.round((size - meta.height) / 2),
+          },
+        ])
+        .png()
+        .toBuffer();
+      await writeFile(path.join(ICONS, `icon-${size}.png`), icon);
+    }
+
+    await buildOgFromLockup(parts);
+    console.log(`brand: using client logo ${file}, split into mark and wordmark`);
   } else {
     const onLight = buildWordmark('#16181b');
     const onDark = buildWordmark('#ffffff');
     await writeFile(path.join(OUT, 'gas-designs-charcoal.svg'), onLight);
     await writeFile(path.join(OUT, 'gas-designs-white.svg'), onDark);
-    lightLogo = 'gas-designs-white.svg'; // used on charcoal header and footer
-    darkLogo = 'gas-designs-charcoal.svg';
+    manifest.standInSvg = 'gas-designs-white.svg';
+
+    for (const size of [16, 32, 180, 512]) {
+      await writeFile(
+        path.join(ICONS, `icon-${size}.png`),
+        await sharp(Buffer.from(buildIconSvg(size))).png().toBuffer(),
+      );
+    }
+    await buildOgImage(buildWordmark('#ffffff'));
     console.log('brand: no client logo found, stand-in wordmark generated');
-  }
-
-  const iconSource = usingClientLogo
-    ? await sharp(path.join(BRAND_SRC, supplied[0]))
-        .resize({ width: 512, height: 512, fit: 'contain', background: '#16181b' })
-        .png()
-        .toBuffer()
-    : null;
-
-  for (const size of [16, 32, 180, 512]) {
-    const buffer = iconSource
-      ? await sharp(iconSource).resize(size, size).png().toBuffer()
-      : await sharp(Buffer.from(buildIconSvg(size))).png().toBuffer();
-    await writeFile(path.join(ICONS, `icon-${size}.png`), buffer);
   }
 
   await writeFile(
@@ -213,15 +291,7 @@ async function main() {
     ),
   );
 
-  const wordmarkForOg = usingClientLogo
-    ? (await readdir(OUT), buildWordmark('#ffffff'))
-    : buildWordmark('#ffffff');
-  await buildOgImage(wordmarkForOg);
-
-  await writeFile(
-    path.resolve('build/brand-manifest.json'),
-    JSON.stringify({ usingClientLogo, lightLogo, darkLogo }, null, 2),
-  );
+  await writeFile(path.resolve('build/brand-manifest.json'), JSON.stringify(manifest, null, 2));
 
   console.log('brand: icons, manifest and og-image written');
 }

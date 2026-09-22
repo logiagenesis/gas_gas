@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T07:51:12.683Z.
+Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T08:19:52.821Z.
 
 ## Horizontal overflow
 
@@ -59,7 +59,7 @@ The hero heading sits on a photograph behind a charcoal overlay that runs from 8
 
 ## Links and assets
 
-69 unique URLs found in the built pages. 0 returned 400 or above.
+70 unique URLs found in the built pages. 0 returned 400 or above.
 
 A request for a path that does not exist returned HTTP 404.
 
@@ -67,19 +67,9 @@ A request for a path that does not exist returned HTTP 404.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| home | 98 | 100 | 100 | 100 |
-| services-residential-gas-installations | 100 | 100 | 100 | 100 |
-| services-commercial-kitchen-gas-systems | 100 | 100 | 100 | 100 |
-| services-industrial-gas-installations-maintenance | 99 | 100 | 100 | 100 |
-| services-bulk-lpg-installations | 97 | 100 | 100 | 100 |
-| services-custom-projects-developments | 99 | 100 | 100 | 100 |
-| services-certificate-of-conformity | 100 | 100 | 100 | 100 |
-| services-gas-system-maintenance | 99 | 100 | 100 | 100 |
-| services-gas-leak-detection-emergency-repairs | 100 | 100 | 100 | 100 |
-| services-basic-electrical-gas-system-support | 100 | 100 | 100 | 100 |
-| thank-you | 100 | 100 | 100 | 63 |
+| home | 95 | 100 | 100 | 100 |
+| services-bulk-lpg-installations | 95 | 100 | 100 | 100 |
 | privacy | 100 | 100 | 100 | 100 |
-| 404 | 100 | 100 | 100 | 63 |
 
-Run against `http://localhost:4173/gas_gas/` on 2026-09-22T07:53:43.315Z.
+Run against `http://localhost:4173/gas_gas/` on 2026-09-22T08:21:28.949Z.
 

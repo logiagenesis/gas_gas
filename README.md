@@ -24,7 +24,7 @@ the logo and icons, then generates every HTML page. Nothing under `build/` or
 | Path | What it holds |
 | --- | --- |
 | `public/assets/img/` | The original photographs. Source files only; these never reach `dist/`. |
-| `public/assets/brand/` | The client logo. Empty means the build draws a stand-in wordmark. |
+| `public/assets/brand/` | The client logo, used unchanged as the source for every brand asset. |
 | `src/data/site.js` | Business facts, the nine services and all service copy. |
 | `src/data/pages.js` | Home, thank-you, privacy and 404 copy. |
 | `src/css/site.css` | The whole stylesheet. |
@@ -38,11 +38,16 @@ the logo and icons, then generates every HTML page. Nothing under `build/` or
 All wording lives in `src/data/`. Edit the data file and rebuild; the pages are
 generated, so nothing needs editing in two places.
 
-## Adding the real logo
+## The logo
 
-Drop an SVG or PNG into `public/assets/brand/` and rebuild. The build uses it
-unchanged and regenerates the favicons from it, and the stand-in wordmark is no
-longer produced.
+`public/assets/brand/gas-designs.png` is the supplied artwork and is never edited.
+At build time it is knocked out of its white background, trimmed, and split into
+the flame mark and the wordmark, so the stacked logo can be laid out horizontally
+in the header and the footer. The mark keeps its own colour; the wordmark is
+rendered white on the charcoal bar by a CSS filter. Favicons come from the mark,
+and the Open Graph card is the same horizontal lockup on charcoal.
+
+Replacing the logo means dropping a new file into that folder and rebuilding.
 
 ## Before launch
 

@@ -1,85 +1,12 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T07:53:43.315Z",
+  "checkedAt": "2026-09-22T08:21:28.949Z",
   "rows": [
     {
       "name": "home",
       "url": "http://localhost:4173/gas_gas/",
       "scores": {
-        "performance": 98,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-residential-gas-installations",
-      "url": "http://localhost:4173/gas_gas/services/residential-gas-installations/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Minimize main-thread work",
-        "Reduce JavaScript execution time",
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree"
-      ]
-    },
-    {
-      "name": "services-commercial-kitchen-gas-systems",
-      "url": "http://localhost:4173/gas_gas/services/commercial-kitchen-gas-systems/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-industrial-gas-installations-maintenance",
-      "url": "http://localhost:4173/gas_gas/services/industrial-gas-installations-maintenance/",
-      "scores": {
-        "performance": 99,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-bulk-lpg-installations",
-      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
-      "scores": {
-        "performance": 97,
+        "performance": 95,
         "accessibility": 100,
         "best-practices": 100,
         "seo": 100
@@ -88,119 +15,29 @@
       "opportunities": [
         "Largest Contentful Paint element",
         "Eliminate render-blocking resources",
+        "Serve images in next-gen formats",
         "Properly size images",
         "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
+        "Network dependency tree"
       ]
     },
     {
-      "name": "services-custom-projects-developments",
-      "url": "http://localhost:4173/gas_gas/services/custom-projects-developments/",
+      "name": "services-bulk-lpg-installations",
+      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
       "scores": {
-        "performance": 99,
+        "performance": 95,
         "accessibility": 100,
         "best-practices": 100,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
+        "Minimize main-thread work",
+        "Reduce JavaScript execution time",
+        "Largest Contentful Paint element",
         "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-certificate-of-conformity",
-      "url": "http://localhost:4173/gas_gas/services/certificate-of-conformity/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-gas-system-maintenance",
-      "url": "http://localhost:4173/gas_gas/services/gas-system-maintenance/",
-      "scores": {
-        "performance": 99,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-gas-leak-detection-emergency-repairs",
-      "url": "http://localhost:4173/gas_gas/services/gas-leak-detection-emergency-repairs/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "services-basic-electrical-gas-system-support",
-      "url": "http://localhost:4173/gas_gas/services/basic-electrical-gas-system-support/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 100
-      },
-      "failed": [],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "thank-you",
-      "url": "http://localhost:4173/gas_gas/thank-you/",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 63
-      },
-      "failed": [
-        "seo 63 < 95"
-      ],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Page is blocked from indexing",
-        "Network dependency tree",
-        "Render blocking requests"
+        "Serve images in next-gen formats",
+        "Properly size images"
       ]
     },
     {
@@ -215,25 +52,9 @@
       "failed": [],
       "opportunities": [
         "Eliminate render-blocking resources",
-        "Network dependency tree",
-        "Render blocking requests"
-      ]
-    },
-    {
-      "name": "404",
-      "url": "http://localhost:4173/gas_gas/404.html",
-      "scores": {
-        "performance": 100,
-        "accessibility": 100,
-        "best-practices": 100,
-        "seo": 63
-      },
-      "failed": [
-        "seo 63 < 95"
-      ],
-      "opportunities": [
-        "Eliminate render-blocking resources",
-        "Page is blocked from indexing",
+        "Serve images in next-gen formats",
+        "Properly size images",
+        "Improve image delivery",
         "Network dependency tree",
         "Render blocking requests"
       ]
