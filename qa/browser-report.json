@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T12:49:47.043Z",
+  "checkedAt": "2026-09-22T12:54:00.711Z",
   "pages": [
     {
       "name": "home",
@@ -32,12 +32,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Gas installation, maintenance and certification in South Africa",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-residential-gas-installations",
@@ -69,12 +75,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Residential Gas Installations",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-commercial-kitchen-gas-systems",
@@ -106,12 +118,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Commercial Kitchen Gas Systems",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-industrial-gas-installations-maintenance",
@@ -143,12 +161,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Industrial Gas Installations & Maintenance",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-bulk-lpg-installations",
@@ -180,12 +204,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Bulk LPG Installations",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-custom-projects-developments",
@@ -217,12 +247,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Custom Projects & Developments",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-certificate-of-conformity",
@@ -254,12 +290,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Certificate of Conformity",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-gas-system-maintenance",
@@ -291,12 +333,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Gas System Maintenance",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-gas-leak-detection-emergency-repairs",
@@ -328,12 +376,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Gas Leak Detection & Emergency Repairs",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "services-basic-electrical-gas-system-support",
@@ -365,12 +419,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Basic Electrical & Gas System Support",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "thank-you",
@@ -402,12 +462,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Your quote request has been sent",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "privacy",
@@ -439,12 +505,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "Privacy policy",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     },
     {
       "name": "404",
@@ -476,12 +548,18 @@
           "offenders": []
         }
       },
-      "consoleErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+      ],
       "pageErrors": [],
       "h1": "That page does not exist",
+      "blockedHosts": [
+        "www.googletagmanager.com"
+      ],
       "headerCtaHiddenAt360": true,
       "navToggleVisibleAt360": true,
-      "brokenImages": []
+      "brokenImages": [],
+      "realConsoleErrors": []
     }
   ],
   "contrast": [
@@ -759,7 +837,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-DdRvPcZe.js",
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-JDXDHXGZ5Q",
+      "from": "home",
+      "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BTVPoHIT.js",
       "from": "home",
       "status": 200
     },

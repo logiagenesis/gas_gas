@@ -54,16 +54,15 @@ const whatsappIcon = (size) =>
 const MENU_ICON =
   '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M2 4h16v2H2zm0 5h16v2H2zm0 5h16v2H2z" fill="currentColor"/></svg>';
 
-function gtmHead() {
-  return `<!-- Google Tag Manager. The container ID below is a placeholder: replace ${site.gtmId} with the real Gas Designs container ID before launch. Tracking starts as soon as a real ID is in place and nothing else needs changing. The guard on the first line of the function stops the loader requesting a container while the placeholder is still there, which would otherwise fail on every page view. -->
-<script>(function(w,d,s,l,i){if(i.indexOf('XXXXXXX')>-1)return;w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${site.gtmId}');</script>
-<!-- End Google Tag Manager. Replace ${site.gtmId} before launch. -->`;
-}
-
-function gtmBody() {
-  return `<!-- Google Tag Manager (noscript). The container ID below is a placeholder and must be replaced before launch. -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtmId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
-<!-- End Google Tag Manager (noscript). Replace ${site.gtmId} before launch. -->`;
+function googleTag() {
+  return `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${site.ga4Id}');
+</script>`;
 }
 
 function head({ title, description, canonical, depth, noindex = false, schema = [] }) {
@@ -74,6 +73,7 @@ function head({ title, description, canonical, depth, noindex = false, schema = 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+${googleTag()}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
@@ -97,11 +97,9 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-700.woff2" crossorigin>
 <link rel="stylesheet" href="${prefix}assets/css/site.css">
-${gtmHead()}
 ${schema.map(jsonLd).join('\n')}
 </head>
 <body>
-${gtmBody()}
 <a class="skip-link" href="#main">Skip to content</a>`;
 }
 

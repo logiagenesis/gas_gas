@@ -14,7 +14,7 @@ export const site = {
   canonicalOrigin: 'https://gasdesigns.co.za',
   country: 'South Africa',
   agency: { name: 'Logi-Ink', url: 'https://logi-ink.co.za' },
-  gtmId: 'GTM-XXXXXXX',
+  ga4Id: 'G-JDXDHXGZ5Q',
   description:
     'Gas Designs installs, services and certifies gas systems for homes, commercial kitchens, industrial premises and property developments in South Africa.',
   footerLine: 'Gas installation, maintenance and certification in South Africa.',

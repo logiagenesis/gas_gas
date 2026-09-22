@@ -72,6 +72,42 @@
     }
   }
 
+  // --- GA4 events -------------------------------------------------------
+  var track = function (name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+  };
+
+  // Where on the page the visitor reached us from.
+  var placeOf = function (element) {
+    if (element.closest('.wa-float')) return 'float';
+    if (element.closest('.site-nav')) return 'nav';
+    if (element.closest('.site-header')) return 'header';
+    if (element.closest('#contact')) return 'contact';
+    if (element.closest('.site-footer')) return 'footer';
+    if (element.closest('main .prose')) return 'thank_you';
+    return 'page';
+  };
+
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('tel:') === 0) {
+      track('contact_call', { location: placeOf(link) });
+    } else if (href.indexOf('https://wa.me/') === 0) {
+      track('contact_whatsapp', { location: placeOf(link) });
+    }
+  });
+
+  var quoteForm = document.querySelector('.quote-form');
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', function () {
+      if (!quoteForm.checkValidity()) return;
+      var chosen = quoteForm.querySelector('#service');
+      track('generate_lead', { method: 'quote_form', service: chosen ? chosen.value : '' });
+    });
+  }
+
   var select = document.getElementById('service');
   if (select) {
     var requested = new URLSearchParams(window.location.search).get('service');

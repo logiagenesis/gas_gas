@@ -133,6 +133,25 @@ const serviceHtml = await readFile(
 );
 record('Service schema on service pages', /"@type":"Service"/.test(serviceHtml));
 
+// 7b. Analytics: one GA4 tag per page, no Google Tag Manager anywhere.
+const ga4Pages = [];
+for (const file of htmlFiles) {
+  const content = await readFile(file, 'utf8');
+  const tags = (content.match(/gtag\/js\?id=G-JDXDHXGZ5Q/g) || []).length;
+  if (tags === 1) ga4Pages.push(file);
+  else if (tags !== 1) ga4Pages.push(null);
+}
+record(
+  'GA4 tag on all 13 pages, exactly once each',
+  ga4Pages.length === 13 && ga4Pages.every(Boolean),
+  `${ga4Pages.filter(Boolean).length}/${htmlFiles.length}`,
+);
+const gtmHits = [];
+for (const file of textFiles) {
+  if ((await readFile(file, 'utf8')).includes('GTM-')) gtmHits.push(path.relative(DIST, file));
+}
+record('No Google Tag Manager code in dist', gtmHits.length === 0, gtmHits.join(', '));
+
 // 8. No forbidden hosting artefacts.
 const forbidden = files.filter((f) => /(^|\/)(\.htaccess|_headers|_redirects)$/i.test(f));
 record('No .htaccess, _headers or _redirects in dist', forbidden.length === 0, forbidden.join(', '));

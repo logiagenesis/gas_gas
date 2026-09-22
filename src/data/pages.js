@@ -123,7 +123,7 @@ export const privacy = {
     {
       heading: 'Analytics',
       body: [
-        'This website loads Google Tag Manager, which may load analytics scripts that record how pages are used. You can block these scripts in your browser.',
+        'This website loads Google Analytics, which records how pages are used. You can block it in your browser.',
       ],
     },
     {
