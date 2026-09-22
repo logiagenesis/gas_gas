@@ -112,6 +112,8 @@ const formChecks = [
   ['message field', /id="message" name="message"/],
   ['consent checkbox', /id="consent" name="consent"/],
   ['mailto fallback', /href="mailto:pierre@gasdesigns\.co\.za"/],
+  ['tel link', /href="tel:\+27610397034"/],
+  ['whatsapp link', /href="https:\/\/wa\.me\/27610397034"/],
 ];
 const formMissing = formChecks.filter(([, pattern]) => !pattern.test(homeHtml)).map(([label]) => label);
 record('Quote form has every required field', formMissing.length === 0, formMissing.join(', '));
@@ -123,6 +125,7 @@ record('Service select lists nine services plus Not sure', optionCount === 10, `
 
 // 7. Schema present.
 record('LocalBusiness schema on home', /"@type":"LocalBusiness"/.test(homeHtml));
+record('Telephone in LocalBusiness schema', /"telephone":"\+27 61 039 7034"/.test(homeHtml));
 record('FAQPage schema on home', /"@type":"FAQPage"/.test(homeHtml));
 const serviceHtml = await readFile(
   path.join(DIST, 'services/bulk-lpg-installations/index.html'),
@@ -155,6 +158,7 @@ const allowed = new Set([
   'logi-ink.co.za',
   'www.w3.org',
   'logiagenesis.github.io',
+  'wa.me',
 ]);
 const unexpected = [...externalHosts].filter((host) => !allowed.has(host));
 record('No unexpected third-party hosts', unexpected.length === 0, unexpected.join(', '));

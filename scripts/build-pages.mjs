@@ -39,6 +39,12 @@ const up = (depth) => (depth === 0 ? './' : '../'.repeat(depth));
 const TICK =
   '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.6 14.2 3.4 10l1.4-1.4 2.8 2.8 7-7L16 5.8z" fill="#16181b"/></svg>';
 
+const PHONE_ICON =
+  '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6.6 2.4 8.4 6 6.8 7.6a11.2 11.2 0 0 0 5.6 5.6L14 11.6l3.6 1.8v3.1c0 .6-.5 1.1-1.1 1.1A14.6 14.6 0 0 1 2.4 3.5c0-.6.5-1.1 1.1-1.1z" fill="currentColor"/></svg>';
+
+const CHAT_ICON =
+  '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 2.4c4.2 0 7.6 2.9 7.6 6.6 0 3.6-3.4 6.5-7.6 6.5-.9 0-1.8-.1-2.6-.4l-4 1.9 1.3-3.5A6.4 6.4 0 0 1 2.4 9c0-3.7 3.4-6.6 7.6-6.6z" fill="currentColor"/></svg>';
+
 const MENU_ICON =
   '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M2 4h16v2H2zm0 5h16v2H2zm0 5h16v2H2z" fill="currentColor"/></svg>';
 
@@ -126,11 +132,15 @@ const NAV = [
 function header() {
   return `<header class="site-header">
 <div class="wrap site-header__inner">
-<a class="brand" href="${BASE}">${brandLockup(38, 18)}</a>
+<a class="brand" href="${BASE}" aria-label="${esc(site.name)}, home">${brandLockup(38, 18)}</a>
+<a class="header-call" href="tel:${site.phone.tel}" aria-label="Call ${esc(site.name)} on ${site.phone.display}">${PHONE_ICON}</a>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">${MENU_ICON}Menu</button>
 <nav class="site-nav" id="site-nav" aria-label="Main">
 ${NAV.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join('\n')}
+<a class="nav-contact" href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.phone.display}</a>
+<a class="nav-contact" href="${site.phone.whatsapp}" rel="noopener">${CHAT_ICON}WhatsApp us</a>
 </nav>
+<a class="header-phone" href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a>
 <a class="btn btn--primary header-cta" href="${BASE}#quote">Request a quote</a>
 </div>
 </header>`;
@@ -144,7 +154,11 @@ function footer(depth) {
 <div>
 <span class="brand brand--footer">${brandLockup(40, 19)}</span>
 <p>${esc(site.footerLine)}</p>
-<p><a class="email-link" href="mailto:${site.email}">${site.email}</a></p>
+<ul class="footer-contact">
+<li><a href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a></li>
+<li><a href="${site.phone.whatsapp}" rel="noopener">${CHAT_ICON}WhatsApp ${site.phone.display}</a></li>
+<li><a href="mailto:${site.email}">${site.email}</a></li>
+</ul>
 </div>
 <div>
 <h3>Pages</h3>
@@ -247,6 +261,7 @@ function buildHome() {
       name: site.name,
       url: `${CANON}/`,
       email: site.email,
+      telephone: site.phone.international,
       description: site.description,
       areaServed: 'South Africa',
     },
@@ -343,9 +358,13 @@ ${home.faqs.map((faq) => `<div class="faq__item"><h3>${esc(faq.q)}</h3><p>${esc(
 <div>${quoteForm()}</div>
 <aside class="contact-aside">
 <div class="contact-aside__media">${picture('contact', home.contactImageAlt)}</div>
-<h3>Write to us instead</h3>
-<p>If you would rather send an email, use the address below.</p>
-<p><a class="email-link" href="mailto:${site.email}">${site.email}</a></p>
+<h3>Reach us directly</h3>
+<p>If you would rather not use the form, call, send a WhatsApp message, or write to us.</p>
+<ul class="contact-methods">
+<li><a href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a></li>
+<li><a href="${site.phone.whatsapp}" rel="noopener">${CHAT_ICON}WhatsApp ${site.phone.display}</a></li>
+<li><a href="mailto:${site.email}">${site.email}</a></li>
+</ul>
 <h3>${esc(safetyAdvice.heading)}</h3>
 <p>${esc(safetyAdvice.short)}</p>
 </aside>
@@ -372,7 +391,13 @@ function buildService(service) {
       description: service.metaDescription,
       url: `${CANON}/services/${service.slug}/`,
       areaServed: 'South Africa',
-      provider: { '@type': 'LocalBusiness', name: site.name, url: `${CANON}/`, email: site.email },
+      provider: {
+        '@type': 'LocalBusiness',
+        name: site.name,
+        url: `${CANON}/`,
+        email: site.email,
+        telephone: site.phone.international,
+      },
     },
   ];
 
@@ -454,6 +479,11 @@ ${header()}
 <div class="wrap prose">
 <h1>${esc(thankYou.h1)}</h1>
 ${thankYou.body.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('\n')}
+<ul class="contact-methods">
+<li><a href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a></li>
+<li><a href="${site.phone.whatsapp}" rel="noopener">${CHAT_ICON}WhatsApp ${site.phone.display}</a></li>
+<li><a href="mailto:${site.email}">${site.email}</a></li>
+</ul>
 <h2>${esc(safetyAdvice.heading)}</h2>
 <p>${esc(thankYou.safetyNote)}</p>
 <p><a class="btn btn--dark" href="${BASE}">Back to the home page</a></p>

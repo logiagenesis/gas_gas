@@ -84,7 +84,7 @@ export const home = {
 
   contactHeading: 'Request a quote',
   contactLead:
-    'Send the details below and we will come back to you by email. You can also write to us directly.',
+    'Send the details below and we will come back to you. If it is urgent, call or send a WhatsApp message instead.',
   contactImageAlt:
     'Technician in work gloves handing a folder of completed paperwork to a client across a kitchen counter.',
 };
@@ -95,7 +95,7 @@ export const thankYou = {
   h1: 'Your quote request has been sent',
   body: [
     'Thank you. Your request has reached us and we will reply by email.',
-    `If your enquiry is urgent, write to us at ${site.email}.`,
+    `If your enquiry is urgent, call or send a WhatsApp message to ${site.phone.international}, or write to ${site.email}.`,
   ],
   safetyNote: safetyAdvice.short,
 };

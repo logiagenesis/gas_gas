@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T08:19:52.821Z.
+Checked against `http://localhost:4173/gas_gas/` on 2026-09-22T09:17:27.779Z.
 
 ## Horizontal overflow
 
@@ -59,7 +59,7 @@ The hero heading sits on a photograph behind a charcoal overlay that runs from 8
 
 ## Links and assets
 
-70 unique URLs found in the built pages. 0 returned 400 or above.
+72 unique URLs found in the built pages. 0 returned 400 or above.
 
 A request for a path that does not exist returned HTTP 404.
 
@@ -67,9 +67,9 @@ A request for a path that does not exist returned HTTP 404.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| home | 95 | 100 | 100 | 100 |
-| services-bulk-lpg-installations | 95 | 100 | 100 | 100 |
-| privacy | 100 | 100 | 100 | 100 |
+| home | 95 | 96 | 100 | 100 |
+| services-bulk-lpg-installations | 96 | 95 | 100 | 100 |
+| privacy | 100 | 95 | 100 | 100 |
 
-Run against `http://localhost:4173/gas_gas/` on 2026-09-22T08:21:28.949Z.
+Run against `http://localhost:4173/gas_gas/` on 2026-09-22T09:19:08.877Z.
 

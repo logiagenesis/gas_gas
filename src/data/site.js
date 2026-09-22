@@ -4,6 +4,12 @@
 export const site = {
   name: 'Gas Designs',
   email: 'pierre@gasdesigns.co.za',
+  phone: {
+    display: '061 039 7034',
+    international: '+27 61 039 7034',
+    tel: '+27610397034',
+    whatsapp: 'https://wa.me/27610397034',
+  },
   domain: 'gasdesigns.co.za',
   canonicalOrigin: 'https://gasdesigns.co.za',
   country: 'South Africa',

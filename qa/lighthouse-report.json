@@ -1,19 +1,19 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T08:21:28.949Z",
+  "checkedAt": "2026-09-22T09:19:08.877Z",
   "rows": [
     {
       "name": "home",
       "url": "http://localhost:4173/gas_gas/",
       "scores": {
         "performance": 95,
-        "accessibility": 100,
+        "accessibility": 96,
         "best-practices": 100,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
-        "Largest Contentful Paint element",
+        "Links do not have a discernible name",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images",
@@ -25,19 +25,19 @@
       "name": "services-bulk-lpg-installations",
       "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
       "scores": {
-        "performance": 95,
-        "accessibility": 100,
+        "performance": 96,
+        "accessibility": 95,
         "best-practices": 100,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
-        "Minimize main-thread work",
-        "Reduce JavaScript execution time",
         "Largest Contentful Paint element",
+        "Links do not have a discernible name",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
-        "Properly size images"
+        "Properly size images",
+        "Improve image delivery"
       ]
     },
     {
@@ -45,18 +45,18 @@
       "url": "http://localhost:4173/gas_gas/privacy/",
       "scores": {
         "performance": 100,
-        "accessibility": 100,
+        "accessibility": 95,
         "best-practices": 100,
         "seo": 100
       },
       "failed": [],
       "opportunities": [
+        "Links do not have a discernible name",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images",
         "Improve image delivery",
-        "Network dependency tree",
-        "Render blocking requests"
+        "Network dependency tree"
       ]
     }
   ]
