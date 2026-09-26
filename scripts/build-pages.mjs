@@ -12,7 +12,12 @@ const ROOT = path.resolve('build/site');
 const STATIC = path.resolve('build/static');
 const deploy = resolveDeployment();
 const BASE = deploy.base;
-const CANON = site.canonicalOrigin;
+// Every absolute URL (canonical, og:url, og:image, schema, sitemap) points
+// at where the site is actually served: GitHub Pages under the repository
+// path today, or the custom domain once public/CNAME names it. Pointing them
+// at a domain that does not serve the site leaves link previews without an
+// image and search engines with a dead canonical.
+const CANON = (deploy.origin ? `${deploy.origin}${BASE}` : `${site.canonicalOrigin}/`).replace(/\/$/, '');
 const THANK_YOU_ABSOLUTE = `${deploy.origin}${BASE}thank-you/`;
 
 const FORMSPREE_ID = fact('Formspree form ID');
@@ -127,6 +132,10 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:image" content="${esc(ogImage)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:secure_url" content="${esc(ogImage)}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="${esc(site.name)} logo over a technician testing a gas line">
+<meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">

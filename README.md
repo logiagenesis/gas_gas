@@ -63,6 +63,12 @@ transparency, and the 180px and 512px home-screen icons sit on white, because iO
 fills a transparent apple-touch-icon with black. The Open Graph card is the
 horizontal lockup and the home headline over the hero photograph.
 
+Every absolute URL (canonical, `og:url`, `og:image`, schema, sitemap) is built
+from where the site is served: `https://logiagenesis.github.io/gas_gas/` today.
+When the site moves to gasdesigns.co.za, put the domain in `public/CNAME` and
+rebuild; every URL follows. The static QA fails if `og:image` points anywhere
+else, because WhatsApp and other apps then show a link with no image.
+
 ## Photographs
 
 Each photograph is built at 640px and at its full slot width (the hero also at

@@ -103,6 +103,7 @@ Still waiting on the client:
 | 2.7 | Logo mark | The white knock-out left a faint white halo round the flame. | Fixed: the edge pixels are now separated from white properly (de-fringed). |
 | 2.8 | Favicon | The flame sat on a black square. | Fixed: transparent flame for browser tabs; a white tile only for the phone home-screen icon, because iOS fills transparency with black. |
 | 2.9 | Share image (Open Graph) | Flat black card. | Fixed: the hero photograph under a charcoal wash, with the logo and the headline. |
+| 2.10 | Share image address | WhatsApp showed the link with no image. `og:image`, `og:url` and the canonical link pointed at gasdesigns.co.za, which does not serve this site. | Fixed on 26/09: every absolute URL now follows the live address. A static check fails the build if `og:image` points elsewhere. |
 
 ---
 
