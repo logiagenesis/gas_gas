@@ -71,8 +71,8 @@ Supplied on 26/09 and now used across the site:
 | Fact | Where it appears |
 | --- | --- |
 | Pretoria, Johannesburg and the rest of Gauteng, including outlying areas | Hero eyebrow, About, FAQ, footer, meta titles and descriptions, `areaServed` in the schema |
-| 10+ years' experience in gas and electrical. Supplied as "10, 15 years", so the lower figure is used. | Hero proof strip, About, meta description |
-| Open 24 hours a day for emergencies | Emergency bar above the header on every page, hero proof strip, safety band, FAQ, and the leak-repair card, page and meta title |
+| 15 years' experience in gas and electrical, confirmed by the client. | Hero proof strip, About, meta description |
+| Open 24 hours a day for emergencies; the client confirms 061 039 7034 is answered 24/7 | Emergency bar above the header on every page, hero proof strip, safety band, FAQ, and the leak-repair card, page and meta title |
 | A registered company | About |
 
 The company itself is about a year old. The site states the team's experience rather than the company's age.
@@ -81,9 +81,7 @@ Still waiting on the client:
 
 | Fact | Why it matters |
 | --- | --- |
-| Confirmation that 061 039 7034 is answered at night | The site now promises 24/7 emergency calls on that number. |
 | SAQCC Gas registration number and category | No competitor home page shows one. Showing it, with a way to verify it, would be unique in the market. "Registered company" (CIPC) is not the same thing and is not presented as a gas registration. |
-| Exact years of experience (10 or 15) | "15+ years" is stronger if it is true. |
 | Specific outlying areas or towns | Local search, e.g. Centurion, Midrand, Hartbeespoort, Cullinan. |
 | Office hours for non-emergency work | Useful for the schema and the contact section. |
 | Workmanship guarantee (period) | Only two competitors state one. |

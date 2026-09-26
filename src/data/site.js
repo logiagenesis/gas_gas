@@ -19,13 +19,13 @@ export const site = {
   region: 'Gauteng',
   cities: ['Pretoria', 'Johannesburg'],
   areasLine: 'Pretoria, Johannesburg and the rest of Gauteng, including outlying areas',
-  // Supplied by the client as "10, 15 years": the lower figure is used.
-  experience: '10+ years',
+  // Years of experience in gas and electrical work, confirmed by the client.
+  experience: '15 years',
   emergency: '24/7',
   agency: { name: 'Logi-Ink', url: 'https://logi-ink.co.za' },
   ga4Id: 'G-JDXDHXGZ5Q',
   description:
-    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and developments in Pretoria, Johannesburg and across Gauteng. 10+ years in gas and electrical, and 24/7 for gas emergencies.',
+    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and developments in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical, and 24/7 for gas emergencies.',
   footerLine:
     'Gas installation, maintenance and Certificates of Conformity in Pretoria, Johannesburg and across Gauteng, including outlying areas. 24/7 for gas emergencies.',
 };

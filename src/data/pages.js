@@ -3,7 +3,7 @@ import { site, safetyAdvice } from './site.js';
 export const home = {
   title: 'Gas Designs | Gas installers in Pretoria, Johannesburg and Gauteng – 24/7 emergencies',
   metaDescription:
-    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 10+ years in gas and electrical. Every line tested before handover.',
+    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical. Every line tested before handover.',
   eyebrow: `Gas installers · ${site.cities.join(' · ')} · ${site.region}`,
   // The phrase in accent colour is marked with square brackets.
   h1: 'Gas, installed properly. [Tested before you light it.]',
@@ -84,10 +84,10 @@ export const home = {
   aboutHeading: 'Gas specialists who finish the job',
   aboutBody: [
     'Gas Designs is a registered company that installs, services and certifies gas systems for homes, commercial kitchens, industrial sites and property developments. We work in Pretoria, Johannesburg and the rest of Gauteng, including outlying areas.',
-    'Behind it is more than 10 years of hands-on experience in gas and electrical work. That is why we also do the basic electrical side of gas appliances, including isolators, ignition supply and fans. You deal with one team and get one handover.',
+    'Behind it is 15 years of hands-on experience in gas and electrical work. That is why we also do the basic electrical side of gas appliances, including isolators, ignition supply and fans. You deal with one team and get one handover.',
   ],
   aboutPoints: [
-    { icon: 'bolt', text: '10+ years in gas and electrical' },
+    { icon: 'bolt', text: `${site.experience} in gas and electrical` },
     { icon: 'clock', text: '24/7 for gas leaks and emergencies' },
     { icon: 'gauge', text: 'Every line tested before you use it' },
     { icon: 'list', text: 'Written quotes, written reports, written fixes' },
