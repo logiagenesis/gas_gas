@@ -1,5 +1,6 @@
 // Gas Designs — site behaviour.
-// Two jobs: the mobile menu, and pre-filling the quote form from ?service=.
+// The mobile menu, the WhatsApp button guard, reveal on scroll, analytics
+// events, the quote form and pre-filling it from ?service=.
 
 (function () {
   'use strict';
@@ -70,6 +71,30 @@
       window.addEventListener('load', schedule);
       schedule();
     }
+  }
+
+  // --- Reveal on scroll ----------------------------------------------------
+  // Sections ease in as they reach the viewport. The hiding class is only
+  // added when the browser can observe scrolling and the visitor has not asked
+  // for reduced motion, so content is never left invisible.
+  var revealables = document.querySelectorAll('.reveal');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (revealables.length && 'IntersectionObserver' in window && !calm) {
+    document.documentElement.classList.add('js-reveal');
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px' },
+    );
+    [].forEach.call(revealables, function (element) {
+      observer.observe(element);
+    });
   }
 
   // --- GA4 events -------------------------------------------------------

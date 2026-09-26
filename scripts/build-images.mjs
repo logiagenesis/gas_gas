@@ -9,6 +9,7 @@ import { services } from '../src/data/site.js';
 const SRC = path.resolve('public/assets/img');
 const OUT = path.resolve('build/static/assets/img');
 const MAX_BYTES = 300 * 1024;
+const SMALL_WIDTH = 640;
 
 // Slot assignment. Made by opening every photograph and matching the subject,
 // not the filename. The filenames in the supplied set do not match the order
@@ -62,8 +63,14 @@ async function main() {
     }
     const input = path.join(SRC, match);
     const meta = await sharp(input).metadata();
-    const outBase = `${entry.source}-${entry.width}`;
-    const outputs = await encode(input, outBase, entry.width);
+    // A small size for phones and a large one for wide and high-density
+    // screens; the page picks between them with srcset.
+    const largest = Math.min(entry.width, meta.width);
+    const widths = [...new Set([SMALL_WIDTH, ...(largest > 1280 ? [1280] : []), largest])];
+    const outputs = [];
+    for (const width of widths) {
+      outputs.push(...(await encode(input, `${entry.source}-${width}`, width)));
+    }
     const originalBytes = (await stat(input)).size;
 
     rows.push({
@@ -92,7 +99,7 @@ async function main() {
   );
 
   const total = rows.reduce((sum, r) => sum + r.outputs.reduce((s, o) => s + o.bytes, 0), 0);
-  console.log(`images: ${rows.length} slots, ${rows.length * 2} files, ${Math.round(total / 1024)} KB total`);
+  console.log(`images: ${rows.length} slots, ${rows.reduce((n, r) => n + r.outputs.length, 0)} files, ${Math.round(total / 1024)} KB total`);
   if (unused.length) console.log(`unused source files: ${unused.join(', ')}`);
   if (failures) {
     console.error(`image build failed with ${failures} problem(s)`);

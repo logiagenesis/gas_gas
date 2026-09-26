@@ -134,6 +134,19 @@ const serviceHtml = await readFile(
 );
 record('Service schema on service pages', /"@type":"Service"/.test(serviceHtml));
 
+// 7a. Link previews: og:image must be an absolute https URL on the origin the
+// site is actually served from, and the file must exist in dist. WhatsApp and
+// other apps show no image at all when it points anywhere else.
+const pagesManifest = JSON.parse(await readFile(path.resolve('build/pages-manifest.json'), 'utf8'));
+const liveRoot = `${pagesManifest.origin}${pagesManifest.base}`;
+const ogImage = (homeHtml.match(/<meta property="og:image" content="([^"]+)"/) || [])[1] || '';
+const ogFile = ogImage.startsWith(liveRoot) ? path.join(DIST, ogImage.slice(liveRoot.length)) : '';
+record(
+  'og:image points at the live origin and the file exists',
+  ogImage.startsWith('https://') && Boolean(ogFile) && files.includes(ogFile),
+  ogImage || 'missing',
+);
+
 // 7b. Analytics: one GA4 tag per page, no Google Tag Manager anywhere.
 const ga4Pages = [];
 for (const file of htmlFiles) {

@@ -4,7 +4,7 @@
 import { mkdir, writeFile, copyFile, readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { site, services, safetyAdvice, propertyTypes } from '../src/data/site.js';
-import { home, thankYou, privacy, notFound } from '../src/data/pages.js';
+import { home, serviceCta, thankYou, privacy, notFound } from '../src/data/pages.js';
 import { resolveDeployment } from './lib/paths.mjs';
 import { fact } from './lib/facts.mjs';
 
@@ -12,7 +12,12 @@ const ROOT = path.resolve('build/site');
 const STATIC = path.resolve('build/static');
 const deploy = resolveDeployment();
 const BASE = deploy.base;
-const CANON = site.canonicalOrigin;
+// Every absolute URL (canonical, og:url, og:image, schema, sitemap) points
+// at where the site is actually served: GitHub Pages under the repository
+// path today, or the custom domain once public/CNAME names it. Pointing them
+// at a domain that does not serve the site leaves link previews without an
+// image and search engines with a dead canonical.
+const CANON = (deploy.origin ? `${deploy.origin}${BASE}` : `${site.canonicalOrigin}/`).replace(/\/$/, '');
 const THANK_YOU_ABSOLUTE = `${deploy.origin}${BASE}thank-you/`;
 
 const FORMSPREE_ID = fact('Formspree form ID');
@@ -30,6 +35,13 @@ const IMAGE_DIMENSIONS = Object.fromEntries(
     const width = Math.min(row.width, w);
     return [path.parse(row.source).name, { width, height: Math.round((width * h) / w) }];
   }),
+);
+
+const IMAGE_WIDTHS = Object.fromEntries(
+  manifest.rows.map((row) => [
+    path.parse(row.source).name,
+    [...new Set(row.outputs.map((output) => Number(output.file.match(/-(\d+)\.\w+$/)[1])))].sort((a, b) => a - b),
+  ]),
 );
 
 const esc = (value) =>
@@ -61,6 +73,34 @@ const whatsappIcon = (size) =>
 const MENU_ICON =
   '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M2 4h16v2H2zm0 5h16v2H2zm0 5h16v2H2z" fill="currentColor"/></svg>';
 
+const ARROW =
+  '<svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9.3 3.3 8 4.6l2.4 2.4H2v2h8.4L8 11.4l1.3 1.3L14 8z" fill="currentColor"/></svg>';
+
+const PLUS =
+  '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M7 2h2v5h5v2H9v5H7V9H2V7h5z" fill="currentColor"/></svg>';
+
+const MAIL_ICON =
+  '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M2.5 4h15c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1h-15c-.6 0-1-.4-1-1V5c0-.6.4-1 1-1zm.9 2v.3L10 10.6l6.6-4.3V6zm13.2 2.6L10 12.9 3.4 8.6V14h13.2z" fill="currentColor"/></svg>';
+
+// Line icons for the proof points and the about list. 24px, currentColor.
+const ICONS = {
+  gauge:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 6.9 6h-2v2h2A7 7 0 0 1 5.1 13h2v-2h-2A7 7 0 0 1 11 5.1v2h2v-2zm3.5 3.1-4.2 4.2a1.3 1.3 0 1 0 1.4 1.4l4.2-4.2z" fill="currentColor"/></svg>',
+  doc:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 2h8l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V8h4.5zM8 12v2h8v-2zm0 4v2h5v-2z" fill="currentColor"/><path d="m15.6 15.6 1.4 1.4 3-3 1 1-4 4-2.4-2.4z" fill="currentColor"/></svg>',
+  list:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zm-4 6h2v2H4zm4 0h8v2H8z" fill="currentColor"/></svg>',
+  bolt:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 2 5 13.5h5.6L9.5 22 19 9.8h-5.8z" fill="currentColor"/></svg>',
+  clock:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm0 2a7 7 0 1 1-7 7 7 7 0 0 1 7-7zm-1 2v5.4l4.3 2.6 1-1.7-3.3-2V7z" fill="currentColor"/></svg>',
+};
+
+// "Text with [accent] words" to HTML, escaping everything else.
+const accent = (text) =>
+  esc(text).replace(/\[([^\]]+)\]/g, '<span class="accent">$1</span>');
+const plain = (text) => text.replace(/[[\]]/g, '');
+
 function googleTag() {
   return `<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}"></script>
@@ -72,7 +112,9 @@ function googleTag() {
 </script>`;
 }
 
-function head({ title, description, canonical, depth, noindex = false, schema = [] }) {
+// shareTitle is the title a link preview shows. WhatsApp cuts a title off
+// after roughly 55 characters, so pages with long titles give a shorter one.
+function head({ title, shareTitle = title, description, canonical, depth, noindex = false, schema = [] }) {
   const prefix = up(depth);
   const ogImage = `${CANON}/assets/og-image.jpg`;
   return `<!DOCTYPE html>
@@ -86,14 +128,18 @@ ${googleTag()}
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
-<meta property="og:title" content="${esc(title)}">
+<meta property="og:title" content="${esc(shareTitle)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:image" content="${esc(ogImage)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:secure_url" content="${esc(ogImage)}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="${esc(site.name)} logo">
+<meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:title" content="${esc(shareTitle)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#16181b">
@@ -103,6 +149,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-700.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-800.woff2" crossorigin>
 <link rel="stylesheet" href="${prefix}assets/css/site.css">
 ${schema.map(jsonLd).join('\n')}
 </head>
@@ -140,8 +187,20 @@ const NAV = [
   { label: 'Contact', href: `${BASE}#contact` },
 ];
 
+// A slim bar above the header on every page: the emergency line is the one
+// thing a visitor with a gas smell needs, and it should never be a scroll away.
+function emergencyBar() {
+  return `<div class="emergency-bar">
+<div class="wrap emergency-bar__inner">
+<span><strong>Gas emergency?</strong> <span class="emergency-bar__more">We answer ${site.emergency}.</span></span>
+<a href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.phone.display}</a>
+</div>
+</div>`;
+}
+
 function header() {
-  return `<header class="site-header">
+  return `${emergencyBar()}
+<header class="site-header">
 <div class="wrap site-header__inner">
 <a class="brand" href="${BASE}" aria-label="${esc(site.name)}, home">${brandLockup(38, 18)}</a>
 <a class="header-call" href="tel:${site.phone.tel}" aria-label="Call ${esc(site.name)} on ${site.phone.display}">${PHONE_ICON}</a>
@@ -153,7 +212,7 @@ ${NAV.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join('\n')}
 </nav>
 <a class="header-phone" href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a>
 <a class="btn btn--whatsapp header-whatsapp" href="${site.phone.whatsapp}" target="_blank" rel="noopener noreferrer">${whatsappIcon(20)}WhatsApp</a>
-<a class="btn btn--primary header-cta" href="${BASE}#quote">Request a quote</a>
+<a class="btn btn--primary header-cta" href="${BASE}#quote">Get a quote</a>
 </div>
 </header>`;
 }
@@ -181,6 +240,8 @@ function footer(depth) {
 <h3>Pages</h3>
 <ul>
 ${NAV.map((item) => `<li><a href="${item.href}">${esc(item.label)}</a></li>`).join('\n')}
+<li><a href="${BASE}#faq">Questions</a></li>
+<li><a href="${BASE}#gas-safety">If you smell gas</a></li>
 <li><a href="${BASE}privacy/">Privacy policy</a></li>
 </ul>
 </div>
@@ -188,7 +249,6 @@ ${NAV.map((item) => `<li><a href="${item.href}">${esc(item.label)}</a></li>`).jo
 <h3>Services</h3>
 <ul>
 ${services
-  .slice(0, 5)
   .map((service) => `<li><a href="${BASE}services/${service.slug}/">${esc(service.name)}</a></li>`)
   .join('\n')}
 </ul>
@@ -205,14 +265,18 @@ ${services
 </html>`;
 }
 
-function picture(name, alt, { priority = false, className = '' } = {}) {
+// Every photograph ships in two or three widths; srcset lets the browser pick
+// the smallest one that stays sharp at the size it is shown.
+function picture(name, alt, { priority = false, className = '', sizes = '100vw' } = {}) {
   const dims = IMAGE_DIMENSIONS[name];
-  const file = `${name}-${dims.width >= 1920 ? 1920 : 1200}`;
+  const widths = IMAGE_WIDTHS[name];
+  const largest = widths[widths.length - 1];
+  const set = (ext) => widths.map((width) => `/assets/img/${name}-${width}.${ext} ${width}w`).join(', ');
   const loading = priority ? '' : ' loading="lazy"';
   const fetch = priority ? ' fetchpriority="high"' : '';
   return `<picture${className ? ` class="${className}"` : ''}>
-<source type="image/webp" srcset="/assets/img/${file}.webp">
-<img src="/assets/img/${file}.jpg" alt="${esc(alt)}" width="${dims.width}" height="${dims.height}"${loading}${fetch} decoding="async">
+<source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">
+<img src="/assets/img/${name}-${largest}.jpg" srcset="${set('jpg')}" sizes="${sizes}" alt="${esc(alt)}" width="${dims.width}" height="${dims.height}"${loading}${fetch} decoding="async">
 </picture>`;
 }
 
@@ -220,22 +284,31 @@ function quoteHref(slug) {
   return `${BASE}?service=${encodeURIComponent(slug)}#quote`;
 }
 
-function serviceCard(service, priority = false) {
-  const safety = service.safety
-    ? `<p class="card__safety"><strong>${esc(safetyAdvice.heading)}:</strong> ${esc(safetyAdvice.short)}</p>`
-    : '';
+const CARD_SIZES = '(max-width: 767px) calc(100vw - 32px), (max-width: 1024px) 45vw, 380px';
+
+// The card's four parts are direct children so the grid can line them up
+// across a row with subgrid. The photograph links to the service as well,
+// but is hidden from assistive technology so the link is announced once.
+function serviceCard(service) {
+  const number = String(services.indexOf(service) + 1).padStart(2, '0');
+  const href = `${BASE}services/${service.slug}/`;
   return `<li class="card">
-<div class="card__media">${picture(service.image, service.alt, { priority })}</div>
-<div class="card__body">
+<a class="card__media" href="${href}" tabindex="-1" aria-hidden="true">${picture(service.image, service.alt, { sizes: CARD_SIZES })}<span class="card__index">${number}</span></a>
 <h3>${esc(service.name)}</h3>
-<p>${esc(service.card)}</p>
-${safety}
+<p class="card__text">${esc(service.card)}</p>
 <div class="card__links">
-<a href="${BASE}services/${service.slug}/">Learn more<span class="visually-hidden"> about ${esc(service.name)}</span></a>
-<a href="${quoteHref(service.slug)}">Request a quote<span class="visually-hidden"> for ${esc(service.name)}</span></a>
-</div>
+<a class="link-arrow" href="${href}">View service<span class="visually-hidden">: ${esc(service.name)}</span>${ARROW}</a>
+<a class="card__quote" href="${quoteHref(service.slug)}">Get a quote<span class="visually-hidden"> for ${esc(service.name)}</span></a>
 </div>
 </li>`;
+}
+
+function contactTiles() {
+  return `<ul class="contact-tiles">
+<li><a href="tel:${site.phone.tel}"><span class="tile__icon">${PHONE_ICON}</span><small>Call</small><strong>${site.phone.display}</strong></a></li>
+<li><a href="${site.phone.whatsapp}" target="_blank" rel="noopener noreferrer"><span class="tile__icon tile__icon--wa">${whatsappIcon(20)}</span><small>WhatsApp</small><strong>${site.phone.display}</strong></a></li>
+<li><a href="mailto:${site.email}"><span class="tile__icon">${MAIL_ICON}</span><small>Email</small><strong>${site.email}</strong></a></li>
+</ul>`;
 }
 
 function quoteForm() {
@@ -258,14 +331,21 @@ ${propertyTypes.map((type) => `<option value="${type}">${type}</option>`).join('
 <option value="Not sure" data-slug="not-sure">Not sure</option>
 ${options}
 </select></div>
-<div class="field field--full"><label for="message">What do you need done?</label><textarea id="message" name="message" rows="6" required></textarea></div>
+<div class="field field--full"><label for="message">What do you need done?</label><textarea id="message" name="message" rows="6" placeholder="For example: a gas hob and a geyser in a townhouse, cylinders outside the kitchen wall." required></textarea></div>
 <div class="field field--consent"><input type="checkbox" id="consent" name="consent" value="yes" required><label for="consent">I agree that Gas Designs may use these details to answer my enquiry and prepare a quote.</label></div>
 <div class="form-actions">
 <p class="form-status" role="status" aria-live="polite"></p>
-<button class="btn btn--primary btn--block" type="submit">Send quote request</button>
+<button class="btn btn--primary btn--block" type="submit">Send my quote request</button>
 </div>
 </div>
 </form>`;
+}
+
+function intro({ eyebrow, heading, lead, split = false }) {
+  return `<div class="section__intro${split ? ' section__intro--split' : ''} reveal">
+<div>${eyebrow ? `<p class="eyebrow">${esc(eyebrow)}</p>` : ''}<h2>${esc(heading)}</h2></div>
+${lead ? `<p>${esc(lead)}</p>` : ''}
+</div>`;
 }
 
 /* ---------------- Home ---------------- */
@@ -280,7 +360,7 @@ function buildHome() {
       email: site.email,
       telephone: site.phone.international,
       description: site.description,
-      areaServed: 'South Africa',
+      areaServed: [...site.cities, site.region].map((name) => ({ '@type': 'Place', name })),
     },
     {
       '@context': 'https://schema.org',
@@ -295,6 +375,7 @@ function buildHome() {
 
   return `${head({
     title: home.title,
+    shareTitle: home.shareTitle,
     description: home.metaDescription,
     canonical: `${CANON}/`,
     depth: 0,
@@ -306,84 +387,128 @@ ${header()}
 <section class="hero">
 <div class="hero__media">${picture('hero', home.heroImageAlt, { priority: true })}</div>
 <div class="wrap hero__inner">
-<h1>${esc(home.h1)}</h1>
-<p>${esc(home.heroLead)}</p>
+<p class="eyebrow">${esc(home.eyebrow)}</p>
+<h1>${accent(home.h1)}</h1>
+<p class="hero__lead">${esc(home.heroLead)}</p>
 <div class="hero__actions">
-<a class="btn btn--primary" href="${BASE}#quote">Request a quote</a>
-<a class="btn btn--secondary" href="${BASE}#services">See services</a>
+<a class="btn btn--primary" href="${BASE}#quote">Get a written quote${ARROW}</a>
+<a class="btn btn--secondary" href="${BASE}#services">Explore services</a>
 </div>
+<ul class="proof">
+${home.proof.map((item) => `<li>${ICONS[item.icon]}<strong>${esc(item.title)}</strong><span>${esc(item.text)}</span></li>`).join('\n')}
+</ul>
 </div>
 </section>
 
-<section class="section section--white" id="services">
+<section class="section section--grey" id="services">
 <div class="wrap">
-<div class="section__intro">
-<h2>${esc(home.servicesHeading)}</h2>
-<p>${esc(home.servicesLead)}</p>
-</div>
+${intro({ eyebrow: home.servicesEyebrow, heading: home.servicesHeading, lead: home.servicesLead, split: true })}
 <ul class="card-grid">
 ${services.map((service) => serviceCard(service)).join('\n')}
 </ul>
 </div>
 </section>
 
-<section class="section section--grey" id="how-it-works">
-<div class="wrap">
-<div class="section__intro"><h2>${esc(home.stepsHeading)}</h2></div>
-<ol class="steps">
-${home.steps.map((step) => `<li><h3>${esc(step.name)}</h3><p>${esc(step.text)}</p></li>`).join('\n')}
+<section class="alert-band" id="gas-safety" aria-labelledby="gas-safety-heading">
+<div class="wrap alert-band__inner">
+<div class="alert-band__intro">
+<div>
+<p class="eyebrow">${esc(home.safetyEyebrow)}</p>
+<h2 id="gas-safety-heading">${esc(home.safetyHeading)}</h2>
+<p>${esc(home.safetyLead)}</p>
+</div>
+<a class="btn btn--dark" href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.emergency}: ${site.phone.display}</a>
+</div>
+<ol class="alert-steps">
+${safetyAdvice.stepsShort.map((step) => `<li>${esc(step)}</li>`).join('\n')}
 </ol>
+<p class="alert-band__note">${esc(home.safetyNote)}</p>
+</div>
+</section>
+
+<section class="section section--dark process" id="how-it-works">
+<div class="wrap">
+${intro({ eyebrow: home.stepsEyebrow, heading: home.stepsHeading, lead: home.stepsLead })}
+<ol class="process__line">
+${home.steps
+  .map(
+    (step, index) => `<li class="process__step reveal">
+<span class="process__node" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+<h3>${esc(step.name)}</h3>
+<p>${esc(step.text)}</p>
+<span class="process__tag">${esc(step.tag)}</span>
+</li>`,
+  )
+  .join('\n')}
+</ol>
+<div class="process__cta">
+<p>${esc(home.stepsCta)}</p>
+<div class="hero__actions">
+<a class="btn btn--primary" href="${BASE}#quote">Get a written quote${ARROW}</a>
+<a class="btn btn--whatsapp" href="${site.phone.whatsapp}" target="_blank" rel="noopener noreferrer">${whatsappIcon(20)}WhatsApp us</a>
+</div>
+</div>
 </div>
 </section>
 
 <section class="section section--white" id="compliance">
 <div class="wrap split">
-<div class="split__text">
+<div class="split__text reveal">
+<p class="eyebrow">${esc(home.complianceEyebrow)}</p>
 <h2>${esc(home.complianceHeading)}</h2>
 ${home.complianceBody.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('\n')}
 </div>
-<div class="split__media">${picture('compliance', home.complianceImageAlt)}</div>
+<div class="split__media split__media--tagged reveal">${picture('compliance', home.complianceImageAlt, { sizes: '(max-width: 899px) 100vw, 560px' })}
+<div class="test-tag">
+<p class="test-tag__title">${esc(home.testTag.title)}</p>
+<dl>
+${home.testTag.rows.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('\n')}
+</dl>
+</div>
+</div>
 </div>
 </section>
 
 <section class="section section--grey" id="about">
-<div class="wrap split">
-<div class="split__media">${picture('about', home.aboutImageAlt)}</div>
-<div class="split__text">
+<div class="wrap split split--reverse">
+<div class="split__media reveal">${picture('about', home.aboutImageAlt, { sizes: '(max-width: 899px) 100vw, 560px' })}</div>
+<div class="split__text reveal">
+<p class="eyebrow">${esc(home.aboutEyebrow)}</p>
 <h2>${esc(home.aboutHeading)}</h2>
 ${home.aboutBody.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('\n')}
+<ul class="points">
+${home.aboutPoints.map((point) => `<li><span class="points__icon">${ICONS[point.icon]}</span>${esc(point.text)}</li>`).join('\n')}
+</ul>
 </div>
 </div>
 </section>
 
 <section class="section section--white" id="faq">
-<div class="wrap">
-<div class="section__intro"><h2>${esc(home.faqHeading)}</h2></div>
+<div class="wrap faq-layout">
+${intro({ eyebrow: home.faqEyebrow, heading: home.faqHeading, lead: home.faqLead })}
 <div class="faq">
-${home.faqs.map((faq) => `<div class="faq__item"><h3>${esc(faq.q)}</h3><p>${esc(faq.a)}</p></div>`).join('\n')}
+${home.faqs
+  .map(
+    (faq, index) =>
+      `<details class="faq__item"${index === 0 ? ' open' : ''}><summary><h3>${esc(faq.q)}</h3><span class="faq__icon">${PLUS}</span></summary><p>${esc(faq.a)}</p></details>`,
+  )
+  .join('\n')}
 </div>
 </div>
 </section>
 
 <section class="section section--grey" id="contact">
 <div class="wrap">
-<div class="section__intro">
-<h2>${esc(home.contactHeading)}</h2>
-<p>${esc(home.contactLead)}</p>
-</div>
+${intro({ eyebrow: home.contactEyebrow, heading: home.contactHeading, lead: home.contactLead })}
 <div class="contact-grid">
 <div>${quoteForm()}</div>
 <aside class="contact-aside">
-<div class="contact-aside__media">${picture('contact', home.contactImageAlt)}</div>
-<h3>Reach us directly</h3>
-<p>If you would rather not use the form, call, send a WhatsApp message, or write to us.</p>
-<ul class="contact-methods">
-<li><a href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a></li>
-<li><a href="${site.phone.whatsapp}" rel="noopener">${CHAT_ICON}WhatsApp ${site.phone.display}</a></li>
-<li><a href="mailto:${site.email}">${site.email}</a></li>
-</ul>
-<h3>${esc(safetyAdvice.heading)}</h3>
-<p>${esc(safetyAdvice.short)}</p>
+<div class="contact-aside__media">${picture('contact', home.contactImageAlt, { sizes: '(max-width: 1024px) 100vw, 440px' })}</div>
+<div class="contact-aside__body">
+<h3>${esc(home.contactAsideHeading)}</h3>
+<p>${esc(home.contactAsideText)}</p>
+${contactTiles()}
+</div>
 </aside>
 </div>
 </div>
@@ -394,6 +519,22 @@ ${footer(0)}`;
 }
 
 /* ---------------- Service pages ---------------- */
+
+function ctaBand({ eyebrow, heading, text, slug }) {
+  return `<section class="cta-band">
+<div class="wrap cta-band__inner">
+<div>
+<p class="eyebrow">${esc(eyebrow)}</p>
+<h2>${esc(heading)}</h2>
+<p>${esc(text)}</p>
+</div>
+<div class="cta-band__actions">
+<a class="btn btn--primary" href="${slug ? quoteHref(slug) : `${BASE}#quote`}">Get a written quote${ARROW}</a>
+<a class="btn btn--whatsapp" href="${site.phone.whatsapp}" target="_blank" rel="noopener noreferrer">${whatsappIcon(20)}WhatsApp us</a>
+</div>
+</div>
+</section>`;
+}
 
 function buildService(service) {
   const related = service.related
@@ -407,7 +548,7 @@ function buildService(service) {
       name: service.name,
       description: service.metaDescription,
       url: `${CANON}/services/${service.slug}/`,
-      areaServed: 'South Africa',
+      areaServed: [...site.cities, site.region].map((name) => ({ '@type': 'Place', name })),
       provider: {
         '@type': 'LocalBusiness',
         name: site.name,
@@ -419,7 +560,7 @@ function buildService(service) {
   ];
 
   const safetyBlock = service.safety
-    ? `<section class="section section--white">
+    ? `<section class="section section--white section--flush">
 <div class="wrap">
 <div class="safety-panel">
 <h2>${esc(safetyAdvice.heading)}</h2>
@@ -443,25 +584,35 @@ ${header()}
 
 <section class="page-hero">
 <div class="wrap page-hero__inner">
+<div>
+<p class="crumbs"><a href="${BASE}#services">Services</a><span aria-hidden="true">/</span>${esc(service.name)}</p>
 <h1>${esc(service.name)}</h1>
-<p>${esc(service.intro)}</p>
+<p class="page-hero__lead">${esc(service.intro)}</p>
+<div class="hero__actions">
+<a class="btn btn--primary" href="${quoteHref(service.slug)}">Get a written quote${ARROW}</a>
+<a class="btn btn--secondary" href="tel:${site.phone.tel}">${PHONE_ICON}${site.phone.display}</a>
+</div>
+</div>
+<div class="page-hero__media">${picture(service.image, service.alt, { priority: true, sizes: '(max-width: 899px) 100vw, 560px' })}</div>
 </div>
 </section>
-<div class="page-hero__media">${picture(service.image, service.alt, { priority: true })}</div>
 
 <section class="section section--white">
-<div class="wrap split split--top">
-<div class="split__text">
+<div class="wrap service-body">
+<div>
+<p class="eyebrow">The scope</p>
 <h2>What is included</h2>
-<ul class="ticks">
+<ul class="ticks ticks--columns">
 ${service.included.map((item) => `<li>${TICK}${esc(item)}</li>`).join('\n')}
 </ul>
 </div>
-<div class="split__text">
+<aside class="aside-card">
 <h2>Who it is for</h2>
 <p>${esc(service.forWho)}</p>
-<p><a class="btn btn--dark" href="${quoteHref(service.slug)}">Request a quote for this service</a></p>
-</div>
+<hr class="aside-card__rule">
+<a class="btn btn--dark" href="${quoteHref(service.slug)}">Get a quote for this job</a>
+<a class="btn btn--whatsapp" href="${site.phone.whatsapp}" target="_blank" rel="noopener noreferrer">${whatsappIcon(20)}WhatsApp ${site.phone.display}</a>
+</aside>
 </div>
 </section>
 
@@ -469,12 +620,14 @@ ${safetyBlock}
 
 <section class="section section--grey">
 <div class="wrap">
-<div class="section__intro"><h2>Related services</h2></div>
+${intro({ eyebrow: 'Often booked together', heading: 'Related services' })}
 <ul class="related-grid">
 ${related.map((item) => serviceCard(item)).join('\n')}
 </ul>
 </div>
 </section>
+
+${ctaBand({ ...serviceCta, slug: service.slug })}
 
 </main>
 ${footer(2)}`;
@@ -552,7 +705,7 @@ ${header()}
 <ul class="ticks">
 <li>${TICK}<a href="${BASE}">Home page</a></li>
 <li>${TICK}<a href="${BASE}#services">All services</a></li>
-<li>${TICK}<a href="${BASE}#quote">Request a quote</a></li>
+<li>${TICK}<a href="${BASE}#quote">Get a written quote</a></li>
 </ul>
 </div>
 </section>
@@ -574,6 +727,7 @@ async function main() {
   for (const [weight, file] of [
     [400, 'inter-latin-400-normal.woff2'],
     [700, 'inter-latin-700-normal.woff2'],
+    [800, 'inter-latin-800-normal.woff2'],
   ]) {
     await copyFile(
       path.resolve('node_modules/@fontsource/inter/files', file),

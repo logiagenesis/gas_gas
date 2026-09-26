@@ -1,101 +1,166 @@
 import { site, safetyAdvice } from './site.js';
 
 export const home = {
-  title: 'Gas Designs | Gas installation, maintenance and certification',
+  title: 'Gas Designs | Gas installers in Pretoria, Johannesburg and Gauteng – 24/7 emergencies',
+  shareTitle: 'Gas Designs | Gas installers, Pretoria & Johannesburg',
   metaDescription:
-    'Gas Designs installs, services and certifies gas systems for homes, commercial kitchens, industrial premises and property developments in South Africa.',
-  h1: 'Gas installation, maintenance and certification in South Africa',
+    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical. Every line tested before handover.',
+  eyebrow: `Gas installers · ${site.cities.join(' · ')} · ${site.region}`,
+  // The phrase in accent colour is marked with square brackets.
+  h1: 'Gas, installed properly. [Tested before you light it.]',
   heroLead:
-    'Gas Designs installs, services and certifies gas systems for homes, commercial kitchens, industrial premises and property developments.',
+    'From a single gas hob to a bulk LPG tank on a factory site, we plan the run, install it neatly and pressure-test every line. Then we hand you the Certificate of Conformity.',
   heroImageAlt:
     'Technician kneeling in a dark fitted kitchen, holding a digital pressure gauge connected to copper gas pipework above the hob.',
+  proof: [
+    { icon: 'bolt', title: `${site.experience}’ experience`, text: 'In gas and electrical work' },
+    { icon: 'clock', title: `${site.emergency} emergency callouts`, text: 'For gas leaks and gas smells' },
+    { icon: 'gauge', title: 'Pressure and leak tested', text: 'On every installation, before handover' },
+    { icon: 'doc', title: 'Certificate of Conformity', text: 'Issued once the installation passes' },
+  ],
 
-  servicesHeading: 'Gas services we install, maintain and certify',
+  servicesEyebrow: 'What we do',
+  servicesHeading: 'Every gas job, from one hob to a bulk tank',
   servicesLead:
-    'Each service below covers the work, the testing and the paperwork that goes with it.',
+    'Homes, commercial kitchens, factories and new developments. The testing and the paperwork come with every service. They are not extras.',
 
-  stepsHeading: 'How an installation runs, from enquiry to handover',
+  safetyEyebrow: 'Gas safety',
+  safetyHeading: 'Smell gas? Do this first.',
+  safetyLead:
+    'Stay calm and work through these five steps. Do not try to find the leak yourself. Once you are outside, call us: we take gas emergencies 24 hours a day.',
+  safetyNote:
+    'If anyone feels unwell or there is a fire, call emergency services on 112 from a mobile phone.',
+
+  stepsEyebrow: 'How it works',
+  stepsHeading: 'From first message to signed-off certificate',
+  stepsLead: 'Five steps and no guesswork. You know the price before we start and the result before we leave.',
   steps: [
     {
-      name: 'Enquiry',
-      text: 'Tell us what you need installed, serviced or certified. We ask for the details that affect the price.',
+      name: 'Tell us the job',
+      text: 'Call, WhatsApp or use the form. The appliance, the property and your suburb are enough to start.',
+      tag: 'Call or WhatsApp',
     },
     {
       name: 'Site assessment',
-      text: 'We look at the site, measure the run, and check what the appliances need.',
+      text: 'We measure the run and check what each appliance needs, so the price fits your site, not a guess.',
+      tag: 'Measured on site',
     },
     {
       name: 'Written quote',
-      text: 'You receive a written quote that lists the work, the materials and the price.',
+      text: 'The work, the materials and the price, itemised in writing. You approve it before anything starts.',
+      tag: 'Itemised price',
     },
     {
-      name: 'Installation and testing',
-      text: 'We install the system, then pressure test and leak test the completed line.',
+      name: 'Install and test',
+      text: 'Neat, clipped and supported pipework, then a pressure test and a leak test on the finished line.',
+      tag: 'Pressure tested',
     },
     {
-      name: 'Handover and certificate',
-      text: 'We show you how to isolate the supply, and issue a Certificate of Conformity where it is required.',
+      name: 'Handover',
+      text: 'We show you how to shut off the supply, and issue the Certificate of Conformity where required.',
+      tag: 'CoC issued',
     },
   ],
+  stepsCta: 'Ready for step one?',
 
-  complianceHeading: 'Every installation is tested before we hand it over',
+  complianceEyebrow: 'Safety and compliance',
+  complianceHeading: 'Nothing is handed over until it passes',
   complianceBody: [
-    'Every installation is pressure tested and leak tested before handover. A Certificate of Conformity is issued where it is required.',
-    'We work to the Pressure Equipment Regulations under the Occupational Health and Safety Act, and to the SANS standards that apply to your installation.',
+    'Every installation is pressure-tested and leak-tested before we hand it over. Where a Certificate of Conformity is required, you get one.',
+    'We work to SANS 10087 and to the Pressure Equipment Regulations under the Occupational Health and Safety Act. Your insurer, your bank and your conveyancer will ask about both.',
   ],
   complianceImageAlt:
     'Pressure gauge on a gas test point, with a yellow tag recording the test date, the pressure and a pass result.',
+  testTag: {
+    title: 'Before handover',
+    rows: [
+      ['Pressure test', 'Every job'],
+      ['Leak test', 'Every job'],
+      ['Written record', 'Every job'],
+      ['CoC', 'Where required'],
+    ],
+  },
 
-  aboutHeading: 'About Gas Designs',
+  aboutEyebrow: 'About Gas Designs',
+  aboutHeading: 'Gas specialists who finish the job',
   aboutBody: [
-    'Gas Designs is a gas installation company based in South Africa. It installs, services and certifies gas systems for homes, commercial kitchens, industrial premises and property developments.',
-    'The company also carries out the basic electrical work that gas appliances need, so one team completes the appliance and tests it.',
+    'Gas Designs is a registered company that installs, services and certifies gas systems for homes, commercial kitchens, industrial sites and property developments. We work in Pretoria, Johannesburg and the rest of Gauteng, including outlying areas.',
+    'Behind it is 15 years of hands-on experience in gas and electrical work. That is why we also do the basic electrical side of gas appliances, including isolators, ignition supply and fans. You deal with one team and get one handover.',
+  ],
+  aboutPoints: [
+    { icon: 'bolt', text: `${site.experience} in gas and electrical` },
+    { icon: 'clock', text: '24/7 for gas leaks and emergencies' },
+    { icon: 'gauge', text: 'Every line tested before you use it' },
+    { icon: 'list', text: 'Written quotes, written reports, written fixes' },
   ],
   aboutImageAlt:
     'Technician loading gas cylinders on a trolley into a white bakkie on a suburban street at dusk.',
 
-  faqHeading: 'Questions we are asked most often',
+  faqEyebrow: 'Questions',
+  faqHeading: 'Straight answers',
+  faqLead: 'Here are the questions we hear most. If yours is not here, send it on WhatsApp.',
   faqs: [
     {
-      q: 'Do you issue a Certificate of Conformity?',
-      a: 'Yes. We inspect and test the installation, then issue the certificate once it passes. Anything that must be corrected first is listed in writing.',
+      q: 'Do you issue gas Certificates of Conformity (CoCs)?',
+      a: 'Yes. We inspect and test the installation and issue the certificate once it passes. If anything must be corrected first, you get it in writing and decide whether we fix it.',
+    },
+    {
+      q: 'Do you handle gas emergencies after hours?',
+      a: `Yes. We take gas emergency calls 24 hours a day, 7 days a week. Call ${site.phone.display} once you are safely outside.`,
+    },
+    {
+      q: 'Which areas do you cover?',
+      a: 'Pretoria, Johannesburg and the rest of Gauteng, including outlying areas. If you are not sure whether we reach you, send your suburb on WhatsApp.',
     },
     {
       q: 'What should I do if I smell gas?',
       a: 'Close the supply valve at the cylinder or meter. Open the doors and windows. Do not switch anything on or off, and do not use a flame. Leave the area, then call for help.',
     },
     {
-      q: 'Do you work on commercial kitchens as well as homes?',
-      a: 'Yes. We install and maintain gas systems in homes, commercial kitchens, industrial premises and property developments.',
+      q: 'Do you work on commercial kitchens and industrial sites as well as homes?',
+      a: 'Yes. We work in homes, restaurant and hotel kitchens, factories, bulk LPG sites and new developments. Commercial work can be staged around your trading hours.',
     },
     {
       q: 'How do I get a price?',
-      a: 'Send a quote request through this website. We assess the site, then send a written quote listing the work, the materials and the price.',
+      a: 'Call, send a WhatsApp or use the quote form. We assess the site, then send a written quote that itemises the work, the materials and the price.',
     },
     {
-      q: 'Is the installation tested before I use it?',
-      a: 'Yes. Every installation is pressure tested and leak tested before we hand it over.',
+      q: 'Is everything tested before I use it?',
+      a: 'Yes. Every installation is pressure-tested and leak-tested before we hand it over.',
     },
     {
-      q: 'Do you do the electrical work for a gas appliance?',
-      a: 'We do the basic electrical work that gas appliances need, such as isolators, ignition supply, control wiring and fan connections.',
+      q: 'Can you do the electrical side of a gas appliance?',
+      a: 'Yes, the basic electrical work that gas appliances need: isolators, ignition supply, control wiring and fan connections. One team, one handover.',
+    },
+    {
+      q: 'When should I move from cylinders to a bulk LPG tank?',
+      a: 'When swapping cylinders has become a routine job, or your appliances need more gas than cylinders can supply. We look at your usage and the site, then lay out the tank, plinth and manifold with safe separation distances.',
     },
   ],
 
-  contactHeading: 'Request a quote',
-  contactLead:
-    'Send the details below and we will come back to you. If it is urgent, call or send a WhatsApp message instead.',
+  contactEyebrow: 'Get a quote',
+  contactHeading: 'Tell us about the job',
+  contactLead: `Send a few details and we will come back to you. In a hurry? Call or WhatsApp ${site.phone.display}.`,
+  contactAsideHeading: 'Rather talk to someone?',
+  contactAsideText: 'Call or send a WhatsApp message with a photo of the appliance or the meter. It often saves a trip.',
   contactImageAlt:
     'Technician in work gloves handing a folder of completed paperwork to a client across a kitchen counter.',
+};
+
+// Shown near the foot of every service page.
+export const serviceCta = {
+  eyebrow: 'Next step',
+  heading: 'Get a written quote for your job',
+  text: 'Send the details, a photo helps, and we will come back with the next step. You approve the quote before any work starts.',
 };
 
 export const thankYou = {
   title: 'Thank you | Gas Designs',
   metaDescription: 'Your quote request has reached Gas Designs. We will phone, WhatsApp or email you.',
-  h1: 'Your quote request has been sent',
+  h1: 'Thank you. Your request is with us.',
   body: [
-    'Thank you. Your request has reached us and we will phone, WhatsApp or email you.',
-    `If your enquiry is urgent, call or send a WhatsApp message to ${site.phone.international}, or write to ${site.email}.`,
+    'We will read it and come back to you by phone, WhatsApp or email.',
+    `If it is urgent, call or WhatsApp ${site.phone.international}, or write to ${site.email}.`,
   ],
   safetyNote: safetyAdvice.short,
 };
@@ -129,7 +194,7 @@ export const privacy = {
     {
       heading: 'Sharing',
       body: [
-        'We do not sell your information. We do not share it except to the extent needed to deliver the form and to answer your enquiry.',
+        'We do not sell your information. We share it only as far as needed to deliver the form and to answer your enquiry.',
       ],
     },
     {
@@ -142,7 +207,7 @@ export const privacy = {
 export const notFound = {
   title: 'Page not found | Gas Designs',
   metaDescription: 'That page does not exist on the Gas Designs website.',
-  h1: 'That page does not exist',
-  body: 'The page you asked for is not on this website. It may have been moved, or the address may have a typing error in it.',
+  h1: 'This page doesn’t exist',
+  body: 'It may have moved, or the address may have a typing error in it. These links will get you back on track.',
   linksHeading: 'Where to go next',
 };

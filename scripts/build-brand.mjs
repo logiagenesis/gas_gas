@@ -116,7 +116,7 @@ function wrapText(font, text, fontSize, maxWidth) {
 async function buildOgImage(wordmarkSvg) {
   const regular = loadFont(400);
   const subtitleSize = 40;
-  const lines = wrapText(regular, home.h1, subtitleSize, 880);
+  const lines = wrapText(regular, home.h1.replace(/[[\]]/g, ''), subtitleSize, 880);
 
   const logoTargetWidth = 520;
   const meta = await sharp(Buffer.from(wordmarkSvg)).metadata();
@@ -151,56 +151,50 @@ async function buildOgImage(wordmarkSvg) {
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
-// Open Graph card: the mark in full colour beside the wordmark rendered white,
-// on the site's charcoal, with the home H1 as the subtitle. No photograph.
+// Open Graph card: the image chat apps show beside a shared link. WhatsApp
+// shows it as a small square thumbnail cropped from the centre, on a dark
+// message bubble, so the card is built for that view first: the site's
+// charcoal with a low amber glow, the flame in its own colours and the
+// wordmark in white (as in the site header), stacked and centred with
+// generous space inside the central 630 x 630 square.
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
+const OG_MARK_HEIGHT = 280;
+const OG_WORD_WIDTH = 500;
+const OG_GAP = 44;
+
 async function buildOgFromLockup(parts) {
-  const regular = loadFont(400);
-  const subtitleSize = 38;
-  const lines = wrapText(regular, home.h1, subtitleSize, 900);
-
-  const markHeight = 132;
-  const wordHeight = 56;
-  const gap = 30;
-
-  const mark = await sharp(parts.mark).resize({ height: markHeight }).png().toBuffer();
+  const mark = await sharp(parts.mark).resize({ height: OG_MARK_HEIGHT }).png().toBuffer();
   const markMeta = await sharp(mark).metadata();
 
   let word = null;
   let wordMeta = { width: 0, height: 0 };
   if (parts.wordmark) {
-    word = await sharp(await toWhite(parts.wordmark)).resize({ height: wordHeight }).png().toBuffer();
+    word = await sharp(await toWhite(parts.wordmark)).resize({ width: OG_WORD_WIDTH }).png().toBuffer();
     wordMeta = await sharp(word).metadata();
   }
 
-  const lockupWidth = markMeta.width + (word ? gap + wordMeta.width : 0);
-  const blockHeight = markHeight + 52 + lines.length * (subtitleSize * 1.35);
-  const blockTop = Math.round((630 - blockHeight) / 2);
+  const blockHeight = markMeta.height + (word ? OG_GAP + wordMeta.height : 0);
+  const top = Math.round((OG_HEIGHT - blockHeight) / 2);
 
-  let y = blockTop + markHeight + 52 + subtitleSize;
-  const subtitle = lines
-    .map((line) => {
-      const { parts: glyphs, width } = textToPath(regular, line, subtitleSize);
-      const group = `<g transform="translate(${((1200 - width) / 2).toFixed(2)} ${y})">${glyphs}</g>`;
-      y += subtitleSize * 1.35;
-      return group;
-    })
-    .join('');
+  const background = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="${OG_HEIGHT}"><defs><radialGradient id="glow" cx="50%" cy="46%" r="38%"><stop offset="0" stop-color="#e8731a" stop-opacity="0.30"/><stop offset="1" stop-color="#e8731a" stop-opacity="0"/></radialGradient></defs><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="#16181b"/><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#glow)"/></svg>`,
+  );
 
-  const canvas = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#16181b"/><g fill="#c9cdd2">${subtitle}</g></svg>`;
-
-  const lockupLeft = Math.round((1200 - lockupWidth) / 2);
-  const composites = [{ input: mark, left: lockupLeft, top: blockTop }];
+  const composites = [
+    { input: mark, left: Math.round((OG_WIDTH - markMeta.width) / 2), top },
+  ];
   if (word) {
     composites.push({
       input: word,
-      left: lockupLeft + markMeta.width + gap,
-      top: blockTop + Math.round((markHeight - wordMeta.height) / 2),
+      left: Math.round((OG_WIDTH - wordMeta.width) / 2),
+      top: top + markMeta.height + OG_GAP,
     });
   }
 
-  await sharp(Buffer.from(canvas))
+  await sharp(background)
     .composite(composites)
-    .jpeg({ quality: 88, mozjpeg: true })
+    .jpeg({ quality: 90, mozjpeg: true })
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
@@ -227,17 +221,30 @@ async function main() {
     manifest.mark = await write('gas-designs-mark.png', parts.mark);
     manifest.wordmark = parts.wordmark ? await write('gas-designs-wordmark.png', parts.wordmark) : null;
 
-    // Icons use the mark on the site's charcoal, so the brand colour survives
-    // at 16px where a full lockup would be unreadable.
-    for (const size of [16, 32, 180, 512]) {
-      const inner = Math.round(size * 0.66);
+    // Browser-tab icons are the flame alone on transparency, filling the square
+    // so it reads at 16px on light and dark tab bars alike. The home-screen
+    // icons sit on white with breathing room: iOS paints any transparent area
+    // of an apple-touch-icon black, and a black tile is what the client rejected.
+    const ICON_SPECS = [
+      { size: 16, fill: 1, background: null },
+      { size: 32, fill: 0.97, background: null },
+      { size: 180, fill: 0.62, background: '#ffffff' },
+      { size: 512, fill: 0.62, background: '#ffffff' },
+    ];
+    for (const { size, fill, background } of ICON_SPECS) {
+      const inner = Math.round(size * fill);
       const mark = await sharp(parts.mark)
-        .resize({ height: inner, fit: 'inside', withoutEnlargement: false })
+        .resize({ width: inner, height: inner, fit: 'inside', withoutEnlargement: false })
         .png()
         .toBuffer();
       const meta = await sharp(mark).metadata();
       const icon = await sharp({
-        create: { width: size, height: size, channels: 4, background: '#16181b' },
+        create: {
+          width: size,
+          height: size,
+          channels: 4,
+          background: background || { r: 0, g: 0, b: 0, alpha: 0 },
+        },
       })
         .composite([
           {
@@ -279,7 +286,7 @@ async function main() {
         description: site.description,
         start_url: './',
         display: 'standalone',
-        background_color: '#16181b',
+        background_color: '#ffffff',
         theme_color: '#16181b',
         icons: [
           { src: 'assets/icons/icon-180.png', sizes: '180x180', type: 'image/png' },

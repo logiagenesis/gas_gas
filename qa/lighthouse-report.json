@@ -1,12 +1,12 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T13:02:46.788Z",
+  "checkedAt": "2026-09-26T08:09:51.444Z",
   "rows": [
     {
       "name": "home",
       "url": "http://localhost:4173/gas_gas/",
       "scores": {
-        "performance": 96,
+        "performance": 99,
         "accessibility": 100,
         "best-practices": 96,
         "seo": 100
@@ -14,11 +14,11 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
-        "Largest Contentful Paint element",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
         "Properly size images",
-        "Improve image delivery"
+        "Improve image delivery",
+        "Network dependency tree"
       ]
     },
     {
@@ -33,11 +33,11 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
-        "Minimize main-thread work",
-        "Reduce JavaScript execution time",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
-        "Properly size images"
+        "Properly size images",
+        "Improve image delivery",
+        "Network dependency tree"
       ]
     },
     {

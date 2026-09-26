@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-22T13:00:24.222Z",
+  "checkedAt": "2026-09-26T08:20:31.255Z",
   "pages": [
     {
       "name": "home",
@@ -36,7 +36,7 @@
         "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
-      "h1": "Gas installation, maintenance and certification in South Africa",
+      "h1": "Gas, installed properly. Tested before you light it.",
       "blockedHosts": [
         "www.googletagmanager.com"
       ],
@@ -466,7 +466,7 @@
         "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
-      "h1": "Your quote request has been sent",
+      "h1": "Thank you. Your request is with us.",
       "blockedHosts": [
         "www.googletagmanager.com"
       ],
@@ -552,7 +552,7 @@
         "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
       ],
       "pageErrors": [],
-      "h1": "That page does not exist",
+      "h1": "This page doesn’t exist",
       "blockedHosts": [
         "www.googletagmanager.com"
       ],
@@ -564,31 +564,64 @@
   ],
   "contrast": [
     {
+      "foreground": "#a64b00",
+      "background": "#ffffff",
+      "fontSizePx": 13,
+      "fontWeight": 700,
+      "large": false,
+      "ratio": 5.79,
+      "required": 4.5,
+      "sample": "The scope",
+      "page": "services-residential-gas-installations"
+    },
+    {
       "foreground": "#4a525a",
-      "background": "#f4f5f6",
-      "fontSizePx": 16,
+      "background": "#f6f4ef",
+      "fontSizePx": 19,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 7.22,
+      "required": 3,
+      "sample": "What we do",
+      "page": "home"
+    },
+    {
+      "foreground": "#4a525a",
+      "background": "#f6f4ef",
+      "fontSizePx": 19,
       "fontWeight": 400,
       "large": false,
-      "ratio": 7.27,
+      "ratio": 7.22,
       "required": 4.5,
-      "sample": "We install gas hobs, ovens, water heaters and fi",
+      "sample": "Homes, commercial kitchens, factories and new de",
       "page": "home"
     },
     {
       "foreground": "#4a525a",
       "background": "#ffffff",
-      "fontSizePx": 18,
+      "fontSizePx": 16,
       "fontWeight": 400,
       "large": false,
       "ratio": 7.94,
       "required": 4.5,
-      "sample": "Each service below covers the work, the testing ",
+      "sample": "Gas hobs, ovens, geysers and fireplaces, connect",
+      "page": "home"
+    },
+    {
+      "foreground": "#4a525a",
+      "background": "#ffffff",
+      "fontSizePx": 19,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 7.94,
+      "required": 3,
+      "sample": "Questions",
       "page": "home"
     },
     {
       "foreground": "#16181b",
       "background": "#25d366",
-      "fontSizePx": 17,
+      "fontSizePx": 16,
       "fontWeight": 700,
       "large": false,
       "ratio": 8.97,
@@ -608,80 +641,135 @@
       "page": "home"
     },
     {
+      "foreground": "#f5b400",
+      "background": "#16181b",
+      "fontSizePx": 13,
+      "fontWeight": 700,
+      "large": false,
+      "ratio": 9.67,
+      "required": 4.5,
+      "sample": "Gas installers · Pretoria · Johannesburg · Gaute",
+      "page": "home"
+    },
+    {
+      "foreground": "#f5b400",
+      "background": "#16181b",
+      "fontSizePx": 62,
+      "fontWeight": 800,
+      "large": true,
+      "ratio": 9.67,
+      "required": 3,
+      "sample": "Tested before you light it.",
+      "page": "home"
+    },
+    {
+      "foreground": "#16181b",
+      "background": "#f5b400",
+      "fontSizePx": 42,
+      "fontWeight": 800,
+      "large": true,
+      "ratio": 9.67,
+      "required": 3,
+      "sample": "Smell gas? Do this first.",
+      "page": "home"
+    },
+    {
       "foreground": "#c9cdd2",
       "background": "#16181b",
-      "fontSizePx": 19,
-      "fontWeight": 400,
+      "fontSizePx": 16,
+      "fontWeight": 700,
       "large": false,
       "ratio": 11.14,
-      "required": 4.5,
-      "sample": "Gas Designs installs, services and certifies gas",
-      "page": "home"
-    },
-    {
-      "foreground": "#1e2227",
-      "background": "#f4f5f6",
-      "fontSizePx": 17,
-      "fontWeight": 400,
-      "large": false,
-      "ratio": 14.65,
-      "required": 4.5,
-      "sample": "Residential Gas Installations\nWe install gas hob",
-      "page": "home"
-    },
-    {
-      "foreground": "#1e2227",
-      "background": "#f4f5f6",
-      "fontSizePx": 20,
-      "fontWeight": 700,
-      "large": true,
-      "ratio": 14.65,
-      "required": 3,
-      "sample": "Residential Gas Installations",
-      "page": "home"
-    },
-    {
-      "foreground": "#1e2227",
-      "background": "#ffffff",
-      "fontSizePx": 32,
-      "fontWeight": 700,
-      "large": true,
-      "ratio": 15.99,
-      "required": 3,
-      "sample": "Gas services we install, maintain and certify",
-      "page": "home"
-    },
-    {
-      "foreground": "#1e2227",
-      "background": "#ffffff",
-      "fontSizePx": 17,
-      "fontWeight": 400,
-      "large": false,
-      "ratio": 15.99,
-      "required": 4.5,
-      "sample": "Please choose\nResidential\nCommercial\nIndustrial\n",
-      "page": "home"
-    },
-    {
-      "foreground": "#ffffff",
-      "background": "#16181b",
-      "fontSizePx": 17,
-      "fontWeight": 400,
-      "large": false,
-      "ratio": 17.79,
       "required": 4.5,
       "sample": "Services",
       "page": "home"
     },
     {
+      "foreground": "#c9cdd2",
+      "background": "#16181b",
+      "fontSizePx": 19,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 11.14,
+      "required": 3,
+      "sample": "How it works",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#f6f4ef",
+      "fontSizePx": 42,
+      "fontWeight": 800,
+      "large": true,
+      "ratio": 14.55,
+      "required": 3,
+      "sample": "Every gas job, from one hob to a bulk tank",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#f6f4ef",
+      "fontSizePx": 17,
+      "fontWeight": 700,
+      "large": false,
+      "ratio": 14.55,
+      "required": 4.5,
+      "sample": "15 years in gas and electrical",
+      "page": "home"
+    },
+    {
+      "foreground": "#ffffff",
+      "background": "#1f2327",
+      "fontSizePx": 17,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 15.81,
+      "required": 4.5,
+      "sample": "Call061 039 7034",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#ffffff",
+      "fontSizePx": 17,
+      "fontWeight": 400,
+      "large": false,
+      "ratio": 15.99,
+      "required": 4.5,
+      "sample": "01\nResidential Gas Installations\nGas hobs, ovens",
+      "page": "home"
+    },
+    {
+      "foreground": "#1e2227",
+      "background": "#ffffff",
+      "fontSizePx": 20,
+      "fontWeight": 700,
+      "large": true,
+      "ratio": 15.99,
+      "required": 3,
+      "sample": "Residential Gas Installations",
+      "page": "home"
+    },
+    {
       "foreground": "#ffffff",
       "background": "#16181b",
-      "fontSizePx": 44,
+      "fontSizePx": 16,
       "fontWeight": 700,
+      "large": false,
+      "ratio": 17.79,
+      "required": 4.5,
+      "sample": "061 039 7034",
+      "page": "home"
+    },
+    {
+      "foreground": "#ffffff",
+      "background": "#16181b",
+      "fontSizePx": 62,
+      "fontWeight": 800,
       "large": true,
       "ratio": 17.79,
       "required": 3,
-      "sample": "Gas installation, maintenance and certification ",
+      "sample": "Gas, installed properly. Tested before you light",
       "page": "home"
     }
   ],
@@ -692,14 +780,14 @@
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/",
-      "from": "home",
-      "status": 200
-    },
-    {
       "url": "tel:+27610397034",
       "from": "home",
       "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/",
+      "from": "home",
+      "status": 200
     },
     {
       "url": "http://localhost:4173/gas_gas/#services",
@@ -827,6 +915,16 @@
       "status": "external, not fetched"
     },
     {
+      "url": "http://localhost:4173/gas_gas/#faq",
+      "from": "home",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/#gas-safety",
+      "from": "home",
+      "status": 200
+    },
+    {
       "url": "http://localhost:4173/gas_gas/privacy/",
       "from": "home",
       "status": 200
@@ -842,12 +940,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-C5WsoNZT.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-s7dV_CdU.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-CGZNHoSl.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BShjQlbD.css",
       "from": "home",
       "status": 200
     },
@@ -862,7 +960,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/hero-1920.webp",
+      "url": "/gas_gas/assets/img/hero-640.webp 640w, /gas_gas/assets/img/hero-1280.webp 1280w, /gas_gas/assets/img/hero-1920.webp 1920w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -872,7 +970,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-01-1200.webp",
+      "url": "/gas_gas/assets/img/service-01-640.webp 640w, /gas_gas/assets/img/service-01-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -882,7 +980,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-04-1200.webp",
+      "url": "/gas_gas/assets/img/service-04-640.webp 640w, /gas_gas/assets/img/service-04-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -892,7 +990,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-06-1200.webp",
+      "url": "/gas_gas/assets/img/service-06-640.webp 640w, /gas_gas/assets/img/service-06-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -902,7 +1000,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-05-1200.webp",
+      "url": "/gas_gas/assets/img/service-05-640.webp 640w, /gas_gas/assets/img/service-05-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -912,7 +1010,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-09-1200.webp",
+      "url": "/gas_gas/assets/img/service-09-640.webp 640w, /gas_gas/assets/img/service-09-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -922,7 +1020,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-08-1200.webp",
+      "url": "/gas_gas/assets/img/service-08-640.webp 640w, /gas_gas/assets/img/service-08-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -932,7 +1030,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-02-1200.webp",
+      "url": "/gas_gas/assets/img/service-02-640.webp 640w, /gas_gas/assets/img/service-02-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -942,7 +1040,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-07-1200.webp",
+      "url": "/gas_gas/assets/img/service-07-640.webp 640w, /gas_gas/assets/img/service-07-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -952,7 +1050,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/service-03-1200.webp",
+      "url": "/gas_gas/assets/img/service-03-640.webp 640w, /gas_gas/assets/img/service-03-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -962,7 +1060,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/compliance-1200.webp",
+      "url": "/gas_gas/assets/img/compliance-640.webp 640w, /gas_gas/assets/img/compliance-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -972,7 +1070,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/about-1200.webp",
+      "url": "/gas_gas/assets/img/about-640.webp 640w, /gas_gas/assets/img/about-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },
@@ -982,7 +1080,7 @@
       "status": 200
     },
     {
-      "url": "/gas_gas/assets/img/contact-1200.webp",
+      "url": "/gas_gas/assets/img/contact-640.webp 640w, /gas_gas/assets/img/contact-1200.webp 1200w",
       "from": "home",
       "status": "external, not fetched"
     },

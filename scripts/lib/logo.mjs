@@ -7,6 +7,11 @@
 import sharp from 'sharp';
 
 const WHITE_CUTOFF = 235;
+// Anti-aliased edge pixels are the artwork's colour blended with the white
+// background. Left as they are, they draw a pale halo round the flame on any
+// dark or transparent surface. Pixels this light are un-mixed from white: the
+// white share becomes transparency and the colour share keeps its colour.
+const FRINGE_FLOOR = 100;
 
 export async function analyseLogo(file) {
   const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -16,7 +21,19 @@ export async function analyseLogo(file) {
   for (let index = 0; index < width * height; index += 1) {
     const offset = index * channels;
     const [r, g, b] = [pixels[offset], pixels[offset + 1], pixels[offset + 2]];
-    if (r > WHITE_CUTOFF && g > WHITE_CUTOFF && b > WHITE_CUTOFF) pixels[offset + 3] = 0;
+    if (r > WHITE_CUTOFF && g > WHITE_CUTOFF && b > WHITE_CUTOFF) {
+      pixels[offset + 3] = 0;
+      continue;
+    }
+    const lightest = Math.min(r, g, b);
+    if (lightest >= FRINGE_FLOOR) {
+      const alpha = (255 - lightest) / 255;
+      const unmix = (value) => Math.max(0, Math.min(255, Math.round((value - 255 * (1 - alpha)) / alpha)));
+      pixels[offset] = unmix(r);
+      pixels[offset + 1] = unmix(g);
+      pixels[offset + 2] = unmix(b);
+      pixels[offset + 3] = Math.round((pixels[offset + 3] * alpha));
+    }
   }
 
   const opaque = (x, y) => pixels[(y * width + x) * channels + 3] > 8;
