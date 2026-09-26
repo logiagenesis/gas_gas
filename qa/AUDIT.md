@@ -19,8 +19,8 @@ The full results are in `qa/QA-REPORT.md`.
 
 | # | Finding | Status |
 | --- | --- | --- |
-| 0.1 | GitHub's **default branch** was `claude/google-drive-folder-8dem5g`, not `main`. Both branches pointed at the same commit, but the stray branch was the one GitHub showed first. | **Owner**: switch the default to `main` in Settings › General › Default branch. The stray branch is then deleted. |
-| 0.2 | Every push to `main` since 22/09 **failed to deploy**. The `deploy` job stopped within a second, without a runner. That is the GitHub Pages environment rule allowing deploys from the default branch only. The live site only updated when the workflow was run by hand from the stray branch. | Fixed by 0.1. Once `main` is the default, every push to `main` deploys by itself. |
+| 0.1 | GitHub's **default branch** was `claude/google-drive-folder-8dem5g`, not `main`. Both branches pointed at the same commit, but the stray branch was the one GitHub showed first. | Fixed by the owner on 26/09: the default is now `main`, the stray branch is deleted, and the pull request between the two is closed. |
+| 0.2 | Every push to `main` since 22/09 **failed to deploy**. The `deploy` job stopped within a second, without a runner. The cause was the `github-pages` environment's deployment rule, which allowed only the stray branch. The live site only updated when the workflow was run by hand from that branch. Changing the default branch alone did not fix it. | Fixed by the owner on 26/09: the environment rule now allows `main`, so every push to `main` deploys. |
 | 0.3 | Rule for the future: one branch, `main`. No working branches are left on GitHub. | Fixed (the stray branch is deleted after 0.1). |
 
 ---

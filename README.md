@@ -3,9 +3,11 @@
 Static site for Gas Designs, built with Vite and deployed to GitHub Pages by
 GitHub Actions on every push to `main`.
 
-`main` is the only branch. GitHub Pages deploys from the repository's default
-branch only, so `main` must stay the default: if another branch becomes the
-default, pushes to `main` stop deploying.
+`main` is the only branch and the default branch. The `github-pages`
+environment (Settings › Environments) only accepts deploys from the branches
+its deployment rule names, and that rule is `main`. Changing the default branch
+does not change the rule: if the site ever deploys from another branch, both
+settings need updating.
 
 Node 22 or newer is required: the build and the QA checks use `globSync` from
 `node:fs`, which Node 20 does not provide. The pinned version is in
