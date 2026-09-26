@@ -1,10 +1,10 @@
 import { site, safetyAdvice } from './site.js';
 
 export const home = {
-  title: 'Gas Designs | Gas installers in Gauteng – installations, CoCs and maintenance',
+  title: 'Gas Designs | Gas installers in Pretoria, Johannesburg and Gauteng – 24/7 emergencies',
   metaDescription:
-    'Gas installations, Certificates of Conformity, maintenance and leak repairs for homes, commercial kitchens, industry and developments across Gauteng. Every line tested before handover.',
-  eyebrow: `Gas installers · ${site.region}`,
+    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 10+ years in gas and electrical. Every line tested before handover.',
+  eyebrow: `Gas installers · ${site.cities.join(' · ')} · ${site.region}`,
   // The phrase in accent colour is marked with square brackets.
   h1: 'Gas, installed properly. [Tested before you light it.]',
   heroLead:
@@ -12,10 +12,10 @@ export const home = {
   heroImageAlt:
     'Technician kneeling in a dark fitted kitchen, holding a digital pressure gauge connected to copper gas pipework above the hob.',
   proof: [
+    { icon: 'bolt', title: `${site.experience}’ experience`, text: 'In gas and electrical work' },
+    { icon: 'clock', title: `${site.emergency} emergency callouts`, text: 'For gas leaks and gas smells' },
     { icon: 'gauge', title: 'Pressure and leak tested', text: 'On every installation, before handover' },
     { icon: 'doc', title: 'Certificate of Conformity', text: 'Issued once the installation passes' },
-    { icon: 'list', title: 'Itemised written quotes', text: 'The work, the materials and the price' },
-    { icon: 'bolt', title: 'Gas and electrical', text: 'One team connects and finishes the job' },
   ],
 
   servicesEyebrow: 'What we do',
@@ -25,7 +25,8 @@ export const home = {
 
   safetyEyebrow: 'Gas safety',
   safetyHeading: 'Smell gas? Do this first.',
-  safetyLead: 'Stay calm and work through these five steps. Do not try to find the leak yourself.',
+  safetyLead:
+    'Stay calm and work through these five steps. Do not try to find the leak yourself. Once you are outside, call us: we take gas emergencies 24 hours a day.',
   safetyNote:
     'If anyone feels unwell or there is a fire, call emergency services on 112 from a mobile phone.',
 
@@ -82,13 +83,14 @@ export const home = {
   aboutEyebrow: 'About Gas Designs',
   aboutHeading: 'Gas specialists who finish the job',
   aboutBody: [
-    'Gas Designs installs, services and certifies gas systems for homes, commercial kitchens, industrial sites and property developments across Gauteng.',
-    'We also do the basic electrical work that gas appliances need, including isolators, ignition supply and fans. You deal with one team and get one handover.',
+    'Gas Designs is a registered company that installs, services and certifies gas systems for homes, commercial kitchens, industrial sites and property developments. We work in Pretoria, Johannesburg and the rest of Gauteng, including outlying areas.',
+    'Behind it is more than 10 years of hands-on experience in gas and electrical work. That is why we also do the basic electrical side of gas appliances, including isolators, ignition supply and fans. You deal with one team and get one handover.',
   ],
   aboutPoints: [
+    { icon: 'bolt', text: '10+ years in gas and electrical' },
+    { icon: 'clock', text: '24/7 for gas leaks and emergencies' },
     { icon: 'gauge', text: 'Every line tested before you use it' },
     { icon: 'list', text: 'Written quotes, written reports, written fixes' },
-    { icon: 'bolt', text: 'Gas and basic electrical from one team' },
   ],
   aboutImageAlt:
     'Technician loading gas cylinders on a trolley into a white bakkie on a suburban street at dusk.',
@@ -100,6 +102,14 @@ export const home = {
     {
       q: 'Do you issue gas Certificates of Conformity (CoCs)?',
       a: 'Yes. We inspect and test the installation and issue the certificate once it passes. If anything must be corrected first, you get it in writing and decide whether we fix it.',
+    },
+    {
+      q: 'Do you handle gas emergencies after hours?',
+      a: `Yes. We take gas emergency calls 24 hours a day, 7 days a week. Call ${site.phone.display} once you are safely outside.`,
+    },
+    {
+      q: 'Which areas do you cover?',
+      a: 'Pretoria, Johannesburg and the rest of Gauteng, including outlying areas. If you are not sure whether we reach you, send your suburb on WhatsApp.',
     },
     {
       q: 'What should I do if I smell gas?',

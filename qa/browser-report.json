@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-26T07:03:43.459Z",
+  "checkedAt": "2026-09-26T08:08:04.358Z",
   "pages": [
     {
       "name": "home",
@@ -648,7 +648,7 @@
       "large": false,
       "ratio": 9.67,
       "required": 4.5,
-      "sample": "Gas installers · Gauteng",
+      "sample": "Gas installers · Pretoria · Johannesburg · Gaute",
       "page": "home"
     },
     {
@@ -714,7 +714,7 @@
       "large": false,
       "ratio": 14.55,
       "required": 4.5,
-      "sample": "Every line tested before you use it",
+      "sample": "10+ years in gas and electrical",
       "page": "home"
     },
     {
@@ -780,14 +780,14 @@
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/",
-      "from": "home",
-      "status": 200
-    },
-    {
       "url": "tel:+27610397034",
       "from": "home",
       "status": "external, not fetched"
+    },
+    {
+      "url": "http://localhost:4173/gas_gas/",
+      "from": "home",
+      "status": 200
     },
     {
       "url": "http://localhost:4173/gas_gas/#services",
@@ -940,12 +940,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-CHATi-vV.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-D6dvOyDH.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-DaSmPUPe.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-C3k-spcG.css",
       "from": "home",
       "status": 200
     },

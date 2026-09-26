@@ -1,6 +1,6 @@
 // Single source of truth for every fact and every word on the site.
 // Only facts the client has supplied appear here. Nothing is invented: no
-// years in business, no registration numbers, no response times, no prices.
+// registration numbers, no response times, no prices, no reviews.
 // See qa/AUDIT.md for the facts still waiting on the client.
 
 export const site = {
@@ -17,12 +17,17 @@ export const site = {
   country: 'South Africa',
   // The area the copy and the schema name. Change it here and rebuild.
   region: 'Gauteng',
+  cities: ['Pretoria', 'Johannesburg'],
+  areasLine: 'Pretoria, Johannesburg and the rest of Gauteng, including outlying areas',
+  // Supplied by the client as "10, 15 years": the lower figure is used.
+  experience: '10+ years',
+  emergency: '24/7',
   agency: { name: 'Logi-Ink', url: 'https://logi-ink.co.za' },
   ga4Id: 'G-JDXDHXGZ5Q',
   description:
-    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and property developments across Gauteng. Every line pressure-tested and leak-tested.',
+    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and developments in Pretoria, Johannesburg and across Gauteng. 10+ years in gas and electrical, and 24/7 for gas emergencies.',
   footerLine:
-    'Gas installation, maintenance and Certificates of Conformity for homes, kitchens, industry and developments across Gauteng.',
+    'Gas installation, maintenance and Certificates of Conformity in Pretoria, Johannesburg and across Gauteng, including outlying areas. 24/7 for gas emergencies.',
 };
 
 export const safetyAdvice = {
@@ -54,7 +59,7 @@ export const services = [
     name: 'Residential Gas Installations',
     image: 'service-01',
     alt: 'Gloved hand closing a yellow-handled isolation valve on the gas connection beneath a domestic hob.',
-    metaTitle: 'Residential Gas Installations in Gauteng',
+    metaTitle: 'Residential Gas Installations in Pretoria and Johannesburg',
     metaDescription:
       'Gas hobs, ovens, geysers and fireplaces installed in Gauteng homes, with every line pressure-tested and leak-tested and a Certificate of Conformity where required.',
     card:
@@ -174,7 +179,7 @@ export const services = [
     name: 'Certificate of Conformity',
     image: 'service-08',
     alt: 'A Certificate of Conformity on a clipboard beside a pressure gauge, valve and tools, with a technician working on a gas manifold behind.',
-    metaTitle: 'Gas Certificate of Conformity (CoC) in Gauteng',
+    metaTitle: 'Gas Certificate of Conformity (CoC) in Pretoria and Johannesburg',
     metaDescription:
       'Gas CoC inspections in Gauteng for property transfers, rentals and insurance. The installation is inspected and tested, fixes are listed in writing, and the certificate is issued once it passes.',
     card:
@@ -198,7 +203,7 @@ export const services = [
     name: 'Gas System Maintenance',
     image: 'service-02',
     alt: 'Wall-mounted gas water heater outside a home, with copper pipework and yellow tagged isolation valves marked gas inlet and hot water out.',
-    metaTitle: 'Gas System Maintenance and Servicing in Gauteng',
+    metaTitle: 'Gas System Maintenance and Servicing in Pretoria and Johannesburg',
     metaDescription:
       'Gas servicing in Gauteng: appliance, valve and regulator checks, a full leak test and a written report of every fault found, for homes and businesses.',
     card:
@@ -222,13 +227,13 @@ export const services = [
     name: 'Gas Leak Detection & Emergency Repairs',
     image: 'service-07',
     alt: 'Gloved hands holding an electronic gas leak detector against a copper pipe joint fitted with a yellow tag.',
-    metaTitle: 'Gas Leak Detection and Repairs in Gauteng',
+    metaTitle: '24/7 Gas Leak Detection and Emergency Repairs in Pretoria and Johannesburg',
     metaDescription:
-      'Gas leak detection and repairs in Gauteng. The leak is traced electronically, the failed section isolated and repaired, and the line retested before the gas goes back on.',
+      '24/7 gas leak callouts in Pretoria, Johannesburg and across Gauteng. The leak is traced electronically, the failed section isolated and repaired, and the line retested before the gas goes back on.',
     card:
-      'We trace the leak electronically, repair the failed section and retest before the gas goes back on.',
+      'Available 24/7. We trace the leak electronically, repair the failed section and retest before the gas goes back on.',
     intro:
-      'A gas smell is never a case of wait and see. We trace the source with electronic detection equipment, isolate the affected section and repair or replace what failed. The line is then pressure-tested and leak-tested before the gas goes back on.',
+      'A gas smell is never a case of wait and see, which is why we take emergency calls 24 hours a day. We trace the source with electronic detection equipment, isolate the affected section and repair or replace what failed. The line is then pressure-tested and leak-tested before the gas goes back on.',
     included: [
       'Electronic leak detection across the installation',
       'Isolation of the affected section',
@@ -237,7 +242,7 @@ export const services = [
       'A written record of the fault and the repair',
     ],
     forWho:
-      'Anyone who can smell gas. Owners whose installation has failed a test. Operators who need a line back in service.',
+      'Anyone who can smell gas, at any hour. Owners whose installation has failed a test. Operators who need a line back in service.',
     related: ['gas-system-maintenance', 'certificate-of-conformity'],
     safety: true,
   },

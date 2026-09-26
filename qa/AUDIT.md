@@ -61,19 +61,31 @@ The benchmark covered 18 Gauteng gas installer websites, checked on 26/09/2026. 
 | 1.9 | FAQ | 6 questions | 7 questions. Adds "When should I move from cylinders to a bulk LPG tank?" and names CoCs in the first answer | Fixed |
 | 1.10 | Calls to action | "Request a quote" / "Learn more" / "See services" | One vocabulary: "Get a written quote", "View service", "Explore services", "WhatsApp us" | Fixed |
 | 1.11 | Meta titles | "Residential Gas Installations" | Each names Gauteng and the search term, e.g. "Gas Certificate of Conformity (CoC) in Gauteng" | Fixed |
-| 1.12 | Region | Copy said "South Africa" | Copy and schema now say **Gauteng**. This is an assumption drawn from the brief's benchmark request. | **Client**: confirm, or change `region` in `src/data/site.js` |
+| 1.12 | Region | Copy said "South Africa" | Pretoria, Johannesburg and the rest of Gauteng, including outlying areas. Confirmed by the client on 26/09. | Fixed |
 | 1.13 | Copyright | Footer year is set at build time; the Inter font is OFL-licensed; the logo was supplied by the client | No issue. The photographs are the client's supplied set, and the client should confirm they own the rights to use them. | **Client**: confirm image rights |
 
-### Facts that would lift the copy further (not invented, so not used)
+### Client facts
 
-Competitors lean on these. Each one is a single line in `src/data/site.js` once supplied.
+Supplied on 26/09 and now used across the site:
+
+| Fact | Where it appears |
+| --- | --- |
+| Pretoria, Johannesburg and the rest of Gauteng, including outlying areas | Hero eyebrow, About, FAQ, footer, meta titles and descriptions, `areaServed` in the schema |
+| 10+ years' experience in gas and electrical. Supplied as "10, 15 years", so the lower figure is used. | Hero proof strip, About, meta description |
+| Open 24 hours a day for emergencies | Emergency bar above the header on every page, hero proof strip, safety band, FAQ, and the leak-repair card, page and meta title |
+| A registered company | About |
+
+The company itself is about a year old. The site states the team's experience rather than the company's age.
+
+Still waiting on the client:
 
 | Fact | Why it matters |
 | --- | --- |
-| SAQCC Gas registration number and category | No competitor home page shows one. Showing it, with a way to verify it, would be unique in the market. |
-| Years in business / jobs completed | Most sites lead with this. |
-| Suburbs or areas served | Needed for local search, e.g. Pretoria East, Centurion or Midrand. |
-| Hours, and whether after-hours callouts are offered | The leak-repair service cannot promise a response time until this is known. |
+| Confirmation that 061 039 7034 is answered at night | The site now promises 24/7 emergency calls on that number. |
+| SAQCC Gas registration number and category | No competitor home page shows one. Showing it, with a way to verify it, would be unique in the market. "Registered company" (CIPC) is not the same thing and is not presented as a gas registration. |
+| Exact years of experience (10 or 15) | "15+ years" is stronger if it is true. |
+| Specific outlying areas or towns | Local search, e.g. Centurion, Midrand, Hartbeespoort, Cullinan. |
+| Office hours for non-emergency work | Useful for the schema and the contact section. |
 | Workmanship guarantee (period) | Only two competitors state one. |
 | Customer reviews (Google rating or named testimonials) | Social proof; no reviews are on the site today. |
 | Electrical registration scope | Confirms what "basic electrical" may claim. |

@@ -585,6 +585,7 @@ a:hover {
   grid-template-columns: 24px 1fr;
   gap: 4px 12px;
   align-items: start;
+  align-content: start;
 }
 .proof svg {
   color: var(--accent);
@@ -1871,4 +1872,42 @@ a:hover {
 /* A section that continues the one above it without a second gap. */
 .section--flush {
   padding-top: 0;
+}
+
+/* ---------- Emergency bar ---------- */
+
+.emergency-bar {
+  background: var(--accent);
+  color: var(--charcoal);
+  font-size: 15px;
+}
+.emergency-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.emergency-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.emergency-bar a:hover {
+  border-bottom-color: var(--charcoal);
+}
+.emergency-bar a:focus-visible {
+  outline-color: var(--charcoal);
+}
+@media (max-width: 479px) {
+  .emergency-bar__more {
+    display: none;
+  }
 }

@@ -87,6 +87,8 @@ const ICONS = {
     '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zm-4 6h2v2H4zm4 0h8v2H8z" fill="currentColor"/></svg>',
   bolt:
     '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 2 5 13.5h5.6L9.5 22 19 9.8h-5.8z" fill="currentColor"/></svg>',
+  clock:
+    '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm0 2a7 7 0 1 1-7 7 7 7 0 0 1 7-7zm-1 2v5.4l4.3 2.6 1-1.7-3.3-2V7z" fill="currentColor"/></svg>',
 };
 
 // "Text with [accent] words" to HTML, escaping everything else.
@@ -174,8 +176,20 @@ const NAV = [
   { label: 'Contact', href: `${BASE}#contact` },
 ];
 
+// A slim bar above the header on every page: the emergency line is the one
+// thing a visitor with a gas smell needs, and it should never be a scroll away.
+function emergencyBar() {
+  return `<div class="emergency-bar">
+<div class="wrap emergency-bar__inner">
+<span><strong>Gas emergency?</strong> <span class="emergency-bar__more">We answer ${site.emergency}.</span></span>
+<a href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.phone.display}</a>
+</div>
+</div>`;
+}
+
 function header() {
-  return `<header class="site-header">
+  return `${emergencyBar()}
+<header class="site-header">
 <div class="wrap site-header__inner">
 <a class="brand" href="${BASE}" aria-label="${esc(site.name)}, home">${brandLockup(38, 18)}</a>
 <a class="header-call" href="tel:${site.phone.tel}" aria-label="Call ${esc(site.name)} on ${site.phone.display}">${PHONE_ICON}</a>
@@ -335,7 +349,7 @@ function buildHome() {
       email: site.email,
       telephone: site.phone.international,
       description: site.description,
-      areaServed: site.region,
+      areaServed: [...site.cities, site.region].map((name) => ({ '@type': 'Place', name })),
     },
     {
       '@context': 'https://schema.org',
@@ -391,7 +405,7 @@ ${services.map((service) => serviceCard(service)).join('\n')}
 <h2 id="gas-safety-heading">${esc(home.safetyHeading)}</h2>
 <p>${esc(home.safetyLead)}</p>
 </div>
-<a class="btn btn--dark" href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.phone.display}</a>
+<a class="btn btn--dark" href="tel:${site.phone.tel}">${PHONE_ICON}Call ${site.emergency}: ${site.phone.display}</a>
 </div>
 <ol class="alert-steps">
 ${safetyAdvice.stepsShort.map((step) => `<li>${esc(step)}</li>`).join('\n')}
@@ -522,7 +536,7 @@ function buildService(service) {
       name: service.name,
       description: service.metaDescription,
       url: `${CANON}/services/${service.slug}/`,
-      areaServed: site.region,
+      areaServed: [...site.cities, site.region].map((name) => ({ '@type': 'Place', name })),
       provider: {
         '@type': 'LocalBusiness',
         name: site.name,
