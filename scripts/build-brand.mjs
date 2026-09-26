@@ -116,7 +116,7 @@ function wrapText(font, text, fontSize, maxWidth) {
 async function buildOgImage(wordmarkSvg) {
   const regular = loadFont(400);
   const subtitleSize = 40;
-  const lines = wrapText(regular, home.h1, subtitleSize, 880);
+  const lines = wrapText(regular, home.h1.replace(/[[\]]/g, ''), subtitleSize, 880);
 
   const logoTargetWidth = 520;
   const meta = await sharp(Buffer.from(wordmarkSvg)).metadata();
@@ -156,7 +156,7 @@ async function buildOgImage(wordmarkSvg) {
 async function buildOgFromLockup(parts) {
   const regular = loadFont(400);
   const subtitleSize = 38;
-  const lines = wrapText(regular, home.h1, subtitleSize, 900);
+  const lines = wrapText(regular, home.h1.replace(/[[\]]/g, ''), subtitleSize, 900);
 
   const markHeight = 132;
   const wordHeight = 56;
@@ -186,10 +186,18 @@ async function buildOgFromLockup(parts) {
     })
     .join('');
 
-  const canvas = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#16181b"/><g fill="#c9cdd2">${subtitle}</g></svg>`;
+  // The hero photograph sits behind a charcoal wash, so a shared link shows
+  // the work itself rather than a flat black slab.
+  const overlay = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="wash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16181b" stop-opacity="0.78"/><stop offset="1" stop-color="#16181b" stop-opacity="0.92"/></linearGradient></defs><rect width="1200" height="630" fill="url(#wash)"/><rect x="560" y="${Math.round(blockTop + markHeight + 26)}" width="80" height="4" fill="#f5b400"/><g fill="#e4e7ea">${subtitle}</g></svg>`;
+  const photo = await sharp(path.resolve('public/assets/img/hero.jpg'))
+    .resize(1200, 630, { fit: 'cover', position: 'right' })
+    .toBuffer();
 
   const lockupLeft = Math.round((1200 - lockupWidth) / 2);
-  const composites = [{ input: mark, left: lockupLeft, top: blockTop }];
+  const composites = [
+    { input: Buffer.from(overlay), left: 0, top: 0 },
+    { input: mark, left: lockupLeft, top: blockTop },
+  ];
   if (word) {
     composites.push({
       input: word,
@@ -198,9 +206,9 @@ async function buildOgFromLockup(parts) {
     });
   }
 
-  await sharp(Buffer.from(canvas))
+  await sharp(photo)
     .composite(composites)
-    .jpeg({ quality: 88, mozjpeg: true })
+    .jpeg({ quality: 86, mozjpeg: true })
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
@@ -227,17 +235,30 @@ async function main() {
     manifest.mark = await write('gas-designs-mark.png', parts.mark);
     manifest.wordmark = parts.wordmark ? await write('gas-designs-wordmark.png', parts.wordmark) : null;
 
-    // Icons use the mark on the site's charcoal, so the brand colour survives
-    // at 16px where a full lockup would be unreadable.
-    for (const size of [16, 32, 180, 512]) {
-      const inner = Math.round(size * 0.66);
+    // Browser-tab icons are the flame alone on transparency, filling the square
+    // so it reads at 16px on light and dark tab bars alike. The home-screen
+    // icons sit on white with breathing room: iOS paints any transparent area
+    // of an apple-touch-icon black, and a black tile is what the client rejected.
+    const ICON_SPECS = [
+      { size: 16, fill: 1, background: null },
+      { size: 32, fill: 0.97, background: null },
+      { size: 180, fill: 0.62, background: '#ffffff' },
+      { size: 512, fill: 0.62, background: '#ffffff' },
+    ];
+    for (const { size, fill, background } of ICON_SPECS) {
+      const inner = Math.round(size * fill);
       const mark = await sharp(parts.mark)
-        .resize({ height: inner, fit: 'inside', withoutEnlargement: false })
+        .resize({ width: inner, height: inner, fit: 'inside', withoutEnlargement: false })
         .png()
         .toBuffer();
       const meta = await sharp(mark).metadata();
       const icon = await sharp({
-        create: { width: size, height: size, channels: 4, background: '#16181b' },
+        create: {
+          width: size,
+          height: size,
+          channels: 4,
+          background: background || { r: 0, g: 0, b: 0, alpha: 0 },
+        },
       })
         .composite([
           {
@@ -279,7 +300,7 @@ async function main() {
         description: site.description,
         start_url: './',
         display: 'standalone',
-        background_color: '#16181b',
+        background_color: '#ffffff',
         theme_color: '#16181b',
         icons: [
           { src: 'assets/icons/icon-180.png', sizes: '180x180', type: 'image/png' },
