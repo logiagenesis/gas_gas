@@ -1,5 +1,7 @@
 // Single source of truth for every fact and every word on the site.
-// Only the facts listed in the brief appear here. Nothing is invented.
+// Only facts the client has supplied appear here. Nothing is invented: no
+// years in business, no registration numbers, no response times, no prices.
+// See qa/AUDIT.md for the facts still waiting on the client.
 
 export const site = {
   name: 'Gas Designs',
@@ -13,11 +15,14 @@ export const site = {
   domain: 'gasdesigns.co.za',
   canonicalOrigin: 'https://gasdesigns.co.za',
   country: 'South Africa',
+  // The area the copy and the schema name. Change it here and rebuild.
+  region: 'Gauteng',
   agency: { name: 'Logi-Ink', url: 'https://logi-ink.co.za' },
   ga4Id: 'G-JDXDHXGZ5Q',
   description:
-    'Gas Designs installs, services and certifies gas systems for homes, commercial kitchens, industrial premises and property developments in South Africa.',
-  footerLine: 'Gas installation, maintenance and certification in South Africa.',
+    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and property developments across Gauteng. Every line pressure-tested and leak-tested.',
+  footerLine:
+    'Gas installation, maintenance and Certificates of Conformity for homes, kitchens, industry and developments across Gauteng.',
 };
 
 export const safetyAdvice = {
@@ -28,6 +33,14 @@ export const safetyAdvice = {
     'Do not switch anything on or off, and do not use a flame, a match or a lighter.',
     'Leave the area.',
     'Call for help once you are outside.',
+  ],
+  // Short forms for the safety band on the home page.
+  stepsShort: [
+    'Close the valve at the cylinder or meter',
+    'Open doors and windows',
+    'Switch nothing on or off. No flames',
+    'Get everyone out',
+    'Call for help from outside',
   ],
   short:
     'If you smell gas, close the supply valve, open doors and windows, do not switch anything on or off, leave the area and call for help.',
@@ -41,23 +54,23 @@ export const services = [
     name: 'Residential Gas Installations',
     image: 'service-01',
     alt: 'Gloved hand closing a yellow-handled isolation valve on the gas connection beneath a domestic hob.',
-    metaTitle: 'Residential Gas Installations',
+    metaTitle: 'Residential Gas Installations in Gauteng',
     metaDescription:
-      'Gas Designs installs gas hobs, ovens, water heaters and fireplaces in South African homes, then pressure tests and leak tests the line before handover.',
+      'Gas hobs, ovens, geysers and fireplaces installed in Gauteng homes, with every line pressure-tested and leak-tested and a Certificate of Conformity where required.',
     card:
-      'We install gas hobs, ovens, water heaters and fireplaces in homes. Every line is pressure tested and leak tested before you use it.',
+      'Gas hobs, ovens, geysers and fireplaces, connected neatly and tested before you light them. CoC issued where required.',
     intro:
-      'Gas Designs installs gas in houses, flats and townhouses. We run the supply from the cylinder, bulk tank or meter to each appliance, then test the line and commission the appliance.',
+      'A gas hob keeps cooking when the power goes off, and a gas geyser or fireplace takes load off the electricity. We run the line from the cylinder, bulk tank or meter to each appliance, keep the pipework neat and clipped, and test everything before you use it.',
     included: [
       'Connection to a cylinder, bulk tank or meter',
-      'Regulator, isolation valves and labelled pipework',
-      'Copper or approved steel pipework, clipped and supported',
-      'Appliance connection and commissioning',
+      'Regulator, isolation valves and clearly labelled pipework',
+      'Copper or approved steel pipework, neatly clipped and supported',
+      'Connection and commissioning of each appliance',
       'Pressure test and leak test on the finished line',
       'Certificate of Conformity where it is required',
     ],
     forWho:
-      'Homeowners fitting a gas hob, water heater or fireplace. Landlords preparing a property to let. Sellers who need a certificate before transfer.',
+      'Homeowners adding a gas hob, geyser or fireplace. Landlords getting a property ready to let. Sellers who need a gas CoC before transfer.',
     related: ['gas-system-maintenance', 'certificate-of-conformity'],
   },
   {
@@ -65,23 +78,23 @@ export const services = [
     name: 'Commercial Kitchen Gas Systems',
     image: 'service-04',
     alt: 'Stainless steel gas manifold with labelled isolation valves and braided hoses feeding a commercial range under an extraction canopy.',
-    metaTitle: 'Commercial Kitchen Gas Systems',
+    metaTitle: 'Commercial Kitchen Gas Installations in Gauteng',
     metaDescription:
-      'Gas Designs installs and upgrades gas reticulation for restaurant, hotel and canteen kitchens, from the manifold to each appliance, tested and certified.',
+      'Gas reticulation for restaurant, hotel and canteen kitchens in Gauteng: sized for the full appliance load, installed around trading hours, tested and certified.',
     card:
-      'We install gas reticulation for restaurant, hotel and canteen kitchens, from the manifold to each appliance. Work can be staged around your service hours.',
+      'Manifolds, shut-offs and reticulation sized for a full service, and installed around your trading hours.',
     intro:
-      'Gas Designs installs and upgrades gas systems in commercial kitchens. We size the pipework for the full appliance load, fit a manifold with isolation valves, and connect each appliance.',
+      'A kitchen that goes down mid-service loses money by the minute. We size the pipework for every appliance running at once, fit a manifold with its own isolation valve per appliance and an emergency shut-off at the door, and stage the work around your trading hours.',
     included: [
-      'Assessment of the load for the appliances you run',
+      'Load assessment for every appliance you run',
       'Manifold with a labelled isolation valve per appliance',
       'Flexible connections rated for commercial appliances',
-      'An emergency shut-off point at the kitchen entrance',
+      'Emergency shut-off point at the kitchen entrance',
       'Pressure test, leak test and commissioning',
       'Certificate of Conformity on completion',
     ],
     forWho:
-      'Restaurant and hotel owners. Canteen and catering operators. Facilities managers running a kitchen refit.',
+      'Restaurant, hotel and canteen owners. Caterers and franchise operators. Facilities managers planning a kitchen refit.',
     related: ['industrial-gas-installations-maintenance', 'certificate-of-conformity'],
   },
   {
@@ -89,17 +102,17 @@ export const services = [
     name: 'Industrial Gas Installations & Maintenance',
     image: 'service-06',
     alt: 'Copper and steel gas reticulation on a dark brick wall, marked with yellow LPG and gas labels, feeding a regulator and cylinder.',
-    metaTitle: 'Industrial Gas Installations and Maintenance',
+    metaTitle: 'Industrial Gas Installations and Maintenance in Gauteng',
     metaDescription:
-      'Gas Designs installs gas reticulation for factories, workshops and process plant in South Africa, and maintains it with scheduled inspections and leak testing.',
+      'Gas reticulation for Gauteng factories, workshops and process plant, installed, marked and recorded, then kept in service with scheduled inspections and leak testing.',
     card:
-      'We install and maintain gas reticulation in factories, workshops and process plant. Scheduled maintenance keeps the system available and compliant.',
+      'Reticulation for factories, workshops and process plant: installed, marked, recorded and kept compliant.',
     intro:
-      'Gas Designs installs gas reticulation for industrial sites and keeps it running afterwards. We route and mark the line, fit regulators and isolation points, and record the installation for your files.',
+      'On a gas-fired line, the downtime costs more than the repair. We install reticulation from the bulk supply to each point of use, mark it and protect it where vehicles and plant pass, and record it for your files. Scheduled inspections and leak testing then keep it running.',
     included: [
       'Reticulation from the bulk supply to each point of use',
       'Regulators, isolation valves and marked pipework',
-      'Pipe supports and protection where vehicles or plant pass',
+      'Supports and protection where vehicles or plant pass',
       'Scheduled maintenance visits and leak testing',
       'Written fault reports listing the parts needed',
       'Certificate of Conformity where it is required',
@@ -113,13 +126,13 @@ export const services = [
     name: 'Bulk LPG Installations',
     image: 'service-05',
     alt: 'Technician working on the valve manifold of a horizontal bulk LPG storage tank on a concrete plinth behind palisade fencing.',
-    metaTitle: 'Bulk LPG Installations',
+    metaTitle: 'Bulk LPG Tank Installations in Gauteng',
     metaDescription:
-      'Gas Designs installs bulk LPG storage tanks, plinths, valve manifolds and site reticulation, set out for safe access and separation distances.',
+      'Bulk LPG storage for Gauteng sites that have outgrown cylinders: layout, plinth, tank, valve manifold and site reticulation, tested and commissioned.',
     card:
-      'We install bulk LPG tanks and the pipework that feeds your site, including the plinth and valve manifold. The layout is set out for safe access.',
+      'When cylinders can’t keep up: tank, plinth, valve manifold and site reticulation, laid out for safe access.',
     intro:
-      'Gas Designs installs bulk LPG storage for sites that use more gas than cylinders can supply. We prepare the base, set the tank, build the valve manifold and run the line to your buildings.',
+      'If swapping cylinders has become part of the weekly routine, it is time for bulk. We plan the layout and the separation distances first, then prepare the plinth, set the tank, build the valve manifold and run the line to every building on site.',
     included: [
       'Site layout, with separation distances planned before work starts',
       'Concrete plinth and tank placement',
@@ -129,7 +142,7 @@ export const services = [
       'Pressure test, leak test and commissioning',
     ],
     forWho:
-      'Sites with a continuous gas demand, including factories, farms, lodges, schools and estates.',
+      'Sites with a steady gas demand: factories, farms, lodges, schools and residential estates.',
     related: ['industrial-gas-installations-maintenance', 'custom-projects-developments'],
   },
   {
@@ -137,20 +150,20 @@ export const services = [
     name: 'Custom Projects & Developments',
     image: 'service-09',
     alt: 'Row of locked steel gas cylinder cages with yellow safety signage beside marked reticulation pipework at a residential development.',
-    metaTitle: 'Custom Gas Projects and Developments',
+    metaTitle: 'Gas Installations for Developments in Gauteng',
     metaDescription:
-      'Gas Designs handles gas for townhouse schemes, apartment blocks and mixed-use developments, priced from drawings and installed to the site programme.',
+      'Gas for Gauteng townhouse schemes, apartment blocks and mixed-use developments: priced from drawings, installed to the site programme, certified unit by unit.',
     card:
-      'We handle gas for townhouse schemes, apartment blocks and mixed-use developments. We work to the programme agreed with the main contractor.',
+      'Townhouse schemes, apartment blocks and mixed-use sites, priced from drawings and installed to the main contractor’s programme.',
     intro:
-      'Gas Designs takes on installations that do not fit a standard layout. That includes multi-unit developments, staged handovers, and systems designed around an architect&rsquo;s drawings.',
+      'Gas is easiest to get right before the walls close. We price from the architect’s or services drawings, plan the cylinder enclosures or bulk storage for the scheme, and install to the site programme. Every unit is tested and certified, and the as-built information is handed over with the keys.',
     included: [
       'Pricing and planning from architectural or services drawings',
       'Cylinder enclosures or bulk storage for the scheme',
       'Reticulation to each unit, separately isolated',
       'Installation staged to follow the site programme',
       'Testing and certification unit by unit',
-      'As-built information handed to the owner or body corporate',
+      'As-built information for the owner or body corporate',
     ],
     forWho:
       'Developers and main contractors. Architects and project managers. Body corporates extending an existing scheme.',
@@ -161,23 +174,23 @@ export const services = [
     name: 'Certificate of Conformity',
     image: 'service-08',
     alt: 'A Certificate of Conformity on a clipboard beside a pressure gauge, valve and tools, with a technician working on a gas manifold behind.',
-    metaTitle: 'Certificate of Conformity for Gas Installations',
+    metaTitle: 'Gas Certificate of Conformity (CoC) in Gauteng',
     metaDescription:
-      'Gas Designs inspects and tests an existing gas installation and issues a Certificate of Conformity once it passes, with any corrections listed in writing.',
+      'Gas CoC inspections in Gauteng for property transfers, rentals and insurance. The installation is inspected and tested, fixes are listed in writing, and the certificate is issued once it passes.',
     card:
-      'We inspect and test an existing installation and issue a Certificate of Conformity when it passes. Banks, insurers and conveyancers usually ask for this document.',
+      'Selling, letting or insuring? We inspect, test and certify, and list any fixes in writing first.',
     intro:
-      'A Certificate of Conformity records that a gas installation was inspected and tested, and that it met the requirements that apply to it. Gas Designs inspects the installation, tests the line, and lists anything that must be corrected first.',
+      'Estate agents, conveyancers, banks and insurers all ask for a gas Certificate of Conformity. We inspect the installation, pressure-test and leak-test it, and list in writing anything that must be corrected. Once it passes, you get the certificate by email, ready to forward.',
     included: [
       'Inspection of pipework, valves, regulators and appliances',
       'Pressure test and leak test on the installation',
       'A written list of anything that must be corrected',
-      'Repairs or replacement where you ask us to proceed',
+      'Repairs or replacement, only if you ask us to go ahead',
       'The Certificate of Conformity once the installation passes',
-      'A copy sent to you by email for your records',
+      'A copy by email for you, your agent or your conveyancer',
     ],
     forWho:
-      'Sellers and buyers in a property transfer. Landlords. Owners who need the certificate for insurance cover.',
+      'Sellers and buyers in a property transfer, and the estate agents and conveyancers acting for them. Landlords. Owners whose insurer wants proof the installation is safe.',
     related: ['gas-system-maintenance', 'residential-gas-installations'],
   },
   {
@@ -185,17 +198,17 @@ export const services = [
     name: 'Gas System Maintenance',
     image: 'service-02',
     alt: 'Wall-mounted gas water heater outside a home, with copper pipework and yellow tagged isolation valves marked gas inlet and hot water out.',
-    metaTitle: 'Gas System Maintenance',
+    metaTitle: 'Gas System Maintenance and Servicing in Gauteng',
     metaDescription:
-      'Gas Designs services installed gas systems: appliance checks, valve and regulator inspection, leak testing, and a written report of every fault found.',
+      'Gas servicing in Gauteng: appliance, valve and regulator checks, a full leak test and a written report of every fault found, for homes and businesses.',
     card:
-      'We service installed gas systems: appliance checks, valve and regulator inspection, and leak testing on the line. You get a written report of what we found.',
+      'Appliance, valve and regulator checks plus a full leak test, with a written report so you know where you stand.',
     intro:
-      'Gas systems need checking as they age. Gas Designs inspects the appliances, valves, regulators and pipework, tests the line for leaks, and reports what we found. You decide what to repair.',
+      'Hoses perish, seals harden and regulators drift out of setting. We inspect every appliance, valve, regulator and connector, test the whole line for leaks, and give you a written report of what we found and what it needs. You decide what gets repaired.',
     included: [
       'Appliance inspection and burner check',
       'Valve, regulator and connector inspection',
-      'Leak test across the installation',
+      'Leak test across the whole installation',
       'Replacement of perished hoses and seals',
       'A written report listing the faults and the parts',
       'Certificate of Conformity where it is required',
@@ -209,13 +222,13 @@ export const services = [
     name: 'Gas Leak Detection & Emergency Repairs',
     image: 'service-07',
     alt: 'Gloved hands holding an electronic gas leak detector against a copper pipe joint fitted with a yellow tag.',
-    metaTitle: 'Gas Leak Detection and Emergency Repairs',
+    metaTitle: 'Gas Leak Detection and Repairs in Gauteng',
     metaDescription:
-      'Gas Designs traces gas leaks with electronic detection equipment, isolates and repairs the failed section, and retests the line before the gas goes back on.',
+      'Gas leak detection and repairs in Gauteng. The leak is traced electronically, the failed section isolated and repaired, and the line retested before the gas goes back on.',
     card:
-      'We trace gas leaks with electronic detection equipment and repair the section that fails. The line is retested before the gas goes back on.',
+      'We trace the leak electronically, repair the failed section and retest before the gas goes back on.',
     intro:
-      'A gas smell needs acting on straight away. Gas Designs traces the source with electronic detection equipment, isolates the affected section, and repairs or replaces it.',
+      'A gas smell is never a case of wait and see. We trace the source with electronic detection equipment, isolate the affected section and repair or replace what failed. The line is then pressure-tested and leak-tested before the gas goes back on.',
     included: [
       'Electronic leak detection across the installation',
       'Isolation of the affected section',
@@ -233,18 +246,18 @@ export const services = [
     name: 'Basic Electrical & Gas System Support',
     image: 'service-03',
     alt: 'Lit gas fireplace set into a dark plastered wall in a living room, with a timber shelf above it.',
-    metaTitle: 'Basic Electrical and Gas System Support',
+    metaTitle: 'Electrical Connections for Gas Appliances in Gauteng',
     metaDescription:
-      'Gas Designs carries out the basic electrical work that gas appliances need, including isolators, ignition supply, control wiring and fan connections.',
+      'The basic electrical work gas appliances need, including isolators, ignition supply, control wiring and fan connections, done by the team that installs the gas.',
     card:
-      'We handle the basic electrical work that gas appliances need, such as isolators, ignition supply and fan connections. One team then finishes the appliance.',
+      'Isolators, ignition supply and fan connections for gas appliances, so one team finishes the job instead of two.',
     intro:
-      'Some gas appliances need an electrical supply to run: ignition, controls, fans and flue units. Gas Designs does the basic electrical work that goes with the gas installation.',
+      'Plenty of gas appliances need power too: ignition, controls, extraction fans and flue units. We do the basic electrical work that goes with the gas installation, so you are not left waiting on a second contractor to finish the job.',
     included: [
       'Isolator and socket positions for gas appliances',
       'Supply to ignition units and appliance controls',
       'Flue fan and extraction connections',
-      'Fault finding where an appliance fails to start',
+      'Fault finding when an appliance will not start',
       'Testing of the appliance once it is connected',
     ],
     forWho:
