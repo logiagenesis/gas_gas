@@ -8,7 +8,7 @@ import * as fontkit from 'fontkit';
 import sharp from 'sharp';
 import { site } from '../src/data/site.js';
 import { home } from '../src/data/pages.js';
-import { analyseLogo } from './lib/logo.mjs';
+import { analyseLogo, toWhite } from './lib/logo.mjs';
 
 const BRAND_SRC = path.resolve('public/assets/brand');
 const OUT = path.resolve('build/static/assets/brand');
@@ -151,34 +151,49 @@ async function buildOgImage(wordmarkSvg) {
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
-// Open Graph card: the client's stacked logo, exactly as supplied, in full
-// colour on white. WhatsApp and most chat apps crop a link preview to a small
-// square taken from the centre of the image, so the whole logo is sized to sit
-// inside the central 630 x 630 square with a margin: cropped or not, the
-// preview shows the complete logo. A thin amber rule runs along the foot.
+// Open Graph card: the image chat apps show beside a shared link. WhatsApp
+// shows it as a small square thumbnail cropped from the centre, on a dark
+// message bubble, so the card is built for that view first: the site's
+// charcoal with a low amber glow, the flame in its own colours and the
+// wordmark in white (as in the site header), stacked and centred with
+// generous space inside the central 630 x 630 square.
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
-const OG_SAFE = 570; // the logo's box inside the centre square
+const OG_MARK_HEIGHT = 280;
+const OG_WORD_WIDTH = 500;
+const OG_GAP = 44;
 
 async function buildOgFromLockup(parts) {
-  const logo = await sharp(parts.stacked)
-    .resize({ width: OG_SAFE, height: OG_SAFE, fit: 'inside' })
-    .png()
-    .toBuffer();
-  const meta = await sharp(logo).metadata();
-  const rule = Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="10"><rect width="${OG_WIDTH}" height="10" fill="#f5b400"/></svg>`,
+  const mark = await sharp(parts.mark).resize({ height: OG_MARK_HEIGHT }).png().toBuffer();
+  const markMeta = await sharp(mark).metadata();
+
+  let word = null;
+  let wordMeta = { width: 0, height: 0 };
+  if (parts.wordmark) {
+    word = await sharp(await toWhite(parts.wordmark)).resize({ width: OG_WORD_WIDTH }).png().toBuffer();
+    wordMeta = await sharp(word).metadata();
+  }
+
+  const blockHeight = markMeta.height + (word ? OG_GAP + wordMeta.height : 0);
+  const top = Math.round((OG_HEIGHT - blockHeight) / 2);
+
+  const background = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="${OG_HEIGHT}"><defs><radialGradient id="glow" cx="50%" cy="46%" r="38%"><stop offset="0" stop-color="#e8731a" stop-opacity="0.30"/><stop offset="1" stop-color="#e8731a" stop-opacity="0"/></radialGradient></defs><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="#16181b"/><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#glow)"/></svg>`,
   );
 
-  await sharp({ create: { width: OG_WIDTH, height: OG_HEIGHT, channels: 3, background: '#ffffff' } })
-    .composite([
-      {
-        input: logo,
-        left: Math.round((OG_WIDTH - meta.width) / 2),
-        top: Math.round((OG_HEIGHT - meta.height) / 2),
-      },
-      { input: rule, left: 0, top: OG_HEIGHT - 10 },
-    ])
+  const composites = [
+    { input: mark, left: Math.round((OG_WIDTH - markMeta.width) / 2), top },
+  ];
+  if (word) {
+    composites.push({
+      input: word,
+      left: Math.round((OG_WIDTH - wordMeta.width) / 2),
+      top: top + markMeta.height + OG_GAP,
+    });
+  }
+
+  await sharp(background)
+    .composite(composites)
     .jpeg({ quality: 90, mozjpeg: true })
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }

@@ -112,7 +112,9 @@ function googleTag() {
 </script>`;
 }
 
-function head({ title, description, canonical, depth, noindex = false, schema = [] }) {
+// shareTitle is the title a link preview shows. WhatsApp cuts a title off
+// after roughly 55 characters, so pages with long titles give a shorter one.
+function head({ title, shareTitle = title, description, canonical, depth, noindex = false, schema = [] }) {
   const prefix = up(depth);
   const ogImage = `${CANON}/assets/og-image.jpg`;
   return `<!DOCTYPE html>
@@ -126,7 +128,7 @@ ${googleTag()}
 ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
-<meta property="og:title" content="${esc(title)}">
+<meta property="og:title" content="${esc(shareTitle)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:image" content="${esc(ogImage)}">
@@ -137,7 +139,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:image:alt" content="${esc(site.name)} logo">
 <meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:title" content="${esc(shareTitle)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#16181b">
@@ -373,6 +375,7 @@ function buildHome() {
 
   return `${head({
     title: home.title,
+    shareTitle: home.shareTitle,
     description: home.metaDescription,
     canonical: `${CANON}/`,
     depth: 0,

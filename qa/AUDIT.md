@@ -102,7 +102,7 @@ Still waiting on the client:
 | 2.6 | All photographs | They read as stock or AI-generated and consistently styled. Real job photos (before and after, the team, the bakkie) would build more trust than any copy. | **Client**: send real job photos when possible. |
 | 2.7 | Logo mark | The white knock-out left a faint white halo round the flame. | Fixed: the edge pixels are now separated from white properly (de-fringed). |
 | 2.8 | Favicon | The flame sat on a black square. | Fixed: transparent flame for browser tabs; a white tile only for the phone home-screen icon, because iOS fills transparency with black. |
-| 2.9 | Share image (Open Graph) | Flat black card. On 26/09 a photo version was cropped by WhatsApp to a square that cut the logo. | Fixed: the client's logo, unchanged, in full colour on white, sized to fit the centre square that chat apps crop to. |
+| 2.9 | Share image (Open Graph) | Flat black card; then a photo version WhatsApp cropped through the logo; then a white tile that looked harsh on WhatsApp's dark bubble, with the title cut off. | Fixed: the flame and white wordmark centred on charcoal with an amber glow, sized for the square thumbnail, and a 53-character share title that fits. |
 | 2.10 | Share image address | WhatsApp showed the link with no image. `og:image`, `og:url` and the canonical link pointed at gasdesigns.co.za, which does not serve this site. | Fixed on 26/09: every absolute URL now follows the live address. A static check fails the build if `og:image` points elsewhere. |
 
 ---

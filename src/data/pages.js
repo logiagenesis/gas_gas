@@ -2,6 +2,7 @@ import { site, safetyAdvice } from './site.js';
 
 export const home = {
   title: 'Gas Designs | Gas installers in Pretoria, Johannesburg and Gauteng – 24/7 emergencies',
+  shareTitle: 'Gas Designs | Gas installers, Pretoria & Johannesburg',
   metaDescription:
     'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical. Every line tested before handover.',
   eyebrow: `Gas installers · ${site.cities.join(' · ')} · ${site.region}`,
