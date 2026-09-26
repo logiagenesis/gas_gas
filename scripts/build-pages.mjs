@@ -134,7 +134,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:image:height" content="630">
 <meta property="og:image:secure_url" content="${esc(ogImage)}">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:alt" content="${esc(site.name)} logo over a technician testing a gas line">
+<meta property="og:image:alt" content="${esc(site.name)} logo">
 <meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">

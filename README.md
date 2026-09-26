@@ -60,8 +60,11 @@ the anti-aliased edge pixels from white, so no pale halo shows on dark surfaces.
 
 Favicons come from the mark: the 16px and 32px browser-tab icons are the flame on
 transparency, and the 180px and 512px home-screen icons sit on white, because iOS
-fills a transparent apple-touch-icon with black. The Open Graph card is the
-horizontal lockup and the home headline over the hero photograph.
+fills a transparent apple-touch-icon with black. The Open Graph card (the image
+WhatsApp and other apps show beside a shared link) is the stacked logo exactly
+as supplied, in full colour on white. Chat apps crop the preview to a square
+from the centre, so the logo is sized to fit inside the centre 630 x 630 square
+and survives the crop whole.
 
 Every absolute URL (canonical, `og:url`, `og:image`, schema, sitemap) is built
 from where the site is served: `https://logiagenesis.github.io/gas_gas/` today.

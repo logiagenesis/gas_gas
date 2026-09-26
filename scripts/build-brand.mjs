@@ -8,7 +8,7 @@ import * as fontkit from 'fontkit';
 import sharp from 'sharp';
 import { site } from '../src/data/site.js';
 import { home } from '../src/data/pages.js';
-import { analyseLogo, toWhite } from './lib/logo.mjs';
+import { analyseLogo } from './lib/logo.mjs';
 
 const BRAND_SRC = path.resolve('public/assets/brand');
 const OUT = path.resolve('build/static/assets/brand');
@@ -151,64 +151,35 @@ async function buildOgImage(wordmarkSvg) {
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
-// Open Graph card: the mark in full colour beside the wordmark rendered white,
-// on the site's charcoal, with the home H1 as the subtitle. No photograph.
+// Open Graph card: the client's stacked logo, exactly as supplied, in full
+// colour on white. WhatsApp and most chat apps crop a link preview to a small
+// square taken from the centre of the image, so the whole logo is sized to sit
+// inside the central 630 x 630 square with a margin: cropped or not, the
+// preview shows the complete logo. A thin amber rule runs along the foot.
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
+const OG_SAFE = 570; // the logo's box inside the centre square
+
 async function buildOgFromLockup(parts) {
-  const regular = loadFont(400);
-  const subtitleSize = 38;
-  const lines = wrapText(regular, home.h1.replace(/[[\]]/g, ''), subtitleSize, 900);
-
-  const markHeight = 132;
-  const wordHeight = 56;
-  const gap = 30;
-
-  const mark = await sharp(parts.mark).resize({ height: markHeight }).png().toBuffer();
-  const markMeta = await sharp(mark).metadata();
-
-  let word = null;
-  let wordMeta = { width: 0, height: 0 };
-  if (parts.wordmark) {
-    word = await sharp(await toWhite(parts.wordmark)).resize({ height: wordHeight }).png().toBuffer();
-    wordMeta = await sharp(word).metadata();
-  }
-
-  const lockupWidth = markMeta.width + (word ? gap + wordMeta.width : 0);
-  const blockHeight = markHeight + 52 + lines.length * (subtitleSize * 1.35);
-  const blockTop = Math.round((630 - blockHeight) / 2);
-
-  let y = blockTop + markHeight + 52 + subtitleSize;
-  const subtitle = lines
-    .map((line) => {
-      const { parts: glyphs, width } = textToPath(regular, line, subtitleSize);
-      const group = `<g transform="translate(${((1200 - width) / 2).toFixed(2)} ${y})">${glyphs}</g>`;
-      y += subtitleSize * 1.35;
-      return group;
-    })
-    .join('');
-
-  // The hero photograph sits behind a charcoal wash, so a shared link shows
-  // the work itself rather than a flat black slab.
-  const overlay = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="wash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16181b" stop-opacity="0.78"/><stop offset="1" stop-color="#16181b" stop-opacity="0.92"/></linearGradient></defs><rect width="1200" height="630" fill="url(#wash)"/><rect x="560" y="${Math.round(blockTop + markHeight + 26)}" width="80" height="4" fill="#f5b400"/><g fill="#e4e7ea">${subtitle}</g></svg>`;
-  const photo = await sharp(path.resolve('public/assets/img/hero.jpg'))
-    .resize(1200, 630, { fit: 'cover', position: 'right' })
+  const logo = await sharp(parts.stacked)
+    .resize({ width: OG_SAFE, height: OG_SAFE, fit: 'inside' })
+    .png()
     .toBuffer();
+  const meta = await sharp(logo).metadata();
+  const rule = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="10"><rect width="${OG_WIDTH}" height="10" fill="#f5b400"/></svg>`,
+  );
 
-  const lockupLeft = Math.round((1200 - lockupWidth) / 2);
-  const composites = [
-    { input: Buffer.from(overlay), left: 0, top: 0 },
-    { input: mark, left: lockupLeft, top: blockTop },
-  ];
-  if (word) {
-    composites.push({
-      input: word,
-      left: lockupLeft + markMeta.width + gap,
-      top: blockTop + Math.round((markHeight - wordMeta.height) / 2),
-    });
-  }
-
-  await sharp(photo)
-    .composite(composites)
-    .jpeg({ quality: 86, mozjpeg: true })
+  await sharp({ create: { width: OG_WIDTH, height: OG_HEIGHT, channels: 3, background: '#ffffff' } })
+    .composite([
+      {
+        input: logo,
+        left: Math.round((OG_WIDTH - meta.width) / 2),
+        top: Math.round((OG_HEIGHT - meta.height) / 2),
+      },
+      { input: rule, left: 0, top: OG_HEIGHT - 10 },
+    ])
+    .jpeg({ quality: 90, mozjpeg: true })
     .toFile(path.join(STATIC, 'assets', 'og-image.jpg'));
 }
 
