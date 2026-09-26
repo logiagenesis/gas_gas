@@ -36,27 +36,27 @@ export const home = {
   steps: [
     {
       name: 'Tell us the job',
-      text: 'Call, send a WhatsApp or use the form. The appliance, the property and the suburb are enough to start.',
-      tag: 'Phone, WhatsApp or form',
+      text: 'Call, WhatsApp or use the form. The appliance, the property and your suburb are enough to start.',
+      tag: 'Call or WhatsApp',
     },
     {
       name: 'Site assessment',
-      text: 'We measure the run and check what each appliance needs, so the quote is based on your site and not on a guess.',
+      text: 'We measure the run and check what each appliance needs, so the price fits your site, not a guess.',
       tag: 'Measured on site',
     },
     {
       name: 'Written quote',
-      text: 'The work, the materials and the price, itemised in writing. You approve it before anything is fitted.',
+      text: 'The work, the materials and the price, itemised in writing. You approve it before anything starts.',
       tag: 'Itemised price',
     },
     {
       name: 'Install and test',
-      text: 'Neat, supported pipework, then a pressure test and a leak test on the finished line.',
-      tag: 'Pressure and leak test',
+      text: 'Neat, clipped and supported pipework, then a pressure test and a leak test on the finished line.',
+      tag: 'Pressure tested',
     },
     {
       name: 'Handover',
-      text: 'We show you how to shut off the supply and issue the Certificate of Conformity where it is required.',
+      text: 'We show you how to shut off the supply, and issue the Certificate of Conformity where required.',
       tag: 'CoC issued',
     },
   ],

@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-26T08:08:04.358Z",
+  "checkedAt": "2026-09-26T08:20:31.255Z",
   "pages": [
     {
       "name": "home",
@@ -714,7 +714,7 @@
       "large": false,
       "ratio": 14.55,
       "required": 4.5,
-      "sample": "10+ years in gas and electrical",
+      "sample": "15 years in gas and electrical",
       "page": "home"
     },
     {
@@ -940,12 +940,12 @@
       "status": "external, not fetched"
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-D6dvOyDH.js",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-s7dV_CdU.js",
       "from": "home",
       "status": 200
     },
     {
-      "url": "http://localhost:4173/gas_gas/assets/build/site-C3k-spcG.css",
+      "url": "http://localhost:4173/gas_gas/assets/build/site-BShjQlbD.css",
       "from": "home",
       "status": 200
     },

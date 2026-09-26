@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-26T08:08:04.358Z.
+Checked against `http://localhost:4173/gas_gas/` on 2026-09-26T08:20:31.255Z.
 
 ## Horizontal overflow
 
@@ -39,7 +39,7 @@ Every distinct text colour and background pair found in the rendered pages, with
 | `#c9cdd2` | `#16181b` | 16px | 700 | 11.14:1 | 4.5:1 | PASS | Services |
 | `#c9cdd2` | `#16181b` | 19px | 700 | 11.14:1 | 3:1 | PASS | How it works |
 | `#1e2227` | `#f6f4ef` | 42px | 800 | 14.55:1 | 3:1 | PASS | Every gas job, from one hob to a b |
-| `#1e2227` | `#f6f4ef` | 17px | 700 | 14.55:1 | 4.5:1 | PASS | 10+ years in gas and electrical |
+| `#1e2227` | `#f6f4ef` | 17px | 700 | 14.55:1 | 4.5:1 | PASS | 15 years in gas and electrical |
 | `#ffffff` | `#1f2327` | 17px | 400 | 15.81:1 | 4.5:1 | PASS | Call061 039 7034 |
 | `#1e2227` | `#ffffff` | 17px | 400 | 15.99:1 | 4.5:1 | PASS | 01 Residential Gas Installations G |
 | `#1e2227` | `#ffffff` | 20px | 700 | 15.99:1 | 3:1 | PASS | Residential Gas Installations |
