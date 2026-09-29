@@ -14,7 +14,7 @@ const PREINSTALLED = ['/opt/pw-browsers/chromium-1194/chrome-linux/chrome', '/op
 const executablePath = PREINSTALLED.find((candidate) => existsSync(candidate));
 const launchOptions = executablePath ? { executablePath } : {};
 
-const BASE = (process.argv[2] || 'http://localhost:4173/gas_gas/').replace(/\/?$/, '/');
+const BASE = (process.argv[2] || 'http://localhost:4173/').replace(/\/?$/, '/');
 const SHOTS = path.resolve('qa/screenshots');
 const WIDTHS = [360, 768, 1024, 1440];
 const SHOT_WIDTHS = [360, 1440];
@@ -29,7 +29,7 @@ const PAGES = [
   ['services-certificate-of-conformity', 'services/certificate-of-conformity/'],
   ['services-gas-system-maintenance', 'services/gas-system-maintenance/'],
   ['services-gas-leak-detection-emergency-repairs', 'services/gas-leak-detection-emergency-repairs/'],
-  ['services-basic-electrical-gas-system-support', 'services/basic-electrical-gas-system-support/'],
+  ['services-gas-appliance-commissioning', 'services/gas-appliance-commissioning/'],
   ['thank-you', 'thank-you/'],
   ['privacy', 'privacy/'],
   ['404', '404.html'],
@@ -384,7 +384,7 @@ export async function checkFormspree(baseUrl, launchOptions) {
       });
     });
     // The thank-you target is on the deployed host; serve a stub for it.
-    await page.route('**://logiagenesis.github.io/**', (route) =>
+    await page.route('**://www.gasdesigns.co.za/**', (route) =>
       route.fulfill({ status: 200, contentType: 'text/html', body: '<title>stub</title>thank you' }),
     );
 

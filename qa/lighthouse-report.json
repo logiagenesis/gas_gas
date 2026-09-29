@@ -1,12 +1,12 @@
 {
-  "base": "http://localhost:4173/gas_gas/",
-  "checkedAt": "2026-09-26T08:09:51.444Z",
+  "base": "http://127.0.0.1:8080/",
+  "checkedAt": "2026-09-29T07:03:07.373Z",
   "rows": [
     {
       "name": "home",
-      "url": "http://localhost:4173/gas_gas/",
+      "url": "http://127.0.0.1:8080/",
       "scores": {
-        "performance": 99,
+        "performance": 97,
         "accessibility": 100,
         "best-practices": 96,
         "seo": 100
@@ -14,18 +14,18 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
+        "Serve static assets with an efficient cache policy",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree"
+        "Enable text compression",
+        "Properly size images"
       ]
     },
     {
       "name": "services-bulk-lpg-installations",
-      "url": "http://localhost:4173/gas_gas/services/bulk-lpg-installations/",
+      "url": "http://127.0.0.1:8080/services/bulk-lpg-installations/",
       "scores": {
-        "performance": 98,
+        "performance": 96,
         "accessibility": 100,
         "best-practices": 96,
         "seo": 100
@@ -33,16 +33,16 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
-        "Eliminate render-blocking resources",
-        "Serve images in next-gen formats",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree"
+        "Minimize main-thread work",
+        "Reduce JavaScript execution time",
+        "Largest Contentful Paint element",
+        "Serve static assets with an efficient cache policy",
+        "Eliminate render-blocking resources"
       ]
     },
     {
       "name": "privacy",
-      "url": "http://localhost:4173/gas_gas/privacy/",
+      "url": "http://127.0.0.1:8080/privacy/",
       "scores": {
         "performance": 100,
         "accessibility": 100,
@@ -52,11 +52,11 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
+        "Serve static assets with an efficient cache policy",
         "Eliminate render-blocking resources",
+        "Reduce unused CSS",
         "Serve images in next-gen formats",
-        "Properly size images",
-        "Improve image delivery",
-        "Network dependency tree"
+        "Enable text compression"
       ]
     }
   ]

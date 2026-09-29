@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://localhost:4173/gas_gas/` on 2026-09-26T08:20:31.255Z.
+Checked against `http://127.0.0.1:8080/` on 2026-09-29T07:00:02.433Z.
 
 ## Horizontal overflow
 
@@ -15,7 +15,7 @@ Checked against `http://localhost:4173/gas_gas/` on 2026-09-26T08:20:31.255Z.
 | services-certificate-of-conformity | none | none | none | none |
 | services-gas-system-maintenance | none | none | none | none |
 | services-gas-leak-detection-emergency-repairs | none | none | none | none |
-| services-basic-electrical-gas-system-support | none | none | none | none |
+| services-gas-appliance-commissioning | none | none | none | none |
 | thank-you | none | none | none | none |
 | privacy | none | none | none | none |
 | 404 | none | none | none | none |
@@ -39,7 +39,7 @@ Every distinct text colour and background pair found in the rendered pages, with
 | `#c9cdd2` | `#16181b` | 16px | 700 | 11.14:1 | 4.5:1 | PASS | Services |
 | `#c9cdd2` | `#16181b` | 19px | 700 | 11.14:1 | 3:1 | PASS | How it works |
 | `#1e2227` | `#f6f4ef` | 42px | 800 | 14.55:1 | 3:1 | PASS | Every gas job, from one hob to a b |
-| `#1e2227` | `#f6f4ef` | 17px | 700 | 14.55:1 | 4.5:1 | PASS | 15 years in gas and electrical |
+| `#1e2227` | `#f6f4ef` | 17px | 700 | 14.55:1 | 4.5:1 | PASS | 15 years in gas installations |
 | `#ffffff` | `#1f2327` | 17px | 400 | 15.81:1 | 4.5:1 | PASS | Call061 039 7034 |
 | `#1e2227` | `#ffffff` | 17px | 400 | 15.99:1 | 4.5:1 | PASS | 01 Residential Gas Installations G |
 | `#1e2227` | `#ffffff` | 20px | 700 | 15.99:1 | 3:1 | PASS | Residential Gas Installations |
@@ -61,7 +61,7 @@ The hero heading sits on a photograph behind a charcoal overlay that runs from 8
 | services-certificate-of-conformity | 200 | 1 | 0 | yes | yes |
 | services-gas-system-maintenance | 200 | 1 | 0 | yes | yes |
 | services-gas-leak-detection-emergency-repairs | 200 | 1 | 0 | yes | yes |
-| services-basic-electrical-gas-system-support | 200 | 1 | 0 | yes | yes |
+| services-gas-appliance-commissioning | 200 | 1 | 0 | yes | yes |
 | thank-you | 200 | 1 | 0 | yes | yes |
 | privacy | 200 | 1 | 0 | yes | yes |
 | 404 | 200 | 1 | 0 | yes | yes |
@@ -76,9 +76,9 @@ A request for a path that does not exist returned HTTP 404.
 
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| home | 99 | 100 | 96 | 100 |
-| services-bulk-lpg-installations | 98 | 100 | 96 | 100 |
+| home | 97 | 100 | 96 | 100 |
+| services-bulk-lpg-installations | 96 | 100 | 96 | 100 |
 | privacy | 100 | 100 | 96 | 100 |
 
-Run against `http://localhost:4173/gas_gas/` on 2026-09-26T08:09:51.444Z.
+Run against `http://127.0.0.1:8080/` on 2026-09-29T07:03:07.373Z.
 

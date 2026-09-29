@@ -1,0 +1,96 @@
+# Gas Designs: Apache configuration for cPanel hosting.
+# The site is static HTML, CSS, JS and images. No PHP runs.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# ---------------------------------------------------------------------------
+# Redirects
+# ---------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # One 301 to https://www.gasdesigns.co.za for plain HTTP on either host and
+  # for the bare domain on HTTPS. Other hosts (cPanel preview URLs) are left
+  # alone so the site can be checked before DNS points here.
+  RewriteCond %{HTTP_HOST} ^(www\.)?gasdesigns\.co\.za$ [NC]
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^gasdesigns\.co\.za$ [NC]
+  RewriteRule ^ https://www.gasdesigns.co.za%{REQUEST_URI} [R=301,L]
+
+  # Clean URLs: every page is a folder with an index.html, so /thank-you and
+  # /services/bulk-lpg-installations get a trailing slash, once.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+
+  # /index.html and /folder/index.html resolve to their clean folder URL.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Types
+# ---------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+</IfModule>
+AddDefaultCharset utf-8
+
+# ---------------------------------------------------------------------------
+# Compression
+# ---------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/manifest+json image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Caching
+# Pages always revalidate so edits show at once. The CSS and JS under
+# /assets/build/ carry a content hash in the filename and never change, so
+# they are cached for a year. Photographs, icons and fonts keep their names
+# between builds, so they are cached for a month.
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpe?g|png|webp|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(webmanifest|xml|txt)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 day"
+</IfModule>
+
+# Keep dotfiles and source maps private.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>

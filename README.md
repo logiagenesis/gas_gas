@@ -1,17 +1,15 @@
 # Gas Designs website
 
-Static site for Gas Designs, built with Vite and deployed to GitHub Pages by
-GitHub Actions on every push to `main`.
+Static site for Gas Designs, built with Vite and hosted on cPanel at
+https://www.gasdesigns.co.za. There is no PHP and no server code: the build
+produces plain HTML, CSS, JS and images, and a release zip of `dist/` is
+uploaded to `public_html`.
 
-`main` is the only branch and the default branch. The `github-pages`
-environment (Settings › Environments) only accepts deploys from the branches
-its deployment rule names, and that rule is `main`. Changing the default branch
-does not change the rule: if the site ever deploys from another branch, both
-settings need updating.
+`main` is the only branch.
 
 Node 22 or newer is required: the build and the QA checks use `globSync` from
 `node:fs`, which Node 20 does not provide. The pinned version is in
-`.node-version` and the workflow reads that file.
+`.node-version`.
 
 ## Running it locally
 
@@ -68,11 +66,11 @@ inside the centre 630 x 630 square that chat apps crop to. The home page also
 gives link previews a shorter title, because WhatsApp cuts titles off after
 about 55 characters.
 
-Every absolute URL (canonical, `og:url`, `og:image`, schema, sitemap) is built
-from where the site is served: `https://logiagenesis.github.io/gas_gas/` today.
-When the site moves to gasdesigns.co.za, put the domain in `public/CNAME` and
-rebuild; every URL follows. The static QA fails if `og:image` points anywhere
-else, because WhatsApp and other apps then show a link with no image.
+Every absolute URL (canonical, `og:url`, `og:image`, schema, sitemap, the
+form's thank-you redirect) uses `https://www.gasdesigns.co.za`, set as
+`canonicalOrigin` in `src/data/site.js`, and the Vite base is `/`. The static
+QA fails if `og:image` points anywhere else, because WhatsApp and other apps
+then show a link with no image.
 
 ## Photographs
 
@@ -111,7 +109,23 @@ WhatsApp taps and quote-form submissions are sent as events.
 ```
 npm run preview                                   # in one terminal
 npm run qa:static
-npm run qa:browser -- http://localhost:4173/gas_gas/
-npm run qa:lighthouse -- http://localhost:4173/gas_gas/ --all
+npm run qa:browser -- http://localhost:4173/
+npm run qa:lighthouse -- http://localhost:4173/ --all
 npm run qa:report
 ```
+
+## Releasing to cPanel
+
+```
+npm ci
+npm run build
+npm run package                    # writes release/gasdesigns-cpanel-YYYYMMDD.zip
+```
+
+The zip holds the contents of `dist/`, including the hidden `.htaccess`
+(source: `public/.htaccess`). It forces HTTPS, redirects gasdesigns.co.za to
+www.gasdesigns.co.za, adds trailing slashes to page URLs, serves `/404.html`
+for missing pages, and sets caching and compression.
+
+Upload: cPanel › File Manager › `public_html` › Upload the zip › Extract ›
+Settings › Show Hidden Files, and confirm `.htaccess` is there.

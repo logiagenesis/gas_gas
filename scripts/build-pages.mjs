@@ -13,11 +13,10 @@ const STATIC = path.resolve('build/static');
 const deploy = resolveDeployment();
 const BASE = deploy.base;
 // Every absolute URL (canonical, og:url, og:image, schema, sitemap) points
-// at where the site is actually served: GitHub Pages under the repository
-// path today, or the custom domain once public/CNAME names it. Pointing them
-// at a domain that does not serve the site leaves link previews without an
-// image and search engines with a dead canonical.
-const CANON = (deploy.origin ? `${deploy.origin}${BASE}` : `${site.canonicalOrigin}/`).replace(/\/$/, '');
+// at where the site is served: https://www.gasdesigns.co.za. Pointing them
+// anywhere else leaves link previews without an image and search engines
+// with a dead canonical.
+const CANON = `${deploy.origin}${BASE}`.replace(/\/$/, '');
 const THANK_YOU_ABSOLUTE = `${deploy.origin}${BASE}thank-you/`;
 
 const FORMSPREE_ID = fact('Formspree form ID');
@@ -766,9 +765,9 @@ async function main() {
     `User-agent: *\nAllow: /\n\nSitemap: ${CANON}/sitemap.xml\n`,
   );
 
-  if (deploy.cname) {
-    await writeFile(path.join(STATIC, 'CNAME'), `${deploy.cname}\n`);
-  }
+  // Apache configuration for cPanel: HTTPS, the www redirect, the 404 page,
+  // caching and compression. Vite copies it from build/static into dist.
+  await copyFile(path.resolve('public/.htaccess'), path.join(STATIC, '.htaccess'));
 
   await writeFile(
     path.resolve('build/pages-manifest.json'),

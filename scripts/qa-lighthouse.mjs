@@ -7,7 +7,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-const BASE = (process.argv[2] || 'http://localhost:4173/gas_gas/').replace(/\/?$/, '/');
+const BASE = (process.argv[2] || 'http://localhost:4173/').replace(/\/?$/, '/');
 const ALL = process.argv.includes('--all');
 
 const CHROME = ['/opt/pw-browsers/chromium-1194/chrome-linux/chrome', '/opt/pw-browsers/chromium'].find(
@@ -26,7 +26,7 @@ const ROUTES = ALL
       ['services-certificate-of-conformity', 'services/certificate-of-conformity/'],
       ['services-gas-system-maintenance', 'services/gas-system-maintenance/'],
       ['services-gas-leak-detection-emergency-repairs', 'services/gas-leak-detection-emergency-repairs/'],
-      ['services-basic-electrical-gas-system-support', 'services/basic-electrical-gas-system-support/'],
+      ['services-gas-appliance-commissioning', 'services/gas-appliance-commissioning/'],
       ['thank-you', 'thank-you/'],
       ['privacy', 'privacy/'],
       ['404', '404.html'],

@@ -19,8 +19,6 @@ const BANNED = [
   'lorem',
   'TODO',
   'php',
-  'cpanel',
-  'htaccess',
 ];
 
 const results = [];
@@ -173,8 +171,19 @@ const leftovers = ['formsubmit', '_next', '_captcha', '_honey"', '_template'].fi
 record('No FormSubmit leftovers in the quote form', leftovers.length === 0, leftovers.join(', '));
 
 // 8. No forbidden hosting artefacts.
-const forbidden = files.filter((f) => /(^|\/)(\.htaccess|_headers|_redirects)$/i.test(f));
-record('No .htaccess, _headers or _redirects in dist', forbidden.length === 0, forbidden.join(', '));
+// The site is hosted on cPanel (Apache): .htaccess must ship at the root with
+// the HTTPS and www redirects and the custom 404.
+const htaccessPath = path.join(DIST, '.htaccess');
+// The file list skips dotfiles, so .htaccess is read directly.
+const htaccess = await readFile(htaccessPath, 'utf8').catch(() => '');
+const htaccessMissing = [
+  ['ErrorDocument 404 /404.html', /ErrorDocument 404 \/404\.html/],
+  ['HTTPS redirect', /RewriteCond %\{HTTPS\} off/],
+  ['www redirect', /https:\/\/www\.gasdesigns\.co\.za%\{REQUEST_URI\}/],
+].filter(([, pattern]) => !pattern.test(htaccess)).map(([label]) => label);
+record('.htaccess at the root with HTTPS, www and 404 rules', htaccessMissing.length === 0, htaccessMissing.join(', ') || '');
+const forbidden = files.filter((f) => /(^|\/)(_headers|_redirects|CNAME|[^/]*\.php)$/i.test(f));
+record('No _headers, _redirects, CNAME or PHP files in dist', forbidden.length === 0, forbidden.join(', '));
 
 // 9. Required root files.
 for (const required of ['404.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest']) {
@@ -196,7 +205,7 @@ const allowed = new Set([
   'schema.org',
   'logi-ink.co.za',
   'www.w3.org',
-  'logiagenesis.github.io',
+  'www.gasdesigns.co.za',
   'wa.me',
 ]);
 const unexpected = [...externalHosts].filter((host) => !allowed.has(host));
