@@ -12,12 +12,16 @@ const ROOT = path.resolve('build/site');
 const STATIC = path.resolve('build/static');
 const deploy = resolveDeployment();
 const BASE = deploy.base;
-// Every absolute URL (canonical, og:url, og:image, schema, sitemap) points
-// at where the site is served: https://www.gasdesigns.co.za. Pointing them
-// anywhere else leaves link previews without an image and search engines
-// with a dead canonical.
-const CANON = `${deploy.origin}${BASE}`.replace(/\/$/, '');
-const THANK_YOU_ABSOLUTE = `${deploy.origin}${BASE}thank-you/`;
+const PREVIEW = deploy.target === 'pages';
+// Canonical links, the schema, the sitemap and robots.txt always name the live
+// domain, https://www.gasdesigns.co.za, whichever target is built.
+const CANON = site.canonicalOrigin.replace(/\/$/, '');
+// og:url, og:image and the form's thank-you redirect use the origin the build
+// is served from, so link previews show their image and the form lands on a
+// page that exists. For the cPanel build this is the live domain as well.
+const SERVE = `${deploy.origin}${BASE}`;
+const THANK_YOU_ABSOLUTE = `${SERVE}thank-you/`;
+const served = (url) => url.replace(`${CANON}/`, SERVE);
 
 const FORMSPREE_ID = fact('Formspree form ID');
 if (!FORMSPREE_ID) {
@@ -115,7 +119,14 @@ function googleTag() {
 // after roughly 55 characters, so pages with long titles give a shorter one.
 function head({ title, shareTitle = title, description, canonical, depth, noindex = false, schema = [] }) {
   const prefix = up(depth);
-  const ogImage = `${CANON}/assets/og-image.jpg`;
+  const ogImage = `${SERVE}assets/og-image.jpg`;
+  // The preview is never indexed, and never passes link weight, so it cannot
+  // compete with the live domain in search results.
+  const robots = PREVIEW
+    ? `<meta name="robots" content="noindex, nofollow">${noindex ? '' : `\n<link rel="canonical" href="${esc(canonical)}">`}`
+    : noindex
+      ? '<meta name="robots" content="noindex, follow">'
+      : `<link rel="canonical" href="${esc(canonical)}">`;
   return `<!DOCTYPE html>
 <html lang="en-ZA">
 <head>
@@ -124,12 +135,12 @@ function head({ title, shareTitle = title, description, canonical, depth, noinde
 ${googleTag()}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${esc(canonical)}">`}
+${robots}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:title" content="${esc(shareTitle)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:url" content="${esc(canonical)}">
+<meta property="og:url" content="${esc(served(canonical))}">
 <meta property="og:image" content="${esc(ogImage)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -766,15 +777,20 @@ async function main() {
   );
 
   // Apache configuration for cPanel: HTTPS, the www redirect, the 404 page,
-  // caching and compression. Vite copies it from build/static into dist.
-  await copyFile(path.resolve('public/.htaccess'), path.join(STATIC, '.htaccess'));
+  // caching and compression. Vite copies it from build/static into dist. The
+  // GitHub Pages preview does not use it, so it is removed for that target.
+  if (PREVIEW) {
+    await rm(path.join(STATIC, '.htaccess'), { force: true });
+  } else {
+    await copyFile(path.resolve('public/.htaccess'), path.join(STATIC, '.htaccess'));
+  }
 
   await writeFile(
     path.resolve('build/pages-manifest.json'),
-    JSON.stringify({ base: BASE, origin: deploy.origin, thankYou: THANK_YOU_ABSOLUTE, pages: pages.map(([f]) => f) }, null, 2),
+    JSON.stringify({ target: deploy.target, base: BASE, origin: deploy.origin, thankYou: THANK_YOU_ABSOLUTE, pages: pages.map(([f]) => f) }, null, 2),
   );
 
-  console.log(`pages: ${pages.length} written, base ${BASE}`);
+  console.log(`pages: ${pages.length} written, target ${deploy.target}, base ${BASE}`);
 }
 
 main();

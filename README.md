@@ -5,7 +5,27 @@ https://www.gasdesigns.co.za. There is no PHP and no server code: the build
 produces plain HTML, CSS, JS and images, and a release zip of `dist/` is
 uploaded to `public_html`.
 
-`main` is the only branch.
+`main` is the only branch. Every change is committed and pushed to `main`, and
+every push to `main` deploys the preview.
+
+## Two build targets
+
+One codebase builds two sites, chosen by `DEPLOY_TARGET`:
+
+| | Live site (cPanel) | Preview (GitHub Pages) |
+| --- | --- | --- |
+| Command | `npm run build` or `npm run build:cpanel` | `npm run build:pages` |
+| URL | https://www.gasdesigns.co.za | https://logiagenesis.github.io/gas_gas/ |
+| Base | `/` | `/gas_gas/` |
+| Search engines | indexed | `noindex, nofollow` on every page |
+| `.htaccess` | included | not included |
+| Form thank-you page | www.gasdesigns.co.za/thank-you/ | logiagenesis.github.io/gas_gas/thank-you/ |
+| Deployed by | uploading the release zip | `.github/workflows/deploy-pages.yml`, on every push to `main` |
+
+Canonical links, the sitemap, robots.txt and the schema name the live domain
+in both builds. Link-preview tags (`og:url`, `og:image`) follow the host the
+build is served from. The preview workflow must stay: it is how every change
+is reviewed.
 
 Node 22 or newer is required: the build and the QA checks use `globSync` from
 `node:fs`, which Node 20 does not provide. The pinned version is in
@@ -118,9 +138,12 @@ npm run qa:report
 
 ```
 npm ci
-npm run build
+npm run build:cpanel
 npm run package                    # writes release/gasdesigns-cpanel-YYYYMMDD.zip
 ```
+
+`npm run package` refuses a preview build: it needs the `.htaccess` that only
+the cPanel build has.
 
 The zip holds the contents of `dist/`, including the hidden `.htaccess`
 (source: `public/.htaccess`). It forces HTTPS, redirects gasdesigns.co.za to

@@ -8,7 +8,8 @@ import path from 'node:path';
 
 const DIST = path.resolve('dist');
 if (!existsSync(path.join(DIST, 'index.html')) || !existsSync(path.join(DIST, '.htaccess'))) {
-  console.error('dist/ is missing index.html or .htaccess. Run npm run build first.');
+  // A GitHub Pages preview build has no .htaccess and must never be shipped.
+  console.error('dist/ is missing index.html or .htaccess. Run npm run build:cpanel first.');
   process.exit(1);
 }
 

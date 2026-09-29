@@ -170,18 +170,37 @@ const leftovers = ['formsubmit', '_next', '_captcha', '_honey"', '_template'].fi
 );
 record('No FormSubmit leftovers in the quote form', leftovers.length === 0, leftovers.join(', '));
 
-// 8. No forbidden hosting artefacts.
-// The site is hosted on cPanel (Apache): .htaccess must ship at the root with
-// the HTTPS and www redirects and the custom 404.
+// 8. Hosting artefacts, by target.
 const htaccessPath = path.join(DIST, '.htaccess');
 // The file list skips dotfiles, so .htaccess is read directly.
 const htaccess = await readFile(htaccessPath, 'utf8').catch(() => '');
-const htaccessMissing = [
-  ['ErrorDocument 404 /404.html', /ErrorDocument 404 \/404\.html/],
-  ['HTTPS redirect', /RewriteCond %\{HTTPS\} off/],
-  ['www redirect', /https:\/\/www\.gasdesigns\.co\.za%\{REQUEST_URI\}/],
-].filter(([, pattern]) => !pattern.test(htaccess)).map(([label]) => label);
-record('.htaccess at the root with HTTPS, www and 404 rules', htaccessMissing.length === 0, htaccessMissing.join(', ') || '');
+const robotsMetas = await Promise.all(
+  htmlFiles.map(async (file) => ((await readFile(file, 'utf8')).match(/<meta name="robots" content="([^"]+)">/g) || [])),
+);
+if (pagesManifest.target === 'pages') {
+  // The GitHub Pages preview: no .htaccess, and every page noindex, nofollow
+  // exactly once so it never competes with the live domain.
+  record('No .htaccess in the Pages preview build', htaccess === '');
+  const unguarded = htmlFiles.filter(
+    (file, index) => robotsMetas[index].length !== 1 || !robotsMetas[index][0].includes('noindex, nofollow'),
+  );
+  record(
+    'Every page carries noindex, nofollow once',
+    unguarded.length === 0,
+    unguarded.map((file) => path.relative(DIST, file)).join(', '),
+  );
+} else {
+  // The cPanel build (Apache): .htaccess must ship at the root with the HTTPS
+  // and www redirects and the custom 404, and no page may be nofollow.
+  const htaccessMissing = [
+    ['ErrorDocument 404 /404.html', /ErrorDocument 404 \/404\.html/],
+    ['HTTPS redirect', /RewriteCond %\{HTTPS\} off/],
+    ['www redirect', /https:\/\/www\.gasdesigns\.co\.za%\{REQUEST_URI\}/],
+  ].filter(([, pattern]) => !pattern.test(htaccess)).map(([label]) => label);
+  record('.htaccess at the root with HTTPS, www and 404 rules', htaccessMissing.length === 0, htaccessMissing.join(', ') || '');
+  const nofollow = htmlFiles.filter((file, index) => robotsMetas[index].some((meta) => meta.includes('nofollow')));
+  record('No nofollow on the live build', nofollow.length === 0, nofollow.map((file) => path.relative(DIST, file)).join(', '));
+}
 const forbidden = files.filter((f) => /(^|\/)(_headers|_redirects|CNAME|[^/]*\.php)$/i.test(f));
 record('No _headers, _redirects, CNAME or PHP files in dist', forbidden.length === 0, forbidden.join(', '));
 
@@ -207,6 +226,7 @@ const allowed = new Set([
   'www.w3.org',
   'www.gasdesigns.co.za',
   'wa.me',
+  ...(pagesManifest.target === 'pages' ? ['logiagenesis.github.io'] : []),
 ]);
 const unexpected = [...externalHosts].filter((host) => !allowed.has(host));
 record('No unexpected third-party hosts', unexpected.length === 0, unexpected.join(', '));

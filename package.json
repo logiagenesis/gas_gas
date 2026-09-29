@@ -9,6 +9,8 @@
     "pages": "node scripts/build-pages.mjs",
     "prebuild": "npm run images && npm run brand && npm run pages",
     "build": "vite build",
+    "build:cpanel": "node scripts/build-target.mjs cpanel",
+    "build:pages": "node scripts/build-target.mjs pages",
     "preview": "vite preview",
     "qa:static": "node scripts/qa-static.mjs",
     "qa:browser": "node scripts/qa-browser.mjs",

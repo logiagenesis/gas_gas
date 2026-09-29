@@ -384,9 +384,11 @@ export async function checkFormspree(baseUrl, launchOptions) {
       });
     });
     // The thank-you target is on the deployed host; serve a stub for it.
-    await page.route('**://www.gasdesigns.co.za/**', (route) =>
-      route.fulfill({ status: 200, contentType: 'text/html', body: '<title>stub</title>thank you' }),
-    );
+    for (const host of ['www.gasdesigns.co.za', 'logiagenesis.github.io']) {
+      await page.route(`**://${host}/**`, (route) =>
+        route.fulfill({ status: 200, contentType: 'text/html', body: '<title>stub</title>thank you' }),
+      );
+    }
 
     await page.goto(baseUrl, { waitUntil: 'load' });
     await fill(page);
