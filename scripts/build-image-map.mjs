@@ -15,7 +15,7 @@ const NOTES = {
   'service-08.jpg': 'Filename suggested service 8. The photograph shows a Certificate of Conformity, so it fills service 6.',
   'service-02.jpg': 'Filename suggested service 2. The photograph shows an installed gas water heater, so it fills service 7.',
   'service-07.jpg': 'Filename suggested service 7. The photograph shows electronic leak detection, so it fills service 8.',
-  'service-03.jpg': 'Filename suggested service 3. The photograph shows a gas fireplace. CLOSEST AVAILABLE MATCH ONLY: no photograph in the supplied set shows electrical work. A photograph of an appliance isolator or control wiring would fit this service properly.',
+  'service-03.jpg': 'Filename suggested service 3. The photograph shows a lit gas fireplace, a commissioned appliance, so it fills service 9.',
 };
 
 const rows = manifest.rows
@@ -57,11 +57,7 @@ ${unused}
 
 ## Open point for the client
 
-The photograph filling **Basic Electrical & Gas System Support** shows a gas fireplace.
-It is the closest match in the supplied set, but nothing in the set shows electrical
-work. A photograph of an appliance isolator, control wiring or a fan connection would
-replace it properly. Drop the new file into \`public/assets/img/\`, point the \`image\`
-field for that service in \`src/data/site.js\` at it, and rebuild.
+- None. Every slot shows the subject of its service.
 `;
 
 await writeFile(path.resolve('IMAGE-MAP.md'), markdown);

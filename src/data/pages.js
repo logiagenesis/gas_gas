@@ -4,7 +4,7 @@ export const home = {
   title: 'Gas Designs | Gas installers in Pretoria, Johannesburg and Gauteng – 24/7 emergencies',
   shareTitle: 'Gas Designs | Gas installers, Pretoria & Johannesburg',
   metaDescription:
-    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical. Every line tested before handover.',
+    'Gas installations, CoCs, maintenance and 24/7 leak repairs in Pretoria, Johannesburg and across Gauteng. 15 years in gas. Every line tested before handover.',
   eyebrow: `Gas installers · ${site.cities.join(' · ')} · ${site.region}`,
   // The phrase in accent colour is marked with square brackets.
   h1: 'Gas, installed properly. [Tested before you light it.]',
@@ -13,7 +13,7 @@ export const home = {
   heroImageAlt:
     'Technician kneeling in a dark fitted kitchen, holding a digital pressure gauge connected to copper gas pipework above the hob.',
   proof: [
-    { icon: 'bolt', title: `${site.experience}’ experience`, text: 'In gas and electrical work' },
+    { icon: 'bolt', title: `${site.experience}’ experience`, text: 'In gas installation work' },
     { icon: 'clock', title: `${site.emergency} emergency callouts`, text: 'For gas leaks and gas smells' },
     { icon: 'gauge', title: 'Pressure and leak tested', text: 'On every installation, before handover' },
     { icon: 'doc', title: 'Certificate of Conformity', text: 'Issued once the installation passes' },
@@ -85,10 +85,10 @@ export const home = {
   aboutHeading: 'Gas specialists who finish the job',
   aboutBody: [
     'Gas Designs is a registered company that installs, services and certifies gas systems for homes, commercial kitchens, industrial sites and property developments. We work in Pretoria, Johannesburg and the rest of Gauteng, including outlying areas.',
-    'Behind it is 15 years of hands-on experience in gas and electrical work. That is why we also do the basic electrical side of gas appliances, including isolators, ignition supply and fans. You deal with one team and get one handover.',
+    'Behind it is 15 years of hands-on experience in gas work. From the first measure-up to the final handover, you deal with one team.',
   ],
   aboutPoints: [
-    { icon: 'bolt', text: `${site.experience} in gas and electrical` },
+    { icon: 'bolt', text: `${site.experience} in gas installations` },
     { icon: 'clock', text: '24/7 for gas leaks and emergencies' },
     { icon: 'gauge', text: 'Every line tested before you use it' },
     { icon: 'list', text: 'Written quotes, written reports, written fixes' },
@@ -127,10 +127,6 @@ export const home = {
     {
       q: 'Is everything tested before I use it?',
       a: 'Yes. Every installation is pressure-tested and leak-tested before we hand it over.',
-    },
-    {
-      q: 'Can you do the electrical side of a gas appliance?',
-      a: 'Yes, the basic electrical work that gas appliances need: isolators, ignition supply, control wiring and fan connections. One team, one handover.',
     },
     {
       q: 'When should I move from cylinders to a bulk LPG tank?',

@@ -46,13 +46,13 @@ The benchmark covered 18 Gauteng gas installer websites, checked on 26/09/2026. 
 - When to move from cylinders to bulk LPG.
 - Developer work priced from drawings.
 - CoCs written for estate agents and conveyancers.
-- Gas and electrical from one team.
+- One team from measure-up to handover.
 
 | # | Where | Before | After | Status |
 | --- | --- | --- | --- | --- |
 | 1.1 | Home H1 | "Gas installation, maintenance and certification in South Africa" | "Gas, installed properly. **Tested before you light it.**" The keywords move to the eyebrow, the meta title and the lead. | Fixed |
 | 1.2 | Hero lead | Restated the H1 | Shows the range ("from a single gas hob to a bulk LPG tank"), then the method, then the certificate | Fixed |
-| 1.3 | Proof strip | None | Four proof points, all established facts: pressure and leak tested; CoC issued; itemised written quotes; gas and electrical | Fixed |
+| 1.3 | Proof strip | None | Four proof points, all established facts: pressure and leak tested; CoC issued; itemised written quotes; 24/7 emergency callouts | Fixed |
 | 1.4 | Service cards | Described the task ("We install…") | Open with the customer's situation ("Selling, letting or insuring?", "When cylinders can't keep up") and are trimmed to similar lengths | Fixed |
 | 1.5 | Service pages | Intros described the process | Intros open with the reason to act, then the method. Examples: "A kitchen that goes down mid-service loses money by the minute." "Gas is easiest to get right before the walls close." | Fixed |
 | 1.6 | Local vocabulary | "water heater" throughout | "geyser" used alongside it; "CoC" used after the first full mention | Fixed |
@@ -71,7 +71,7 @@ Supplied on 26/09 and now used across the site:
 | Fact | Where it appears |
 | --- | --- |
 | Pretoria, Johannesburg and the rest of Gauteng, including outlying areas | Hero eyebrow, About, FAQ, footer, meta titles and descriptions, `areaServed` in the schema |
-| 15 years' experience in gas and electrical, confirmed by the client. | Hero proof strip, About, meta description |
+| 15 years' experience in gas, confirmed by the client. | Hero proof strip, About, meta description |
 | Open 24 hours a day for emergencies; the client confirms 061 039 7034 is answered 24/7 | Emergency bar above the header on every page, hero proof strip, safety band, FAQ, and the leak-repair card, page and meta title |
 | A registered company | About |
 
@@ -86,7 +86,6 @@ Still waiting on the client:
 | Office hours for non-emergency work | Useful for the schema and the contact section. |
 | Workmanship guarantee (period) | Only two competitors state one. |
 | Customer reviews (Google rating or named testimonials) | Social proof; no reviews are on the site today. |
-| Electrical registration scope | Confirms what "basic electrical" may claim. |
 
 ---
 
@@ -96,7 +95,7 @@ Still waiting on the client:
 | --- | --- | --- | --- |
 | 2.1 | All photographs | Only a single 1,200px size was served, so phones downloaded roughly four times the pixels they show. | Fixed: each photo now ships at 640px and at full size (hero 640, 1,280 and 1,920px), in WebP with a JPG fallback, and `srcset` picks the right one. |
 | 2.2 | Service-page heroes | A 1,200px photograph was stretched full-bleed to 1,440–1,920px, which blurs it. | Fixed: the photo now sits in a framed panel no wider than its source. |
-| 2.3 | `service-03.jpg` (Basic Electrical) | Shows a gas fireplace. No supplied photo shows electrical work. | **Client**: supply a photo of an isolator, ignition wiring or fan connection. |
+| 2.3 | `service-03.jpg` | Shows a lit gas fireplace. It now fills Gas Appliance Commissioning & Fault Finding, which it matches. | Fixed on 29/09 |
 | 2.4 | `service-08.jpg` (CoC) | The certificate on the clipboard carries unreadable placeholder text. It is fine at card size but looks fake when enlarged. | **Client**: a photo of a real, redacted CoC would be stronger. |
 | 2.5 | `compliance.jpg` | The gauge brand and the tag text are not legible words. The photo is only ever shown small, and the test-tag graphic now carries the message. | Acceptable; replace with a real site photo when available. |
 | 2.6 | All photographs | They read as stock or AI-generated and consistently styled. Real job photos (before and after, the team, the bakkie) would build more trust than any copy. | **Client**: send real job photos when possible. |
@@ -134,3 +133,9 @@ Still waiting on the client:
 | 4.6 | The footer listed 5 of the 9 services. | Fixed: all nine, plus links to the FAQ and "If you smell gas". |
 | 4.7 | Motion and accessibility | Every animation is switched off under `prefers-reduced-motion`. Content is never hidden if JavaScript fails. Contrast is AA throughout. |
 | 4.8 | Afrikaans | No Gauteng competitor offers it, and Pretoria has a large Afrikaans-speaking market. | **Client**: worth considering as a later phase. |
+
+---
+
+## 5. Scope narrowed to gas work only (29/09/2026)
+
+The site now presents gas work only. Every reference to non-gas trade work was taken out of the copy, the metadata, the schema, the scripts and these notes, with no change to the layout, the styles or any image. The ninth service became Gas Appliance Commissioning & Fault Finding, which keeps the 3 x 3 service grid; its photograph (a lit gas fireplace) fits it without change. The site is now built for cPanel at https://www.gasdesigns.co.za.

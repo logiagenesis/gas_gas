@@ -13,19 +13,19 @@ export const site = {
     whatsapp: 'https://wa.me/27610397034',
   },
   domain: 'gasdesigns.co.za',
-  canonicalOrigin: 'https://gasdesigns.co.za',
+  canonicalOrigin: 'https://www.gasdesigns.co.za',
   country: 'South Africa',
   // The area the copy and the schema name. Change it here and rebuild.
   region: 'Gauteng',
   cities: ['Pretoria', 'Johannesburg'],
   areasLine: 'Pretoria, Johannesburg and the rest of Gauteng, including outlying areas',
-  // Years of experience in gas and electrical work, confirmed by the client.
+  // Years of experience in gas work, confirmed by the client.
   experience: '15 years',
   emergency: '24/7',
   agency: { name: 'Logi-Ink', url: 'https://logi-ink.co.za' },
   ga4Id: 'G-JDXDHXGZ5Q',
   description:
-    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and developments in Pretoria, Johannesburg and across Gauteng. 15 years in gas and electrical, and 24/7 for gas emergencies.',
+    'Gas Designs installs, services and certifies LPG gas systems for homes, commercial kitchens, industrial sites and developments in Pretoria, Johannesburg and across Gauteng. 15 years in gas, and 24/7 for gas emergencies.',
   footerLine:
     'Gas installation, maintenance and Certificates of Conformity in Pretoria, Johannesburg and across Gauteng, including outlying areas. 24/7 for gas emergencies.',
 };
@@ -65,7 +65,7 @@ export const services = [
     card:
       'Gas hobs, ovens, geysers and fireplaces, connected neatly and tested before you light them. CoC issued where required.',
     intro:
-      'A gas hob keeps cooking when the power goes off, and a gas geyser or fireplace takes load off the electricity. We run the line from the cylinder, bulk tank or meter to each appliance, keep the pipework neat and clipped, and test everything before you use it.',
+      'A gas hob keeps cooking when the power goes off, and a gas geyser or fireplace takes pressure off your power supply. We run the line from the cylinder, bulk tank or meter to each appliance, keep the pipework neat and clipped, and test everything before you use it.',
     included: [
       'Connection to a cylinder, bulk tank or meter',
       'Regulator, isolation valves and clearly labelled pipework',
@@ -247,26 +247,27 @@ export const services = [
     safety: true,
   },
   {
-    slug: 'basic-electrical-gas-system-support',
-    name: 'Basic Electrical & Gas System Support',
+    slug: 'gas-appliance-commissioning',
+    name: 'Gas Appliance Commissioning & Fault Finding',
     image: 'service-03',
     alt: 'Lit gas fireplace set into a dark plastered wall in a living room, with a timber shelf above it.',
-    metaTitle: 'Electrical Connections for Gas Appliances in Gauteng',
+    metaTitle: 'Gas Appliance Commissioning and Fault Finding in Pretoria and Johannesburg',
     metaDescription:
-      'The basic electrical work gas appliances need, including isolators, ignition supply, control wiring and fan connections, done by the team that installs the gas.',
+      'New gas appliances connected, lit and set up properly, and existing ones that will not light traced to the fault and put right, in Pretoria, Johannesburg and across Gauteng.',
     card:
-      'Isolators, ignition supply and fan connections for gas appliances, so one team finishes the job instead of two.',
+      'New gas appliances connected, lit and set up properly, and ones that won’t light traced to the fault and put right.',
     intro:
-      'Plenty of gas appliances need power too: ignition, controls, extraction fans and flue units. We do the basic electrical work that goes with the gas installation, so you are not left waiting on a second contractor to finish the job.',
+      'A gas appliance is only as good as its setup. We connect new hobs, ovens, geysers and fireplaces to the supply, light them and check every burner before handover. When an existing appliance will not light or keeps going out, we trace the fault and put it right.',
     included: [
-      'Isolator and socket positions for gas appliances',
-      'Supply to ignition units and appliance controls',
-      'Flue fan and extraction connections',
-      'Fault finding when an appliance will not start',
-      'Testing of the appliance once it is connected',
+      'Connection of new appliances to the gas supply',
+      'Lighting and burner check on every appliance',
+      'Regulator and connector inspection',
+      'Fault finding when an appliance will not light',
+      'Replacement of perished hoses, seals and connectors',
+      'Leak test before the appliance goes back into use',
     ],
     forWho:
-      'Homeowners and businesses fitting an appliance that needs both gas and power.',
+      'Homeowners and businesses with a new gas appliance to connect, or an existing one that will not light.',
     related: ['residential-gas-installations', 'gas-system-maintenance'],
   },
 ];
