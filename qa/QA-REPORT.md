@@ -1,6 +1,6 @@
 # QA report
 
-Checked against `http://127.0.0.1:8080/` on 2026-09-29T07:00:02.433Z.
+Checked against `http://127.0.0.1:8081/` on 2026-09-29T07:22:56.427Z.
 
 ## Horizontal overflow
 
@@ -15,7 +15,7 @@ Checked against `http://127.0.0.1:8080/` on 2026-09-29T07:00:02.433Z.
 | services-certificate-of-conformity | none | none | none | none |
 | services-gas-system-maintenance | none | none | none | none |
 | services-gas-leak-detection-emergency-repairs | none | none | none | none |
-| services-gas-appliance-commissioning | none | none | none | none |
+| services-gas-fireplaces-heaters | none | none | none | none |
 | thank-you | none | none | none | none |
 | privacy | none | none | none | none |
 | 404 | none | none | none | none |
@@ -61,7 +61,7 @@ The hero heading sits on a photograph behind a charcoal overlay that runs from 8
 | services-certificate-of-conformity | 200 | 1 | 0 | yes | yes |
 | services-gas-system-maintenance | 200 | 1 | 0 | yes | yes |
 | services-gas-leak-detection-emergency-repairs | 200 | 1 | 0 | yes | yes |
-| services-gas-appliance-commissioning | 200 | 1 | 0 | yes | yes |
+| services-gas-fireplaces-heaters | 200 | 1 | 0 | yes | yes |
 | thank-you | 200 | 1 | 0 | yes | yes |
 | privacy | 200 | 1 | 0 | yes | yes |
 | 404 | 200 | 1 | 0 | yes | yes |
@@ -77,8 +77,8 @@ A request for a path that does not exist returned HTTP 404.
 | Page | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
 | home | 97 | 100 | 96 | 100 |
-| services-bulk-lpg-installations | 96 | 100 | 96 | 100 |
+| services-bulk-lpg-installations | 95 | 100 | 96 | 100 |
 | privacy | 100 | 100 | 96 | 100 |
 
-Run against `http://127.0.0.1:8080/` on 2026-09-29T07:03:07.373Z.
+Run against `http://127.0.0.1:8081/` on 2026-09-29T07:25:24.300Z.
 

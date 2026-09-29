@@ -29,7 +29,7 @@ const PAGES = [
   ['services-certificate-of-conformity', 'services/certificate-of-conformity/'],
   ['services-gas-system-maintenance', 'services/gas-system-maintenance/'],
   ['services-gas-leak-detection-emergency-repairs', 'services/gas-leak-detection-emergency-repairs/'],
-  ['services-gas-appliance-commissioning', 'services/gas-appliance-commissioning/'],
+  ['services-gas-fireplaces-heaters', 'services/gas-fireplaces-heaters/'],
   ['thank-you', 'thank-you/'],
   ['privacy', 'privacy/'],
   ['404', '404.html'],

@@ -247,27 +247,27 @@ export const services = [
     safety: true,
   },
   {
-    slug: 'gas-appliance-commissioning',
-    name: 'Gas Appliance Commissioning & Fault Finding',
+    slug: 'gas-fireplaces-heaters',
+    name: 'Gas Fireplaces & Heaters',
     image: 'service-03',
     alt: 'Lit gas fireplace set into a dark plastered wall in a living room, with a timber shelf above it.',
-    metaTitle: 'Gas Appliance Commissioning and Fault Finding in Pretoria and Johannesburg',
+    metaTitle: 'Gas Fireplace and Gas Heater Installations in Pretoria and Johannesburg',
     metaDescription:
-      'New gas appliances connected, lit and set up properly, and existing ones that will not light traced to the fault and put right, in Pretoria, Johannesburg and across Gauteng.',
+      'Gas fireplaces, fireplace inserts, patio heaters and indoor gas heaters installed, connected and certified in Pretoria, Johannesburg and across Gauteng.',
     card:
-      'New gas appliances connected, lit and set up properly, and ones that won’t light traced to the fault and put right.',
+      'Gas fireplaces and heaters installed, connected and tested, from a living-room insert to patio heating.',
     intro:
-      'A gas appliance is only as good as its setup. We connect new hobs, ovens, geysers and fireplaces to the supply, light them and check every burner before handover. When an existing appliance will not light or keeps going out, we trace the fault and put it right.',
+      'A gas fireplace gives instant, adjustable heat with no wood to stack and no ash to clear. We install freestanding and built-in gas fireplaces, inserts for existing chimneys, and patio and indoor gas heaters. Every unit is connected to a correctly sized supply, checked for safe flueing or ventilation, lit, and leak tested before handover.',
     included: [
-      'Connection of new appliances to the gas supply',
-      'Lighting and burner check on every appliance',
-      'Regulator and connector inspection',
-      'Fault finding when an appliance will not light',
-      'Replacement of perished hoses, seals and connectors',
-      'Leak test before the appliance goes back into use',
+      'Site assessment of the room, chimney or flue, and ventilation',
+      'Supply line from the cylinder or an existing gas point to the unit',
+      'Installation of freestanding, built-in and insert gas fireplaces',
+      'Connection of patio heaters and indoor gas heaters',
+      'Lighting, flame and burner check on every unit',
+      'Pressure test, leak test and a Certificate of Conformity for the new work',
     ],
     forWho:
-      'Homeowners and businesses with a new gas appliance to connect, or an existing one that will not light.',
-    related: ['residential-gas-installations', 'gas-system-maintenance'],
+      'Homeowners adding a gas fireplace or fitting one into an existing chimney, and restaurants, lodges and venues heating patios and outdoor seating.',
+    related: ['residential-gas-installations', 'certificate-of-conformity'],
   },
 ];

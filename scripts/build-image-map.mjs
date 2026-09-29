@@ -15,7 +15,7 @@ const NOTES = {
   'service-08.jpg': 'Filename suggested service 8. The photograph shows a Certificate of Conformity, so it fills service 6.',
   'service-02.jpg': 'Filename suggested service 2. The photograph shows an installed gas water heater, so it fills service 7.',
   'service-07.jpg': 'Filename suggested service 7. The photograph shows electronic leak detection, so it fills service 8.',
-  'service-03.jpg': 'Filename suggested service 3. The photograph shows a lit gas fireplace, a commissioned appliance, so it fills service 9.',
+  'service-03.jpg': 'Filename suggested service 3. The photograph shows a lit gas fireplace, so it fills service 9, Gas Fireplaces & Heaters.',
 };
 
 const rows = manifest.rows

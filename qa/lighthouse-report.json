@@ -1,10 +1,10 @@
 {
-  "base": "http://127.0.0.1:8080/",
-  "checkedAt": "2026-09-29T07:03:07.373Z",
+  "base": "http://127.0.0.1:8081/",
+  "checkedAt": "2026-09-29T07:25:24.300Z",
   "rows": [
     {
       "name": "home",
-      "url": "http://127.0.0.1:8080/",
+      "url": "http://127.0.0.1:8081/",
       "scores": {
         "performance": 97,
         "accessibility": 100,
@@ -14,18 +14,18 @@
       "failed": [],
       "opportunities": [
         "Browser errors were logged to the console",
+        "Largest Contentful Paint element",
         "Serve static assets with an efficient cache policy",
         "Eliminate render-blocking resources",
         "Serve images in next-gen formats",
-        "Enable text compression",
-        "Properly size images"
+        "Enable text compression"
       ]
     },
     {
       "name": "services-bulk-lpg-installations",
-      "url": "http://127.0.0.1:8080/services/bulk-lpg-installations/",
+      "url": "http://127.0.0.1:8081/services/bulk-lpg-installations/",
       "scores": {
-        "performance": 96,
+        "performance": 95,
         "accessibility": 100,
         "best-practices": 96,
         "seo": 100
@@ -42,7 +42,7 @@
     },
     {
       "name": "privacy",
-      "url": "http://127.0.0.1:8080/privacy/",
+      "url": "http://127.0.0.1:8081/privacy/",
       "scores": {
         "performance": 100,
         "accessibility": 100,
